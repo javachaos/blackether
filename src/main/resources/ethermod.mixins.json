@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.ethermod.blackether.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "EtherModMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

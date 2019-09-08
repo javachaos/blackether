@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ethermod:block_of_ether"
+  },
+  "result": "minecraft:diamond",
+  "experience": 5,
+  "cookingtime": 900
+}

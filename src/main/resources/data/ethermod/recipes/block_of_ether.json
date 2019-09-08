@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ethermod:ether_ore"
+    },
+    {
+      "item": "ethermod:ether_ore"
+    },
+    {
+      "item": "ethermod:ether_ore"
+    },
+    {
+      "item": "ethermod:ether_ore"
+    },
+    {
+      "item": "ethermod:ether_ore"
+    },
+    {
+      "item": "ethermod:ether_ore"
+    },
+    {
+      "item": "ethermod:ether_ore"
+    },
+    {
+      "item": "ethermod:ether_ore"
+    },
+    {
+      "item": "ethermod:ether_ore"
+    }
+  ],
+  "result": {
+    "item": "ethermod:block_of_ether",
+    "count": 1
+  }
+}

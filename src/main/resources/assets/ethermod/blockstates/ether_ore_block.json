@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "lit=true": { "model": "ethermod:block/ether_ore_block_lit" },
+    "lit=false": { "model": "ethermod:block/ether_ore_block" }
+  }
+}
+

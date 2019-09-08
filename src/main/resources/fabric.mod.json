@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "ethermod",
+  "version": "${version}",
+
+  "name": "Black Ether Mod",
+  "description": "A mod that adds a new ore type and black diamonds with a few new gear sets.",
+  "authors": [
+    "Jacked"
+  ],
+  "contact": {
+    "homepage": "https://github.com/javachaos/",
+    "sources": "https://github.com/javachaos/"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/ethermod/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.ethermod.blackether.BlackEtherMod"
+    ]
+  },
+  "mixins": [
+    "ethermod.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
