@@ -1,4 +1,4 @@
-package net.ethermod.blackether.items;
+package net.ethermod.blackether.items.base;
 
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;

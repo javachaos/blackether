@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ethermod:item/onyx_hoe"
+  }
+}

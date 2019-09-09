@@ -2,10 +2,9 @@ package net.ethermod.blackether.items;
 
 import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.enums.EnumHelper;
+import net.ethermod.blackether.items.base.PickaxeBase;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -22,10 +21,5 @@ public class OnyxPickaxe extends PickaxeBase {
                 100,
                 100,
                  Ingredient.ofItems(BlackEtherMod.ONYX_ORE)));
-    }
-
-    @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(new TranslatableText("Onyx Pickaxe"));
     }
 }

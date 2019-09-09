@@ -2,8 +2,7 @@ package net.ethermod.blackether;
 
 import net.ethermod.blackether.blocks.BlockOfEther;
 import net.ethermod.blackether.blocks.EtherOreBlock;
-import net.ethermod.blackether.items.OnyxAxe;
-import net.ethermod.blackether.items.OnyxPickaxe;
+import net.ethermod.blackether.items.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
@@ -24,12 +23,16 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 
 public class BlackEtherMod implements ModInitializer {
-
+	public static final String MODID = "ethermod";
 	public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL, MaterialColor.LAVA).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F).build());
 	public static final Item ETHER_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
 	public static final Item ONYX_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
+	public static final Item ONYX_DUST = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
 	public static final Item ONYX_PICKAXE = new OnyxPickaxe();
+	public static final Item ONYX_SHOVEL = new OnyxShovel();
 	public static final Item ONYX_AXE = new OnyxAxe();
+	public static final Item ONYX_HOE = new OnyxHoe();
+	public static final Item ONYX_SWORD = new OnyxSword();
 	public static final Block BLOCK_OF_ETHER = new BlockOfEther(FabricBlockSettings.of(Material.METAL, MaterialColor.BLACK).strength(10.0F, 6.0F).build());
 
 	@Override
@@ -38,16 +41,20 @@ public class BlackEtherMod implements ModInitializer {
 		RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
 
 		//ITEMS
-		Registry.register(Registry.ITEM, new Identifier("ethermod", "onyx_pickaxe"), ONYX_PICKAXE);
-		Registry.register(Registry.ITEM, new Identifier("ethermod", "onyx_axe"), ONYX_AXE);
-		Registry.register(Registry.ITEM, new Identifier("ethermod", "ether_ore"), ETHER_ORE);
-		Registry.register(Registry.ITEM, new Identifier("ethermod", "onyx_ore"), ONYX_ORE);
-		Registry.register(Registry.ITEM, new Identifier("ethermod", "ether_ore_block"), new BlockItem(ETHER_ORE_BLOCK, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
-		Registry.register(Registry.ITEM, new Identifier("ethermod", "block_of_ether"), new BlockItem(BLOCK_OF_ETHER, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_pickaxe"), ONYX_PICKAXE);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_axe"), ONYX_AXE);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_hoe"), ONYX_HOE);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_sword"), ONYX_SWORD);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_shovel"), ONYX_SHOVEL);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "ether_ore"), ETHER_ORE);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_ore"), ONYX_ORE);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_dust"), ONYX_DUST);
+		Registry.register(Registry.ITEM, new Identifier(MODID, "ether_ore_block"), new BlockItem(ETHER_ORE_BLOCK, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier(MODID, "block_of_ether"), new BlockItem(BLOCK_OF_ETHER, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
 
 		//BLOCKS
-		Registry.register(Registry.BLOCK, new Identifier("ethermod", "ether_ore_block"), ETHER_ORE_BLOCK);
-		Registry.register(Registry.BLOCK, new Identifier("ethermod", "block_of_ether"), BLOCK_OF_ETHER);
+		Registry.register(Registry.BLOCK, new Identifier(MODID, "ether_ore_block"), ETHER_ORE_BLOCK);
+		Registry.register(Registry.BLOCK, new Identifier(MODID, "block_of_ether"), BLOCK_OF_ETHER);
 		FuelRegistryImpl.INSTANCE.add(ETHER_ORE, 3000);
 	}
 
