@@ -13,10 +13,15 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class OnyxPickaxe extends PickaxeItem {
-    private static final ToolMaterial ONYX_PICKAXE_MATERIAL = EnumHelper.getToolMaterial(500, 30f, 10f, 100, 100, Ingredient.ofItems(BlackEtherMod.ONYX_ORE));
-    public OnyxPickaxe(Settings s) {
-        super(ONYX_PICKAXE_MATERIAL, 0, 0, s);
+public class OnyxPickaxe extends PickaxeBase {
+    public OnyxPickaxe() {
+        super(EnumHelper.getToolMaterial(
+                500,
+                30f,
+                10f,
+                100,
+                100,
+                 Ingredient.ofItems(BlackEtherMod.ONYX_ORE)));
     }
 
     @Override

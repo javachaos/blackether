@@ -2,6 +2,7 @@ package net.ethermod.blackether;
 
 import net.ethermod.blackether.blocks.BlockOfEther;
 import net.ethermod.blackether.blocks.EtherOreBlock;
+import net.ethermod.blackether.items.OnyxAxe;
 import net.ethermod.blackether.items.OnyxPickaxe;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
@@ -27,7 +28,8 @@ public class BlackEtherMod implements ModInitializer {
 	public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL, MaterialColor.LAVA).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F).build());
 	public static final Item ETHER_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
 	public static final Item ONYX_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
-	public static final Item ONYX_PICKAXE = new OnyxPickaxe(new Item.Settings().group(ItemGroup.TOOLS));
+	public static final Item ONYX_PICKAXE = new OnyxPickaxe();
+	public static final Item ONYX_AXE = new OnyxAxe();
 	public static final Block BLOCK_OF_ETHER = new BlockOfEther(FabricBlockSettings.of(Material.METAL, MaterialColor.BLACK).strength(10.0F, 6.0F).build());
 
 	@Override
@@ -37,6 +39,7 @@ public class BlackEtherMod implements ModInitializer {
 
 		//ITEMS
 		Registry.register(Registry.ITEM, new Identifier("ethermod", "onyx_pickaxe"), ONYX_PICKAXE);
+		Registry.register(Registry.ITEM, new Identifier("ethermod", "onyx_axe"), ONYX_AXE);
 		Registry.register(Registry.ITEM, new Identifier("ethermod", "ether_ore"), ETHER_ORE);
 		Registry.register(Registry.ITEM, new Identifier("ethermod", "onyx_ore"), ONYX_ORE);
 		Registry.register(Registry.ITEM, new Identifier("ethermod", "ether_ore_block"), new BlockItem(ETHER_ORE_BLOCK, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
