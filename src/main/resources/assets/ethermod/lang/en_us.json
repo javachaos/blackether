@@ -8,5 +8,6 @@
   "item.ethermod.onyx_sword": "Onyx Sword",
   "item.ethermod.onyx_pickaxe": "Onyx Pickaxe",
   "item.ethermod.onyx_dust": "Onyx Dust",
-  "block.ethermod.ether_ore_block": "Ether Ore Block"
+  "block.ethermod.ether_ore_block": "Ether Ore Block",
+  "biome.ethermod.onyx_biome": "Onyx Biome"
 }

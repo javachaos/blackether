@@ -2,6 +2,8 @@ package net.ethermod.blackether;
 
 import net.ethermod.blackether.blocks.BlockOfEther;
 import net.ethermod.blackether.blocks.EtherOreBlock;
+import net.ethermod.blackether.features.OnyxFortFeature;
+import net.ethermod.blackether.gen.OnyxFortGenerator;
 import net.ethermod.blackether.items.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
@@ -13,14 +15,18 @@ import net.minecraft.block.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.StructureFeature;
 
 public class BlackEtherMod implements ModInitializer {
 	public static final String MODID = "ethermod";
@@ -34,12 +40,12 @@ public class BlackEtherMod implements ModInitializer {
 	public static final Item ONYX_HOE = new OnyxHoe();
 	public static final Item ONYX_SWORD = new OnyxSword();
 	public static final Block BLOCK_OF_ETHER = new BlockOfEther(FabricBlockSettings.of(Material.METAL, MaterialColor.BLACK).strength(10.0F, 6.0F).build());
+	public static final StructurePieceType myStructurePieceType = Registry.register(Registry.STRUCTURE_PIECE, "onyx_fort_piece", OnyxFortGenerator.Piece::new);
+	public static final StructureFeature<DefaultFeatureConfig> onyxFortFeature = Registry.register(Registry.FEATURE, "onyx_fort_feature", new OnyxFortFeature());
+	public static final StructureFeature<?> myStructure = Registry.register(Registry.STRUCTURE_FEATURE, "onyx_fort_structure", onyxFortFeature);
 
 	@Override
 	public void onInitialize() {
-		Registry.BIOME.forEach(this::handleBiome);
-		RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
-
 		//ITEMS
 		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_pickaxe"), ONYX_PICKAXE);
 		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_axe"), ONYX_AXE);
@@ -56,6 +62,9 @@ public class BlackEtherMod implements ModInitializer {
 		Registry.register(Registry.BLOCK, new Identifier(MODID, "ether_ore_block"), ETHER_ORE_BLOCK);
 		Registry.register(Registry.BLOCK, new Identifier(MODID, "block_of_ether"), BLOCK_OF_ETHER);
 		FuelRegistryImpl.INSTANCE.add(ETHER_ORE, 3000);
+
+		Registry.BIOME.forEach(this::handleBiome);
+		RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
 	}
 
 	/**
@@ -80,6 +89,15 @@ public class BlackEtherMod implements ModInitializer {
 									0, //Min y level
 									8 //Max y level
 							)));
+			biome.addStructureFeature(onyxFortFeature, new DefaultFeatureConfig());
+			biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES,
+					Biome.configureFeature(
+							onyxFortFeature,
+							new DefaultFeatureConfig(),
+							Decorator.CHANCE_PASSTHROUGH,
+							new ChanceDecoratorConfig(10)
+					)
+			);
 		}
 	}
 }

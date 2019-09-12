@@ -21,14 +21,13 @@ import java.util.Random;
 public class OnyxAxe extends AxeBase {
     public OnyxAxe() {
         super(EnumHelper.getToolMaterial(
-                500,
-                30f,
+                1562,
+                15f,
                 15f,
                 100,
                 100,
                  Ingredient.ofItems(BlackEtherMod.ONYX_ORE)));
     }
-
 
     @Override
     public boolean postMine(ItemStack itemStack_1, World world_1, BlockState blockState_1, BlockPos blockPos_1, LivingEntity livingEntity_1) {
