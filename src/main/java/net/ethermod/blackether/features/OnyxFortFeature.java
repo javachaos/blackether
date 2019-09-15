@@ -14,6 +14,7 @@ import net.minecraft.world.gen.feature.AbstractTempleFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
+import java.util.Random;
 import java.util.function.Function;
 
 public class OnyxFortFeature extends AbstractTempleFeature<DefaultFeatureConfig> {
@@ -28,25 +29,31 @@ public class OnyxFortFeature extends AbstractTempleFeature<DefaultFeatureConfig>
 
     @Override
     protected int getSeedModifier() {
-        return 2311213;
+        return 0;
     }
 
     @Override
     public StructureStartFactory getStructureStartFactory() {
-        return FortStructureStart::new;
+        return OnyxFortFeature.FortStructureStart::new;
     }
 
     @Override
     public String getName() {
-        return "Onyx Fort";
+        return "onyxfort";
     }
 
     @Override
     public int getRadius() {
-        return 3;
+        return 8;
     }
 
-    public static class FortStructureStart extends StructureStart {
+    @Override
+    public boolean shouldStartAt(ChunkGenerator<?> chunkGenerator_1, Random random_1, int int_1, int int_2)
+    {
+        return true;
+    }
+
+    private static class FortStructureStart extends StructureStart {
         public FortStructureStart(StructureFeature<?> structureFeature_1, int int_1, int int_2, Biome biome_1, MutableIntBoundingBox mutableIntBoundingBox_1, int int_3, long long_1) {
             super(structureFeature_1, int_1, int_2, biome_1, mutableIntBoundingBox_1, int_3, long_1);
         }
@@ -55,9 +62,9 @@ public class OnyxFortFeature extends AbstractTempleFeature<DefaultFeatureConfig>
             DefaultFeatureConfig defaultFeatureConfig = chunkGenerator.getStructureConfig(biome, BlackEtherMod.onyxFortFeature);
             int x = chunkX * 16;
             int z = chunkZ * 16;
-            BlockPos startingPos = new BlockPos(x, 0, z);
+            BlockPos startingPos = new BlockPos(x, 1, z);
             BlockRotation rotation = BlockRotation.values()[this.random.nextInt(BlockRotation.values().length)];
-            OnyxFortGenerator.addParts(structureManager, startingPos, rotation, this.children, this.random, defaultFeatureConfig);
+            OnyxFortGenerator.addPieces(structureManager, startingPos, rotation, this.children, this.random, defaultFeatureConfig);
             this.setBoundingBoxFromChildren();
         }
 
