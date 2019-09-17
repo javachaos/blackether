@@ -8,7 +8,6 @@ import net.ethermod.blackether.enums.CustomArmorMaterial;
 import net.ethermod.blackether.features.OnyxFortFeature;
 import net.ethermod.blackether.gen.OnyxFortGenerator;
 import net.ethermod.blackether.items.*;
-import net.ethermod.blackether.utils.PlayerUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
@@ -20,18 +19,13 @@ import net.fabricmc.fabric.impl.registry.FuelRegistryImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
-import net.minecraft.client.network.packet.PlayerPositionLookS2CPacket;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
@@ -43,10 +37,12 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
-import java.util.EnumSet;
-import static com.mojang.brigadier.arguments.IntegerArgumentType.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BlackEtherMod implements ModInitializer {
+
+	public static final Logger LOGGER = LogManager.getLogger(BlackEtherMod.class);
 	public static final String MODID = "ethermod";
 	public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL, MaterialColor.LAVA).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F).build());
 	public static final Item ETHER_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
@@ -91,6 +87,7 @@ public class BlackEtherMod implements ModInitializer {
 	}
 
 	private void registerCommands() {
+		LOGGER.info("Registering commands for Black Ether Mod");
 		CommandRegistry.INSTANCE.register(false, dispatcher -> RandomTeleportCommand.register(dispatcher));
 	}
 

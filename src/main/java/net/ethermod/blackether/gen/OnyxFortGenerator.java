@@ -4,7 +4,6 @@ import net.ethermod.blackether.BlackEtherMod;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
-import net.minecraft.structure.processor.BlockRotStructureProcessor;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;

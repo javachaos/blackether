@@ -3,7 +3,6 @@ package net.ethermod.blackether.items;
 import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.enums.EnumHelper;
 import net.ethermod.blackether.items.base.SwordBase;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
 public class OnyxSword extends SwordBase {

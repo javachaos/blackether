@@ -5,8 +5,10 @@ import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.biome.MountainsBiome;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.MineshaftFeature;
+import net.minecraft.world.gen.feature.MineshaftFeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 public class OnyxBiome extends Biome {
