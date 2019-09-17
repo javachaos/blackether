@@ -31,7 +31,7 @@ public class EtherOreBlock extends Block {
 
     public EtherOreBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)this.getDefaultState().with(LIT, false));
+        this.setDefaultState(this.getDefaultState().with(LIT, false));
     }
 
     @Environment(EnvType.CLIENT)
@@ -41,7 +41,7 @@ public class EtherOreBlock extends Block {
 
     @Override
     public int getLuminance(BlockState blockState_1) {
-        return (Boolean)blockState_1.get(LIT) ? super.getLuminance(blockState_1) : 0;
+        return blockState_1.get(LIT) ? super.getLuminance(blockState_1) : 0;
     }
 
     @Override
@@ -64,22 +64,22 @@ public class EtherOreBlock extends Block {
 
     private static void light(BlockState state, World world, BlockPos pos) {
         spawnParticles(world, pos);
-        if (!(Boolean)state.get(LIT)) {
-            world.setBlockState(pos, (BlockState)state.with(LIT, true), 3);
+        if (!state.get(LIT)) {
+            world.setBlockState(pos, state.with(LIT, true), 3);
         }
     }
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
-        if ((Boolean)blockState_1.get(LIT)) {
+        if (blockState_1.get(LIT)) {
             spawnParticles(world_1, blockPos_1);
         }
     }
 
     @Override
     public void onScheduledTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
-        if ((Boolean)blockState_1.get(LIT)) {
-            world_1.setBlockState(blockPos_1, (BlockState)blockState_1.with(LIT, false), 3);
+        if (blockState_1.get(LIT)) {
+            world_1.setBlockState(blockPos_1, blockState_1.with(LIT, false), 3);
         }
 
     }

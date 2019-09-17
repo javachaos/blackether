@@ -1,15 +1,14 @@
 package net.ethermod.blackether;
 
-import com.mojang.brigadier.arguments.ArgumentType;
-import com.mojang.brigadier.arguments.IntegerArgumentType;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.ethermod.blackether.biomes.OnyxBiome;
 import net.ethermod.blackether.blocks.BlockOfEther;
 import net.ethermod.blackether.blocks.EtherOreBlock;
+import net.ethermod.blackether.commands.RandomTeleportCommand;
 import net.ethermod.blackether.enums.CustomArmorMaterial;
 import net.ethermod.blackether.features.OnyxFortFeature;
 import net.ethermod.blackether.gen.OnyxFortGenerator;
 import net.ethermod.blackether.items.*;
+import net.ethermod.blackether.utils.PlayerUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
@@ -18,36 +17,24 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.fabricmc.fabric.api.registry.CommandRegistry;
 import net.fabricmc.fabric.impl.registry.FuelRegistryImpl;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
 import net.minecraft.client.network.packet.PlayerPositionLookS2CPacket;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.command.TeleportCommand;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.chunk.ChunkManager;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
@@ -56,17 +43,8 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
-
 import java.util.EnumSet;
-import java.util.Set;
-
-import static com.mojang.brigadier.arguments.StringArgumentType.getString; // getString(ctx, "string")
-import static com.mojang.brigadier.arguments.StringArgumentType.word; // word(), string(), greedyString()
-import static com.mojang.brigadier.arguments.IntegerArgumentType.*; // word(), string(), greedyString()
-import static com.mojang.brigadier.arguments.ArgumentType.*; // word(), string(), greedyString()
-import static net.minecraft.server.command.CommandManager.literal; // literal("foo")
-import static net.minecraft.server.command.CommandManager.argument; // argument("bar", word())
-import static net.minecraft.server.command.CommandManager.*; // Import everything
+import static com.mojang.brigadier.arguments.IntegerArgumentType.*;
 
 public class BlackEtherMod implements ModInitializer {
 	public static final String MODID = "ethermod";
@@ -113,47 +91,7 @@ public class BlackEtherMod implements ModInitializer {
 	}
 
 	private void registerCommands() {
-		CommandRegistry.INSTANCE.register(false, dispatcher -> { // Or directly registering the command to the dispatcher.
-			dispatcher.register(CommandManager.literal("rtp")
-					.then(CommandManager.argument("radius", integer(0,10000000))
-							// The command to be executed if the command "foo" is entered with the argument "bar"
-							.executes(ctx -> {
-								PlayerEntity p = ctx.getSource().getPlayer();
-								ServerWorld w = ctx.getSource().getWorld();
-								int r = getInteger(ctx, "radius");
-								double delta_x = r * ctx.getSource().getPlayer().getRand().nextDouble() + 1;
-								double delta_z = r * ctx.getSource().getPlayer().getRand().nextDouble() + 1;
-								double new_x = delta_x + p.x;
-								double new_z = delta_z + p.z;
-								double new_y = 0;
-								int i = w.getSeaLevel();
-								while(!w.isAir(new BlockPos(new_x,i++,new_z)) && new_y + w.getSeaLevel() < w.getHeight()) {
-									new_y++;
-								}
-								teleport(ctx.getSource(), p, w, new_x, i,new_z, EnumSet.noneOf(PlayerPositionLookS2CPacket.Flag.class), p.yaw, p.pitch);
-								System.out.println("Radius set to "+r+", spawning at ["+(int) new_x+"] ["+(int) p.y+"] ["+(int) new_z+"]");
-								// Return a result. -1 is failure, 0 is a pass and 1 is success.
-								return 1;
-							}))
-					// The command "foo" to execute if there are no arguments.
-					.executes(ctx -> {
-						PlayerEntity p = ctx.getSource().getPlayer();
-						ServerWorld w = ctx.getSource().getWorld();
-						double delta_x = 10000 * ctx.getSource().getPlayer().getRand().nextDouble() + 1;
-						double delta_z = 10000 * ctx.getSource().getPlayer().getRand().nextDouble() + 1;
-						double new_x = delta_x + p.x;
-						double new_z = delta_z + p.z;
-						double new_y = 0;
-						int i = w.getSeaLevel();
-						while(!w.isAir(new BlockPos(new_x,i++,new_z)) && new_y + w.getSeaLevel() < w.getHeight()) {
-							new_y++;
-						}
-						teleport(ctx.getSource(), p, w, new_x, i,new_z, EnumSet.noneOf(PlayerPositionLookS2CPacket.Flag.class), p.yaw, p.pitch);
-						System.out.println("Default radius set to 10000, spawning at ["+(int) new_x+"] ["+(int) p.y+"] ["+(int) new_z+"]");
-						return 1;
-					})
-			);
-		});
+		CommandRegistry.INSTANCE.register(false, dispatcher -> RandomTeleportCommand.register(dispatcher));
 	}
 
 	@Override
@@ -184,7 +122,7 @@ public class BlackEtherMod implements ModInitializer {
 							onyxFortFeature,
 							new DefaultFeatureConfig(),
 							Decorator.CHANCE_PASSTHROUGH,
-							new ChanceDecoratorConfig(10)
+							new ChanceDecoratorConfig(1000)
 					));
 		}
 		if(biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
@@ -205,52 +143,5 @@ public class BlackEtherMod implements ModInitializer {
 									8 //Max y level
 							)));
 		}
-	}
-
-	private static void teleport(ServerCommandSource serverCommandSource_1, Entity entity_1, ServerWorld serverWorld_1, double double_1, double double_2, double double_3, Set<PlayerPositionLookS2CPacket.Flag> set_1, float float_1, float float_2) {
-		if (entity_1 instanceof ServerPlayerEntity) {
-			ChunkPos chunkPos_1 = new ChunkPos(new BlockPos(double_1, double_2, double_3));
-			serverWorld_1.method_14178().addTicket(ChunkTicketType.POST_TELEPORT, chunkPos_1, 1, entity_1.getEntityId());
-			entity_1.stopRiding();
-			if (((ServerPlayerEntity)entity_1).isSleeping()) {
-				((ServerPlayerEntity)entity_1).wakeUp(true, true, false);
-			}
-
-			if (serverWorld_1 == entity_1.world) {
-				((ServerPlayerEntity)entity_1).networkHandler.teleportRequest(double_1, double_2, double_3, float_1, float_2, set_1);
-			} else {
-				((ServerPlayerEntity)entity_1).teleport(serverWorld_1, double_1, double_2, double_3, float_1, float_2);
-			}
-
-			entity_1.setHeadYaw(float_1);
-		} else {
-			float float_3 = MathHelper.wrapDegrees(float_1);
-			float float_4 = MathHelper.wrapDegrees(float_2);
-			float_4 = MathHelper.clamp(float_4, -90.0F, 90.0F);
-			if (serverWorld_1 == entity_1.world) {
-				entity_1.setPositionAndAngles(double_1, double_2, double_3, float_3, float_4);
-				entity_1.setHeadYaw(float_3);
-			} else {
-				entity_1.detach();
-				entity_1.dimension = serverWorld_1.dimension.getType();
-				Entity entity_2 = entity_1;
-				entity_1 = entity_1.getType().create(serverWorld_1);
-				if (entity_1 == null) {
-					return;
-				}
-
-				entity_1.copyFrom(entity_2);
-				entity_1.setPositionAndAngles(double_1, double_2, double_3, float_3, float_4);
-				entity_1.setHeadYaw(float_3);
-				serverWorld_1.method_18769(entity_1);
-				entity_2.removed = true;
-			}
-		}
-
-		if (!(entity_1 instanceof LivingEntity) || !((LivingEntity)entity_1).isFallFlying()) {
-			entity_1.setVelocity(entity_1.getVelocity().multiply(1.0D, 0.0D, 1.0D));
-			entity_1.onGround = true;
-		}
-
 	}
 }

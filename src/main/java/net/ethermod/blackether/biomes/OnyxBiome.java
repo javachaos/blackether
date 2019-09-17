@@ -20,7 +20,7 @@ public class OnyxBiome extends Biome {
                 .downfall(0.7F)
                 .waterColor(4159204)
                 .waterFogColor(329011)
-                .parent((String)null));
+                .parent(null));
         this.addStructureFeature(Feature.MINESHAFT, new MineshaftFeatureConfig(0.004D, MineshaftFeature.Type.NORMAL));
         this.addStructureFeature(Feature.STRONGHOLD, FeatureConfig.DEFAULT);
         this.addStructureFeature(BlackEtherMod.onyxFortFeature, FeatureConfig.DEFAULT);
