@@ -9,7 +9,8 @@ public class GameUtils {
         if (text != null && !text.isEmpty() && text.matches("^[0-9a-zA-Z &_.!?$%^#/,\\[\\]()@]*$")) {
             MinecraftClient.getInstance().inGameHud.setOverlayMessage(text, false);
         } else {
-            BlackEtherMod.LOGGER.warn("Cannot display text, does not match regex. Or is empty");
+            BlackEtherMod.LOGGER.warn("Cannot display text, does not match regex. Or is empty.");
+            MinecraftClient.getInstance().inGameHud.setOverlayMessage("Mod error. In mod: " + BlackEtherMod.MODID, false);
         }
     }
 }

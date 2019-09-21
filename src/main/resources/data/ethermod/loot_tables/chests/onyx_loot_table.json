@@ -13,7 +13,7 @@
         {
           "type": "item",
           "name": "minecraft:diamond",
-          "weight": 10,
+          "weight": 5,
           "functions": [
             {
               "function": "set_count",
@@ -63,7 +63,7 @@
         {
           "type": "item",
           "name": "ethermod:onyx_sword",
-          "weight": 10,
+          "weight": 2,
           "functions": [
             {
               "function": "set_count",
@@ -97,13 +97,13 @@
         {
           "type": "item",
           "name": "ethermod:onyx_ore",
-          "weight": 1,
+          "weight": 10,
           "functions": [
             {
               "function": "set_count",
               "count": {
                 "min": 1,
-                "max": 27
+                "max": 10
               }
             }
           ]

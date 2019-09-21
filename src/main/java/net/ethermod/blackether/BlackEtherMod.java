@@ -8,6 +8,7 @@ import net.ethermod.blackether.enums.CustomArmorMaterial;
 import net.ethermod.blackether.features.OnyxFortFeature;
 import net.ethermod.blackether.gen.OnyxFortGenerator;
 import net.ethermod.blackether.items.*;
+import net.ethermod.blackether.utils.PropertyManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
@@ -43,6 +44,7 @@ import org.apache.logging.log4j.Logger;
 public class BlackEtherMod implements ModInitializer {
 
 	public static final Logger LOGGER = LogManager.getLogger(BlackEtherMod.class);
+	public static final PropertyManager PROPERTIES = new PropertyManager();
 	public static final String MODID = "ethermod";
 	public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL, MaterialColor.LAVA).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F).build());
 	public static final Item ETHER_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
@@ -64,6 +66,7 @@ public class BlackEtherMod implements ModInitializer {
 	public static final Item ONYX_BOOTS = new ArmorItem(CustomArmorMaterial.ONYX, EquipmentSlot.FEET, (new Item.Settings().group(ItemGroup.COMBAT)));
 
 	static {
+		LOGGER.info("Registering items and blocks for Black Ether Mod");
 		Feature.STRUCTURES.put("onyx feature", onyxFortFeature);
 		//ITEMS
 		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_pickaxe"), ONYX_PICKAXE);
@@ -86,6 +89,10 @@ public class BlackEtherMod implements ModInitializer {
 		FuelRegistryImpl.INSTANCE.add(ETHER_ORE, 3000);
 	}
 
+	private boolean spawnOnyx;
+	private boolean onyxBiomeEnabled;
+	private int onyxSpawnChance;
+
 	private void registerCommands() {
 		LOGGER.info("Registering commands for Black Ether Mod");
 		CommandRegistry.INSTANCE.register(false, dispatcher -> RandomTeleportCommand.register(dispatcher));
@@ -93,6 +100,7 @@ public class BlackEtherMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		initProperties();
 		registerCommands();
 		OverworldBiomes.addContinentalBiome(BlackEtherMod.ONYX_BIOME, OverworldClimate.TEMPERATE, 2D);
 		OverworldBiomes.addContinentalBiome(BlackEtherMod.ONYX_BIOME, OverworldClimate.COOL, 2D);
@@ -102,7 +110,12 @@ public class BlackEtherMod implements ModInitializer {
 		OverworldBiomes.addBiomeVariant(Biomes.PLAINS, BlackEtherMod.ONYX_BIOME, 0.33);
 		Registry.BIOME.forEach(this::handleBiome);
 		RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
+	}
 
+	private void initProperties() {
+		spawnOnyx = PROPERTIES.getBooleanProperty("spawn.onyxforts", true);
+		onyxBiomeEnabled = PROPERTIES.getBooleanProperty("enable.onyx.biome", true);
+		onyxSpawnChance = PROPERTIES.getIntegerProperty("onyxfort.spawn.chance", 1000);
 	}
 
 	/**
@@ -110,7 +123,7 @@ public class BlackEtherMod implements ModInitializer {
 	 * @param biome
 	 */
 	private void handleBiome(Biome biome) {
-		if(biome.getCategory() != Biome.Category.RIVER
+		if(spawnOnyx && biome.getCategory() != Biome.Category.RIVER
 				&& biome.getCategory() != Biome.Category.OCEAN
 				&& biome.getCategory() != Biome.Category.THEEND) {
 			biome.addStructureFeature(onyxFortFeature, new DefaultFeatureConfig());
@@ -119,10 +132,10 @@ public class BlackEtherMod implements ModInitializer {
 							onyxFortFeature,
 							new DefaultFeatureConfig(),
 							Decorator.CHANCE_PASSTHROUGH,
-							new ChanceDecoratorConfig(1000)
+							new ChanceDecoratorConfig(onyxSpawnChance)
 					));
 		}
-		if(biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
+		if(onyxBiomeEnabled && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
 			biome.addFeature(
 					GenerationStep.Feature.UNDERGROUND_ORES,
 					Biome.configureFeature(
