@@ -52,7 +52,7 @@ public final class Constants {
      *      the number of ticks per second
      */
     public static final int getTicksPerSec(int seconds) {
-        if (seconds >= 0 && seconds <= Integer.MAX_VALUE) {
+        if (seconds >= 0) {
             return seconds * TICKS_PER_SEC;
         } else {
             throw new RuntimeException("Error, ticks per second conversion out of bounds.");

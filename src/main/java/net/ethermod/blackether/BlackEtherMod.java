@@ -3,25 +3,18 @@ package net.ethermod.blackether;
 import net.ethermod.blackether.biomes.OnyxBiome;
 import net.ethermod.blackether.blocks.BlockOfEther;
 import net.ethermod.blackether.blocks.EtherOreBlock;
-import net.ethermod.blackether.commands.RandomTeleportCommand;
 import net.ethermod.blackether.enums.CustomArmorMaterial;
 import net.ethermod.blackether.features.OnyxFortFeature;
 import net.ethermod.blackether.gen.OnyxFortGenerator;
 import net.ethermod.blackether.items.*;
-import net.ethermod.blackether.utils.Constants;
-import net.ethermod.blackether.utils.GameUtils;
 import net.ethermod.blackether.utils.PropertyManager;
-import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
-import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
-import net.fabricmc.fabric.api.registry.CommandRegistry;
 import net.fabricmc.fabric.impl.registry.FuelRegistryImpl;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
@@ -98,24 +91,9 @@ public class BlackEtherMod implements ModInitializer {
 	private boolean onyxBiomeEnabled;
 	private int onyxSpawnChance;
 
-	private void registerCommands() {
-		LOGGER.info("Registering commands for Black Ether Mod");
-		CommandRegistry.INSTANCE.register(false, dispatcher -> RandomTeleportCommand.register(dispatcher));
-		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-			ClientSidePacketRegistry.INSTANCE.register(SEND_TOAST_TO_CLIENT_PACKET_ID,
-					(packetContext, attachedData) -> {
-						String text = attachedData.readString();
-						packetContext.getTaskQueue().execute(() -> {
-							GameUtils.displayTextInGame(text);
-						});
-					});
-		}
-	}
-
 	@Override
 	public void onInitialize() {
 		initProperties();
-		registerCommands();
 		setupBiomes();
 	}
 
@@ -138,7 +116,7 @@ public class BlackEtherMod implements ModInitializer {
 
 	/**
 	 * Called during init for each biome.
-	 * @param biome
+	 * @param biome the current biome
 	 */
 	private void handleBiome(Biome biome) {
 		if(spawnOnyx && biome.getCategory() != Biome.Category.RIVER
