@@ -58,15 +58,19 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 jar {
 	from "LICENSE"
 }
-afterEvaluate {
-	tasks.curseforge340764.dependsOn remapJar
-}
+
 curseforge {
 	apiKey = "${project.curseForgeApiKey}" // This should really be in a gradle.properties file
 	project {
 		id = '340764'
 		changelog = file('changelog.txt') // A file can also be set using: changelog = file('changelog.txt')
 		releaseType = 'beta'
+		mainArtifact(remapJar)
+		afterEvaluate {
+			mainArtifact(remapJar)
+			uploadTask.dependsOn(remapJar)
+			//tasks.curseforge340764.dependsOn remapJar
+		}
 	}
 	options {
 		forgeGradleIntegration = false

@@ -9,18 +9,23 @@ import net.ethermod.blackether.features.OnyxFortFeature;
 import net.ethermod.blackether.gen.OnyxFortGenerator;
 import net.ethermod.blackether.items.*;
 import net.ethermod.blackether.utils.Constants;
+import net.ethermod.blackether.utils.GameUtils;
 import net.ethermod.blackether.utils.PropertyManager;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
+import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.fabricmc.fabric.api.registry.CommandRegistry;
 import net.fabricmc.fabric.impl.registry.FuelRegistryImpl;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -65,6 +70,7 @@ public class BlackEtherMod implements ModInitializer {
 	public static final Item ONYX_LEGGINGS = new ArmorItem(CustomArmorMaterial.ONYX, EquipmentSlot.LEGS, (new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item ONYX_BOOTS = new ArmorItem(CustomArmorMaterial.ONYX, EquipmentSlot.FEET, (new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item ONYX_APPLE = new OnyxApple();
+	public static final Identifier SEND_TOAST_TO_CLIENT_PACKET_ID = new Identifier(MODID, "showtext");
 
 	static {
 		LOGGER.info("Registering items and blocks for Black Ether Mod");
@@ -98,6 +104,15 @@ public class BlackEtherMod implements ModInitializer {
 	private void registerCommands() {
 		LOGGER.info("Registering commands for Black Ether Mod");
 		CommandRegistry.INSTANCE.register(false, dispatcher -> RandomTeleportCommand.register(dispatcher));
+		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+			ClientSidePacketRegistry.INSTANCE.register(SEND_TOAST_TO_CLIENT_PACKET_ID,
+					(packetContext, attachedData) -> {
+						String text = attachedData.readString();
+						packetContext.getTaskQueue().execute(() -> {
+							GameUtils.displayTextInGame(text);
+						});
+					});
+		}
 	}
 
 	@Override

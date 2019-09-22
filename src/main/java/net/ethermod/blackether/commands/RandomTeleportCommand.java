@@ -3,9 +3,11 @@ package net.ethermod.blackether.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import io.netty.buffer.Unpooled;
 import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.utils.GameUtils;
 import net.ethermod.blackether.utils.PlayerUtils;
+import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.MinecraftClientGame;
 import net.minecraft.client.network.packet.PlayerPositionLookS2CPacket;
@@ -13,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.EnumSet;
@@ -43,9 +46,12 @@ public class RandomTeleportCommand {
             new_y++;
         }
         PlayerUtils.teleport(ctx.getSource(), p, w, new_x, i, new_z, EnumSet.noneOf(PlayerPositionLookS2CPacket.Flag.class), p.yaw, p.pitch);
-        String info = "Default radius set to 10000, spawning at [" + (int) new_x + "] [" + (int) p.y + "] [" + (int) new_z + "]";
+        String info = "Default radius set to 10000, spawning "+ctx.getSource().getPlayer().getDisplayName().asString()+" at [" + (int) new_x + "] [" + (int) p.y + "] [" + (int) new_z + "]";
         BlackEtherMod.LOGGER.info(info);
-        GameUtils.displayTextInGame(info);
+        PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
+        passedData.writeString(info);
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(p,BlackEtherMod.SEND_TOAST_TO_CLIENT_PACKET_ID, passedData);
+        //GameUtils.displayTextInGame(info);
         return 1;
     }
 
@@ -63,9 +69,11 @@ public class RandomTeleportCommand {
             new_y++;
         }
         PlayerUtils.teleport(ctx.getSource(), p, w, new_x, i, new_z, EnumSet.noneOf(PlayerPositionLookS2CPacket.Flag.class), p.yaw, p.pitch);
-        String info = "Radius set to " + r + ", spawning at [" + (int) new_x + "] [" + (int) p.y + "] [" + (int) new_z + "]";
+        String info = "Radius set to " + r + ", spawning "+ctx.getSource().getPlayer().getDisplayName().asString()+" at [" + (int) new_x + "] [" + (int) p.y + "] [" + (int) new_z + "]";
         BlackEtherMod.LOGGER.info(info);
-        GameUtils.displayTextInGame(info);
+        PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
+        passedData.writeString(info);
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(p,BlackEtherMod.SEND_TOAST_TO_CLIENT_PACKET_ID, passedData);
         return 1;
     }
 }
