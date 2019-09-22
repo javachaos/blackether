@@ -1,5 +1,6 @@
 package net.ethermod.blackether.utils;
 
+import io.netty.buffer.Unpooled;
 import net.ethermod.blackether.BlackEtherMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -26,5 +27,11 @@ public class GameUtils {
             BlackEtherMod.LOGGER.warn("Cannot display text, does not match regex. Or is empty.");
             MinecraftClient.getInstance().inGameHud.setOverlayMessage("Mod error. In mod: " + BlackEtherMod.MODID, false);
         }
+    }
+
+    public static void sendTextToClient(PlayerEntity p, String info) {
+        PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
+        passedData.writeString(info);
+        ServerSidePacketRegistry.INSTANCE.sendToPlayer(p,BlackEtherMod.SEND_TOAST_TO_CLIENT_PACKET_ID, passedData);
     }
 }

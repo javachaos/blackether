@@ -14,17 +14,15 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 public class OnyxBiome extends Biome {
     public OnyxBiome() {
         super(new Biome.Settings()
-                .configureSurfaceBuilder(SurfaceBuilder.NETHER, SurfaceBuilder.NETHER_CONFIG)
-                .precipitation(Precipitation.SNOW).category(Category.EXTREME_HILLS)
-                .depth(0.24F)
-                .scale(0.2F)
-                .temperature(0.6F)
+                .configureSurfaceBuilder(CustomSurfaceBuilder.ONYX, CustomSurfaceBuilder.ONYX_CONFIG)
+                .precipitation(Precipitation.SNOW).category(Category.FOREST)
+                .depth(0.024F)
+                .scale(1.2F)
+                .temperature(0.06F)
                 .downfall(0.7F)
-                .waterColor(4159204)
-                .waterFogColor(329011)
+                .waterColor(5592405)
+                .waterFogColor(11184810)
                 .parent(null));
-        this.addStructureFeature(Feature.MINESHAFT, new MineshaftFeatureConfig(0.004D, MineshaftFeature.Type.NORMAL));
-        this.addStructureFeature(Feature.STRONGHOLD, FeatureConfig.DEFAULT);
         this.addStructureFeature(BlackEtherMod.onyxFortFeature, FeatureConfig.DEFAULT);
         DefaultBiomeFeatures.addFossils(this);
         DefaultBiomeFeatures.addInfestedStone(this);

@@ -25,10 +25,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.Identifier;
@@ -119,12 +116,16 @@ public class BlackEtherMod implements ModInitializer {
 	public void onInitialize() {
 		initProperties();
 		registerCommands();
-		OverworldBiomes.addContinentalBiome(BlackEtherMod.ONYX_BIOME, OverworldClimate.TEMPERATE, 2D);
-		OverworldBiomes.addContinentalBiome(BlackEtherMod.ONYX_BIOME, OverworldClimate.COOL, 2D);
+		setupBiomes();
+	}
+
+	private void setupBiomes() {
+		OverworldBiomes.addContinentalBiome(BlackEtherMod.ONYX_BIOME, OverworldClimate.TEMPERATE, 0.002D);
+		OverworldBiomes.addContinentalBiome(BlackEtherMod.ONYX_BIOME, OverworldClimate.COOL, 0.0008D);
 		FabricBiomes.addSpawnBiome(BlackEtherMod.ONYX_BIOME);
 		OverworldBiomes.setRiverBiome(BlackEtherMod.ONYX_BIOME, null);
-		OverworldBiomes.addHillsBiome(BlackEtherMod.ONYX_BIOME, Biomes.MOUNTAINS, 0.1);
-		OverworldBiomes.addBiomeVariant(Biomes.PLAINS, BlackEtherMod.ONYX_BIOME, 0.33);
+		OverworldBiomes.addHillsBiome(BlackEtherMod.ONYX_BIOME, Biomes.MOUNTAINS, 0.001);
+		OverworldBiomes.addBiomeVariant(Biomes.PLAINS, BlackEtherMod.ONYX_BIOME, 0.00033);
 		Registry.BIOME.forEach(this::handleBiome);
 		RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
 	}

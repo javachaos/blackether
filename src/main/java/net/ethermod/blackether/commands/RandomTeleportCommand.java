@@ -48,10 +48,7 @@ public class RandomTeleportCommand {
         PlayerUtils.teleport(ctx.getSource(), p, w, new_x, i, new_z, EnumSet.noneOf(PlayerPositionLookS2CPacket.Flag.class), p.yaw, p.pitch);
         String info = "Default radius set to 10000, spawning "+ctx.getSource().getPlayer().getDisplayName().asString()+" at [" + (int) new_x + "] [" + (int) p.y + "] [" + (int) new_z + "]";
         BlackEtherMod.LOGGER.info(info);
-        PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
-        passedData.writeString(info);
-        ServerSidePacketRegistry.INSTANCE.sendToPlayer(p,BlackEtherMod.SEND_TOAST_TO_CLIENT_PACKET_ID, passedData);
-        //GameUtils.displayTextInGame(info);
+        GameUtils.sendTextToClient(p, info);
         return 1;
     }
 
@@ -71,9 +68,7 @@ public class RandomTeleportCommand {
         PlayerUtils.teleport(ctx.getSource(), p, w, new_x, i, new_z, EnumSet.noneOf(PlayerPositionLookS2CPacket.Flag.class), p.yaw, p.pitch);
         String info = "Radius set to " + r + ", spawning "+ctx.getSource().getPlayer().getDisplayName().asString()+" at [" + (int) new_x + "] [" + (int) p.y + "] [" + (int) new_z + "]";
         BlackEtherMod.LOGGER.info(info);
-        PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
-        passedData.writeString(info);
-        ServerSidePacketRegistry.INSTANCE.sendToPlayer(p,BlackEtherMod.SEND_TOAST_TO_CLIENT_PACKET_ID, passedData);
+        GameUtils.sendTextToClient(p, info);
         return 1;
     }
 }
