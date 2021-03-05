@@ -9,9 +9,13 @@ import net.ethermod.blackether.items.*;
 import net.ethermod.blackether.utils.PropertyManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.*;
+//import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
+//import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
+//import net.fabricmc.fabric.api.biomes.v1.OverworldClimate;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.fabricmc.fabric.impl.content.registry.FuelRegistryImpl;
+//import net.fabricmc.fabric.impl.registry.FuelRegistryImpl;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
@@ -30,6 +34,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
+//import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
@@ -45,8 +50,7 @@ public class BlackEtherMod implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger(BlackEtherMod.class);
 	public static final PropertyManager PROPERTIES = new PropertyManager();
 	public static final String MODID = "ethermod";
-	public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
-			MaterialColor.LAVA).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F).build());
+	public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL, MaterialColor.LAVA).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F).build());
 	public static final Item ETHER_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
 	public static final Item ONYX_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
 	public static final Item ONYX_DUST = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
@@ -61,6 +65,11 @@ public class BlackEtherMod implements ModInitializer {
 	private static final StructureFeature<DefaultFeatureConfig> ONYXFORT_STRUCTURE = new OnyxFortFeature(DefaultFeatureConfig.CODEC);
 	private static final ConfiguredStructureFeature<?, ?> ONYXFORT_CONFIGURED = ONYXFORT_STRUCTURE.configure(DefaultFeatureConfig.DEFAULT);
 
+	//public static final StructurePieceType myStructurePieceType = Registry.register(Registry.STRUCTURE_PIECE, "onyx_fort_piece", OnyxFortGenerator.Piece::new);
+	//public static final StructureFeature<DefaultFeatureConfig> onyxFortFeature = Registry.register(Registry.FEATURE, "onyx_fort_feature", new OnyxFortFeature());
+	//public static final StructureFeature<?> myStructure = Registry.register(Registry.STRUCTURE_FEATURE, "onyx_fort_structure", onyxFortFeature);
+    //public static final Biome ONYX_BIOME = Registry.register(Registry.BIOME_SOURCE, new Identifier(MODID, "onyx_biome"), new OnyxBiome());
+
 	public static final RegistryKey<Biome> ONYX_BIOME_KEY = RegistryKey.of(Registry.BIOME_KEY, new Identifier(MODID, "onyx_biome"));
 
 	public static final Item ONYX_HELMET = new ArmorItem(CustomArmorMaterial.ONYX, EquipmentSlot.HEAD, (new Item.Settings().group(ItemGroup.COMBAT)));
@@ -72,6 +81,8 @@ public class BlackEtherMod implements ModInitializer {
 
 	static {
 		LOGGER.info("Registering items and blocks for Black Ether Mod");
+		//Feature.STRUCTURES.put("onyx feature", onyxFortFeature);
+		//ITEMS
 		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_apple"), ONYX_APPLE);
 		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_pickaxe"), ONYX_PICKAXE);
 		Registry.register(Registry.ITEM, new Identifier(MODID, "onyx_axe"), ONYX_AXE);
@@ -112,7 +123,7 @@ public class BlackEtherMod implements ModInitializer {
 		Registry.register(Registry.STRUCTURE_PIECE, new Identifier(MODID, "onyx_fort_piece"), ONYXFORT_PIECE);
 		FabricStructureBuilder.create(new Identifier(MODID, "onyx_fort_structure"), ONYXFORT_STRUCTURE)
 				.step(GenerationStep.Feature.SURFACE_STRUCTURES)
-				.defaultConfig(16, 8, 314159)
+				.defaultConfig(32, 8, 12345)
 				.adjustsSurface()
 				.register();
 
@@ -123,9 +134,9 @@ public class BlackEtherMod implements ModInitializer {
 
 	private static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> ONYXBIOME_SURFACE_BUILDER = SurfaceBuilder.DEFAULT
 			.withConfig(new TernarySurfaceConfig(
-					Blocks.BLACK_STAINED_GLASS.getDefaultState(),
+					Blocks.GLOWSTONE.getDefaultState(),
 					Blocks.OBSIDIAN.getDefaultState(),
-					Blocks.BLACK_CONCRETE.getDefaultState()));
+					Blocks.BLACK_STAINED_GLASS.getDefaultState()));
 
 	private static final Biome ONYXBIOME = createOnyxBiome();
 

@@ -20,6 +20,12 @@ import java.util.Random;
 
 public class OnyxFortGenerator
 {
+//    private static final Identifier id = new Identifier(BlackEtherMod.MODID,"forts/onyx_fort");
+//
+//    public static void addPieces(StructureManager structureManager, BlockPos blockPos, BlockRotation rotation, List<StructurePiece> list_1, Random random, DefaultFeatureConfig defaultFeatureConfig)
+//    {
+//        list_1.add(new OnyxFortGenerator.Piece(structureManager, id, blockPos, rotation));
+//    }
     private static final Identifier onyxfort_id = new Identifier(BlackEtherMod.MODID,"forts/onyx_fort");
 
     public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces) {
