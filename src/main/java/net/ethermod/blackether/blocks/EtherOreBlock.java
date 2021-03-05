@@ -33,9 +33,9 @@ public class EtherOreBlock extends Block {
     }
 
     @Override
-    public void onSteppedOn(World world_1, BlockPos blockPos_1, Entity entity_1) {
-        light(world_1.getBlockState(blockPos_1), world_1, blockPos_1);
-        super.onSteppedOn(world_1, blockPos_1, entity_1);
+    public void onSteppedOn(World world, BlockPos blockPos, Entity entity) {
+        light(world.getBlockState(blockPos), world, blockPos);
+        super.onSteppedOn(world, blockPos, entity);
     }
 
     @Override
@@ -53,9 +53,9 @@ public class EtherOreBlock extends Block {
     }
 
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
-        if (blockState_1.get(LIT)) {
-            spawnParticles(world_1, blockPos_1);
+    public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random) {
+        if (blockState.get(LIT)) {
+            spawnParticles(world, blockPos);
         }
     }
 

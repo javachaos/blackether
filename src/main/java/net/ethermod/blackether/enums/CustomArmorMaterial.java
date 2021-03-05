@@ -19,7 +19,7 @@ public enum CustomArmorMaterial implements ArmorMaterial {
     private final String name;
     private final int durabilityMultiplier;
     private final int[] armorValues;
-    private final int enchantability;
+    private final int enchant_ability;
     private final SoundEvent equipSound;
     private final float toughness;
     protected final Lazy repairIngredient;
@@ -28,7 +28,7 @@ public enum CustomArmorMaterial implements ArmorMaterial {
         this.name = name;
         this.durabilityMultiplier = durabilityMultiplier;
         this.armorValues = armorValueArr;
-        this.enchantability = enchantability;
+        this.enchant_ability = enchantability;
         this.equipSound = soundEvent;
         this.toughness = toughness;
         this.repairIngredient = new Lazy(repairIngredient); // We'll need this to be a Lazy type for later.
@@ -43,7 +43,7 @@ public enum CustomArmorMaterial implements ArmorMaterial {
     }
 
     public int getEnchantability() {
-        return this.enchantability;
+        return this.enchant_ability;
     }
 
     public SoundEvent getEquipSound() {

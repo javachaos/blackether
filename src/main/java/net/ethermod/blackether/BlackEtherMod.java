@@ -9,7 +9,7 @@ import net.ethermod.blackether.items.*;
 import net.ethermod.blackether.utils.PropertyManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.*;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.fabricmc.fabric.impl.content.registry.FuelRegistryImpl;
 import net.minecraft.block.Block;
@@ -33,6 +33,8 @@ import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.decorator.Decorator;
+import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
@@ -46,7 +48,7 @@ public class BlackEtherMod implements ModInitializer {
 	public static final PropertyManager PROPERTIES = new PropertyManager();
 	public static final String MODID = "ethermod";
 	public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
-			MaterialColor.LAVA).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F).build());
+			MaterialColor.LAVA).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F));
 	public static final Item ETHER_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
 	public static final Item ONYX_ORE = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
 	public static final Item ONYX_DUST = new Item(new Item.Settings().group(ItemGroup.MATERIALS));
@@ -55,7 +57,7 @@ public class BlackEtherMod implements ModInitializer {
 	public static final Item ONYX_AXE = new OnyxAxe();
 	public static final Item ONYX_HOE = new OnyxHoe();
 	public static final Item ONYX_SWORD = new OnyxSword();
-	public static final Block BLOCK_OF_ETHER = new BlockOfEther(FabricBlockSettings.of(Material.METAL, MaterialColor.BLACK).strength(10.0F, 6.0F).build());
+	public static final Block BLOCK_OF_ETHER = new BlockOfEther(FabricBlockSettings.of(Material.METAL, MaterialColor.BLACK).strength(10.0F, 6.0F));
 
 	public static final StructurePieceType ONYXFORT_PIECE = OnyxFortGenerator.Piece::new;
 	private static final StructureFeature<DefaultFeatureConfig> ONYXFORT_STRUCTURE = new OnyxFortFeature(DefaultFeatureConfig.CODEC);
@@ -68,7 +70,18 @@ public class BlackEtherMod implements ModInitializer {
 	public static final Item ONYX_LEGGINGS = new ArmorItem(CustomArmorMaterial.ONYX, EquipmentSlot.LEGS, (new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item ONYX_BOOTS = new ArmorItem(CustomArmorMaterial.ONYX, EquipmentSlot.FEET, (new Item.Settings().group(ItemGroup.COMBAT)));
 	public static final Item ONYX_APPLE = new OnyxApple();
-	public static final Identifier SEND_TOAST_TO_CLIENT_PACKET_ID = new Identifier(MODID, "showtext");
+
+	private static ConfiguredFeature<?, ?> ORE_ETHER_OVERWORLD = Feature.ORE
+			.configure(new OreFeatureConfig(
+					OreFeatureConfig.Rules.BASE_STONE_OVERWORLD,
+					ETHER_ORE_BLOCK.getDefaultState(),
+					9)) // vein size
+			.decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(
+					15,
+					10,
+					64)))
+			.spreadHorizontally()
+			.repeat(1); // number of veins per chunk
 
 	static {
 		LOGGER.info("Registering items and blocks for Black Ether Mod");
@@ -101,6 +114,11 @@ public class BlackEtherMod implements ModInitializer {
 	public void onInitialize() {
 		initProperties();
 		setupBiomes();
+		RegistryKey<ConfiguredFeature<?, ?>> oreEtherOverworld = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN,
+				new Identifier(MODID, "ore_ether_overworld"));
+		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, oreEtherOverworld.getValue(), ORE_ETHER_OVERWORLD);
+		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, oreEtherOverworld);
+
 	}
 
 	private void setupBiomes() {
@@ -112,20 +130,21 @@ public class BlackEtherMod implements ModInitializer {
 		Registry.register(Registry.STRUCTURE_PIECE, new Identifier(MODID, "onyx_fort_piece"), ONYXFORT_PIECE);
 		FabricStructureBuilder.create(new Identifier(MODID, "onyx_fort_structure"), ONYXFORT_STRUCTURE)
 				.step(GenerationStep.Feature.SURFACE_STRUCTURES)
-				.defaultConfig(16, 8, 314159)
+				.defaultConfig(128, 64, 314159)
 				.adjustsSurface()
 				.register();
 
 		RegistryKey<ConfiguredStructureFeature<?, ?>> myConfigured = RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_WORLDGEN,
 				new Identifier(MODID, "onyx_fort_structure"));
 		BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, myConfigured.getValue(), ONYXFORT_CONFIGURED);
+		BiomeModifications.addStructure(BiomeSelectors.all(), myConfigured);
 	}
 
 	private static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> ONYXBIOME_SURFACE_BUILDER = SurfaceBuilder.DEFAULT
 			.withConfig(new TernarySurfaceConfig(
 					Blocks.BLACK_STAINED_GLASS.getDefaultState(),
 					Blocks.OBSIDIAN.getDefaultState(),
-					Blocks.BLACK_CONCRETE.getDefaultState()));
+					Blocks.SOUL_SAND.getDefaultState()));
 
 	private static final Biome ONYXBIOME = createOnyxBiome();
 
@@ -159,12 +178,12 @@ public class BlackEtherMod implements ModInitializer {
 		);
 
 		return (new Biome.Builder())
-				.precipitation(Biome.Precipitation.RAIN)
-				.category(Biome.Category.FOREST)
-				.depth(0.024f)
-				.scale(1.2f)
-				.temperature(0.06F)
-				.downfall(0.06F)
+				.precipitation(Biome.Precipitation.SNOW)
+				.category(Biome.Category.PLAINS)
+				.depth(0.24f)
+				.scale(0.1f)
+				.temperature(1.6F)
+				.downfall(1.6F)
 				.effects((new BiomeEffects.Builder())
 						.waterColor(0x3f76e4)
 						.waterFogColor(0x050533)
@@ -181,41 +200,5 @@ public class BlackEtherMod implements ModInitializer {
 		onyxBiomeEnabled = PROPERTIES.getBooleanProperty("enable.onyx.biome", true);
 		onyxSpawnChance = PROPERTIES.getIntegerProperty("onyxfort.spawn.chance", 1000);
 	}
-//TODO Rework
-//	/**
-//	 * Called during init for each biome.
-//	 * @param biome the current biome
-//	 */
-//	private void handleBiome(Biome biome) {
-//		if(spawnOnyx && biome.getCategory() != Biome.Category.RIVER
-//				&& biome.getCategory() != Biome.Category.OCEAN
-//				&& biome.getCategory() != Biome.Category.THEEND) {
-//			biome.addStructureFeature(onyxFortFeature, new DefaultFeatureConfig());
-//			biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES,
-//					Biome.configureFeature(
-//							onyxFortFeature,
-//							new DefaultFeatureConfig(),
-//							Decorator.CHANCE_PASSTHROUGH,
-//							new ChanceDecoratorConfig(onyxSpawnChance)
-//					));
-//		}
-//		if(onyxBiomeEnabled && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
-//			biome.addFeature(
-//					GenerationStep.Feature.UNDERGROUND_ORES,
-//					Biome.configureFeature(
-//							Feature.ORE,
-//							new OreFeatureConfig(
-//									OreFeatureConfig.Target.NATURAL_STONE,
-//									ETHER_ORE_BLOCK.getDefaultState(),
-//									5 //Ore vein size
-//							),
-//							Decorator.COUNT_RANGE,
-//							new RangeDecoratorConfig(
-//									8, //Number of veins per chunk
-//									0, //Bottom Offset
-//									0, //Min y level
-//									8 //Max y level
-//							)));
-//		}
-//	}
+
 }
