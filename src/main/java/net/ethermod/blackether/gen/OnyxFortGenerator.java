@@ -4,6 +4,7 @@ import net.ethermod.blackether.BlackEtherMod;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
+import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
@@ -31,13 +32,13 @@ public class OnyxFortGenerator
         private final BlockRotation rotation;
         private final Identifier identifier;
 
-        public Piece(StructureManager structureManager_1, CompoundTag compoundTag_1) {
-            super(BlackEtherMod.ONYXFORT_PIECE, compoundTag_1);
+        public Piece(StructureManager structureManager, CompoundTag compTag) {
+            super(BlackEtherMod.ONYXFORT_PIECE, compTag);
 
-            this.identifier = new Identifier(compoundTag_1.getString("onyxfort"));
-            this.rotation = BlockRotation.valueOf(compoundTag_1.getString("rotation"));
+            this.identifier = new Identifier(compTag.getString("onyxfort"));
+            this.rotation = BlockRotation.valueOf(compTag.getString("rotation"));
 
-            this.setStructureData(structureManager_1);
+            this.setStructureData(structureManager);
         }
 
         public Piece(StructureManager structureManager, Identifier identifier, BlockPos pos, BlockRotation rotation)
@@ -57,30 +58,31 @@ public class OnyxFortGenerator
         }
 
         public void setStructureData(StructureManager structureManager) {
-            Structure structure_1 = structureManager.getStructureOrBlank(this.identifier);
-            StructurePlacementData structurePlacementData_1 = (new StructurePlacementData())
+            Structure struct = structureManager.getStructureOrBlank(this.identifier);
+            StructurePlacementData structPosData = (new StructurePlacementData())
                     .setRotation(this.rotation)
+                    .setMirror(BlockMirror.NONE)
                     .setPosition(pos)
-                    .addProcessor(BlockIgnoreStructureProcessor.IGNORE_AIR_AND_STRUCTURE_BLOCKS);
-            this.setStructureData(structure_1, this.pos, structurePlacementData_1);
+                    .addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
+            this.setStructureData(struct, this.pos, structPosData);
         }
 
         @Override
         protected void handleMetadata(String metadata, BlockPos pos, ServerWorldAccess serverWorldAccess, Random random,
                                       BlockBox boundingBox) {
         }
-        @Override
-        public boolean generate(
-                StructureWorldAccess structureWorldAccess,
-                StructureAccessor structureAccessor,
-                ChunkGenerator chunkGenerator,
-                Random random,
-                BlockBox boundingBox,
-                ChunkPos chunkPos,
-                BlockPos blockPos) {
-            int yHeight = structureWorldAccess.getTopY(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX() + 5, this.pos.getZ() + 5);
-            this.pos = this.pos.add(0, yHeight - 1, 0);
-            return super.generate(structureWorldAccess, structureAccessor,chunkGenerator, random, boundingBox, chunkPos, blockPos);
-        }
+//        @Override
+//        public boolean generate(
+//                StructureWorldAccess structureWorldAccess,
+//                StructureAccessor structureAccessor,
+//                ChunkGenerator chunkGenerator,
+//                Random random,
+//                BlockBox boundingBox,
+//                ChunkPos chunkPos,
+//                BlockPos blockPos) {
+//            int yHeight = structureWorldAccess.getTopY(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX() + 5, this.pos.getZ() + 5);
+//            this.pos = this.pos.add(0, yHeight - 1, 0);
+//            return super.generate(structureWorldAccess, structureAccessor,chunkGenerator, random, boundingBox, chunkPos, blockPos);
+//        }
     }
 }
