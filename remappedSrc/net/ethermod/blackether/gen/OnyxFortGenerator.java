@@ -18,22 +18,20 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import java.util.List;
 import java.util.Random;
 
-public class OnyxFortGenerator
-{
-//    private static final Identifier id = new Identifier(BlackEtherMod.MODID,"forts/onyx_fort");
+public class OnyxFortGenerator {
+    //    private static final Identifier id = new Identifier(BlackEtherMod.MODID,"forts/onyx_fort");
 //
 //    public static void addPieces(StructureManager structureManager, BlockPos blockPos, BlockRotation rotation, List<StructurePiece> list_1, Random random, DefaultFeatureConfig defaultFeatureConfig)
 //    {
 //        list_1.add(new OnyxFortGenerator.Piece(structureManager, id, blockPos, rotation));
 //    }
-    private static final Identifier onyxfort_id = new Identifier(BlackEtherMod.MODID,"forts/onyx_fort");
+    private static final Identifier onyxfort_id = new Identifier(BlackEtherMod.MODID, "forts/onyx_fort");
 
     public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces) {
         pieces.add(new Piece(manager, onyxfort_id, pos, rotation));
     }
 
-    public static class Piece extends SimpleStructurePiece
-    {
+    public static class Piece extends SimpleStructurePiece {
         private final BlockRotation rotation;
         private final Identifier identifier;
 
@@ -46,8 +44,7 @@ public class OnyxFortGenerator
             this.setStructureData(structureManager_1);
         }
 
-        public Piece(StructureManager structureManager, Identifier identifier, BlockPos pos, BlockRotation rotation)
-        {
+        public Piece(StructureManager structureManager, Identifier identifier, BlockPos pos, BlockRotation rotation) {
             super(BlackEtherMod.ONYXFORT_PIECE, 0);
             this.rotation = rotation;
             this.identifier = identifier;
@@ -75,6 +72,7 @@ public class OnyxFortGenerator
         protected void handleMetadata(String metadata, BlockPos pos, ServerWorldAccess serverWorldAccess, Random random,
                                       BlockBox boundingBox) {
         }
+
         @Override
         public boolean generate(
                 StructureWorldAccess structureWorldAccess,
@@ -86,7 +84,7 @@ public class OnyxFortGenerator
                 BlockPos blockPos) {
             int yHeight = structureWorldAccess.getTopY(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX() + 5, this.pos.getZ() + 5);
             this.pos = this.pos.add(0, yHeight - 1, 0);
-            return super.generate(structureWorldAccess, structureAccessor,chunkGenerator, random, boundingBox, chunkPos, blockPos);
+            return super.generate(structureWorldAccess, structureAccessor, chunkGenerator, random, boundingBox, chunkPos, blockPos);
         }
     }
 }

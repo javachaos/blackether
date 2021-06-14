@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "ethermod:block/dark_grass" }
+    "": {
+      "model": "ethermod:block/dark_grass"
+    }
   }
 }

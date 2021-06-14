@@ -5,7 +5,7 @@ import net.minecraft.recipe.Ingredient;
 
 public class EnumHelper {
 
-    public static final ToolMaterial getToolMaterial(int durability, float miningSpeed, float attackDmg, int miningLevel,int enchantability,Ingredient repairIngredient) {
+    public static final ToolMaterial getToolMaterial(int durability, float miningSpeed, float attackDmg, int miningLevel, int enchantability, Ingredient repairIngredient) {
         return new ToolMaterial() {
             @Override
             public int getDurability() {
@@ -13,7 +13,9 @@ public class EnumHelper {
             }
 
             @Override
-            public float getMiningSpeedMultiplier() { return miningSpeed; }
+            public float getMiningSpeedMultiplier() {
+                return miningSpeed;
+            }
 
             @Override
             public float getAttackDamage() {

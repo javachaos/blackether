@@ -6,8 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Helper class to help with exception code.
- * @author fred
  *
+ * @author fred
  */
 public final class ExceptionUtils {
 
@@ -21,10 +21,8 @@ public final class ExceptionUtils {
      * Log the error and set the Application
      * state to ERROR state.
      *
-     * @param c
-     * 		the class for the logger.
-     * @param e
-     * 		the exception thrown.
+     * @param c the class for the logger.
+     * @param e the exception thrown.
      */
     public static void fatalError(final Class<?> c, final Exception e) {
         e.printStackTrace();
@@ -35,10 +33,8 @@ public final class ExceptionUtils {
      * Log the error and set the Application
      * state to ERROR state.
      *
-     * @param c
-     * 		the class for the logger.
-     * @param e
-     * 		the exception thrown.
+     * @param c the class for the logger.
+     * @param e the exception thrown.
      */
     public static void logError(final Class<?> c, final Exception e) {
         Logger logger = LogManager.getLogger(c);

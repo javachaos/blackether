@@ -12,7 +12,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Lazy;
 
 public enum CustomArmorMaterial implements ArmorMaterial {
-    ONYX("onyx", 5, new int[]{17,19,21,15}, 100, SoundEvents.BLOCK_ANVIL_USE, 0.0F, () -> {
+    ONYX("onyx", 5, new int[]{17, 19, 21, 15}, 100, SoundEvents.BLOCK_ANVIL_USE, 0.0F, () -> {
         return Ingredient.ofItems(BlackEtherMod.ONYX_ORE);
     });
     private static final int[] baseDurability = {13, 15, 16, 11};

@@ -9,26 +9,19 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import java.util.List;
 import java.util.Random;
 
-public class OnyxFortGenerator
-{
-    private static final Identifier onyxfort_id = new Identifier(BlackEtherMod.MODID,"forts/onyx_fort");
+public class OnyxFortGenerator {
+    private static final Identifier onyxfort_id = new Identifier(BlackEtherMod.MODID, "forts/onyx_fort");
 
     public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces) {
         pieces.add(new Piece(manager, onyxfort_id, pos, rotation));
     }
 
-    public static class Piece extends SimpleStructurePiece
-    {
+    public static class Piece extends SimpleStructurePiece {
         private final BlockRotation rotation;
         private final Identifier identifier;
 
@@ -41,8 +34,7 @@ public class OnyxFortGenerator
             this.setStructureData(structureManager);
         }
 
-        public Piece(StructureManager structureManager, Identifier identifier, BlockPos pos, BlockRotation rotation)
-        {
+        public Piece(StructureManager structureManager, Identifier identifier, BlockPos pos, BlockRotation rotation) {
             super(BlackEtherMod.ONYXFORT_PIECE, 0);
             this.rotation = rotation;
             this.identifier = identifier;

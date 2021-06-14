@@ -9,8 +9,8 @@ import java.util.Properties;
 /**
  * PropertyManager class used to get property values from the Property file
  * defined in fileName.
- * @author fred
  *
+ * @author fred
  */
 public final class PropertyManager {
 
@@ -91,14 +91,9 @@ public final class PropertyManager {
     /**
      * Add a property to this property manager.
      *
-     * @param key
-     * 		the key to store the property under
-     *
-     * @param value
-     * 		the value of the property to be added
-     *
-     * @param <T>
-     * 		the type of the value to store
+     * @param key   the key to store the property under
+     * @param value the value of the property to be added
+     * @param <T>   the type of the value to store
      */
     public <T extends Number> void addProperty(
             final String key, final T value) {
@@ -112,12 +107,8 @@ public final class PropertyManager {
     /**
      * Add a string property to this property manager.
      *
-     * @param key
-     * 		the key to store the property under
-     *
-     * @param value
-     * 		the value of the property to be added
-     *
+     * @param key   the key to store the property under
+     * @param value the value of the property to be added
      */
     public void addProperty(
             final String key, final String value) {
@@ -130,6 +121,7 @@ public final class PropertyManager {
 
     /**
      * Return a string property from the underlying PROPS instance.
+     *
      * @param key the key of the value to get
      * @return the value assigned the key key
      */
@@ -146,15 +138,10 @@ public final class PropertyManager {
     /**
      * Return the property as a string.
      *
-     * @param key
-     * 		the key of the property.
-     *
-     * @param defaultValue
-     * 		the default value for the property.
-     *
-     * @return
-     * 		the property if it exists or if it
-     * 		does not exist returns the defaultValue.
+     * @param key          the key of the property.
+     * @param defaultValue the default value for the property.
+     * @return the property if it exists or if it
+     * does not exist returns the defaultValue.
      */
     public String getStringProperty(final String key,
                                     final String defaultValue) {
@@ -176,13 +163,10 @@ public final class PropertyManager {
     /**
      * GetFloatProperty.
      *
-     * @param key
-     * 		the key to the property.
-     *
-     * @return
-     * 		the property value as a float.
-     * 		if the value is not recognizable as a
-     *      float an exception is thrown.
+     * @param key the key to the property.
+     * @return the property value as a float.
+     * if the value is not recognizable as a
+     * float an exception is thrown.
      */
     public float getFloatProperty(final String key) {
         return Float.parseFloat(getStringProperty(key));
@@ -191,15 +175,10 @@ public final class PropertyManager {
     /**
      * Return the property as a Float.
      *
-     * @param key
-     * 		the key of the property.
-     *
-     * @param defaultValue
-     * 		the default value for the property.
-     *
-     * @return
-     * 		the property if it exists as a Float or if it
-     * 		does not exist returns the defaultValue.
+     * @param key          the key of the property.
+     * @param defaultValue the default value for the property.
+     * @return the property if it exists as a Float or if it
+     * does not exist returns the defaultValue.
      */
     public float getFloatProperty(
             final String key, final float defaultValue) {
@@ -209,13 +188,10 @@ public final class PropertyManager {
     /**
      * GetIntegerProperty.
      *
-     * @param key
-     * 		the key to the property.
-     *
-     * @return
-     * 		the property value as an Integer.
-     * 		if the value is not recognizable as an
-     *      Integer an exception is thrown.
+     * @param key the key to the property.
+     * @return the property value as an Integer.
+     * if the value is not recognizable as an
+     * Integer an exception is thrown.
      */
     public int getIntegerProperty(final String key) {
         return Integer.parseInt(getStringProperty(key));
@@ -224,15 +200,10 @@ public final class PropertyManager {
     /**
      * Return the property as an Integer.
      *
-     * @param key
-     * 		the key of the property.
-     *
-     * @param defaultValue
-     * 		the default value for the property.
-     *
-     * @return
-     * 		the property if it exists as an Integer or if it
-     * 		does not exist returns the defaultValue.
+     * @param key          the key of the property.
+     * @param defaultValue the default value for the property.
+     * @return the property if it exists as an Integer or if it
+     * does not exist returns the defaultValue.
      */
     public int getIntegerProperty(
             final String key, final int defaultValue) {
@@ -242,6 +213,7 @@ public final class PropertyManager {
 
     /**
      * Get a property from the property as a long value.
+     *
      * @param key the key of the property to get
      * @return the value of the property
      */
@@ -254,16 +226,11 @@ public final class PropertyManager {
      * If the property cannot be returned from the underlying
      * PROPS instance then return defaultValue.
      *
-     * @param key
-     * 		the key of the property to get
-     *
-     * @param defaultValue
-     * 		the defaultValue to be returned if
-     * 		the value for key cannot be returned
-     *
-     * @return
-     * 		the value for key or defaultValue
-     *      if the value for key cannot be returned
+     * @param key          the key of the property to get
+     * @param defaultValue the defaultValue to be returned if
+     *                     the value for key cannot be returned
+     * @return the value for key or defaultValue
+     * if the value for key cannot be returned
      */
     public long getLongProperty(
             final String key, final long defaultValue) {

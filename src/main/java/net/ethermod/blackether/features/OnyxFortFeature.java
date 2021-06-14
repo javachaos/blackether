@@ -14,9 +14,6 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-import java.util.Random;
-import java.util.function.Function;
-
 public class OnyxFortFeature extends StructureFeature<DefaultFeatureConfig> {
     public OnyxFortFeature(Codec<DefaultFeatureConfig> codec) {
         super(codec);

@@ -10,9 +10,10 @@ public class ColoredDustParticleEffect extends DustParticleEffect {
 
     /**
      * Created a colored Dust particle effect.
-     * @param r red component
-     * @param g green component
-     * @param b blue component
+     *
+     * @param r     red component
+     * @param g     green component
+     * @param b     blue component
      * @param scale scale
      */
     public ColoredDustParticleEffect(float r, float g, float b, float scale) {

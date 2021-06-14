@@ -7,8 +7,8 @@ import java.io.File;
 
 /**
  * Constants.
- * @author fred
  *
+ * @author fred
  */
 public final class Constants {
 
@@ -34,7 +34,7 @@ public final class Constants {
      * Application directory location.
      */
     public static final String GAME_DIR = FabricLoader.getInstance().getGameDirectory()
-                    + File.separator;
+            + File.separator;
 
     /**
      * Application Properties file name.
@@ -46,9 +46,9 @@ public final class Constants {
 
     /**
      * Returns the number of ticks per second.
+     *
      * @param seconds the number of desired seconds to get ticks for
-     * @return
-     *      the number of ticks per second
+     * @return the number of ticks per second
      */
     public static final int getTicksPerSec(int seconds) {
         if (seconds >= 0) {

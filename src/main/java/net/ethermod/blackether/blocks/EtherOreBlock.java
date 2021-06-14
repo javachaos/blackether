@@ -65,15 +65,15 @@ public class EtherOreBlock extends Block {
         Direction[] dir = Direction.values();
         int dirSize = dir.length;
 
-        for(int i = 0; i < dirSize; ++i) {
+        for (int i = 0; i < dirSize; ++i) {
             Direction d = dir[i];
             BlockPos blockPos_2 = pos.offset(d);
             if (!world.getBlockState(blockPos_2).isOpaque()) {
                 Direction.Axis dAxis = d.getAxis();
-                double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double)d.getOffsetX() : (double)r.nextFloat();
-                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double)d.getOffsetY() : (double)r.nextFloat();
-                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double)d.getOffsetZ() : (double)r.nextFloat();
-                world.addParticle(ColoredDustParticleEffect.BLACK, (double)pos.getX() + x, (double)pos.getY() + y, (double)pos.getZ() + z, 0.0D, 0.0D, 0.0D);
+                double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getOffsetX() : (double) r.nextFloat();
+                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getOffsetY() : (double) r.nextFloat();
+                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getOffsetZ() : (double) r.nextFloat();
+                world.addParticle(ColoredDustParticleEffect.BLACK, (double) pos.getX() + x, (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
             }
         }
 

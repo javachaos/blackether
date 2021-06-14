@@ -1,6 +1,5 @@
 package net.ethermod.blackether.enums;
 
-import com.google.common.base.Supplier;
 import net.ethermod.blackether.BlackEtherMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -9,57 +8,43 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Lazy;
 
-public enum CustomArmorMaterial implements ArmorMaterial {
-    ONYX("onyx", 5, new int[]{17,19,21,15}, 100, SoundEvents.BLOCK_ANVIL_USE, 0.0F, () -> {
-        return Ingredient.ofItems(BlackEtherMod.ONYX_ORE);
-    });
-    private static final int[] baseDurability = {13, 15, 16, 11};
-    private final String name;
-    private final int durabilityMultiplier;
-    private final int[] armorValues;
-    private final int enchant_ability;
-    private final SoundEvent equipSound;
-    private final float toughness;
-    protected final Lazy repairIngredient;
+public class CustomArmorMaterial implements ArmorMaterial {
 
-    CustomArmorMaterial(String name, int durabilityMultiplier, int[] armorValueArr, int enchantability, SoundEvent soundEvent, float toughness, Supplier<Ingredient> repairIngredient) {
-        this.name = name;
-        this.durabilityMultiplier = durabilityMultiplier;
-        this.armorValues = armorValueArr;
-        this.enchant_ability = enchantability;
-        this.equipSound = soundEvent;
-        this.toughness = toughness;
-        this.repairIngredient = new Lazy(repairIngredient); // We'll need this to be a Lazy type for later.
+    private static final int[] PROTECTION_VALUES = new int[]{17, 19, 21, 15};
+    private static final int[] BASE_DURABILITY = {13, 15, 16, 11};
+    private final float toughness = 0.0f;
+
+    public CustomArmorMaterial() {
     }
 
-    public int getDurability(EquipmentSlot equipmentSlot_1) {
-        return baseDurability[equipmentSlot_1.getEntitySlotId()] * this.durabilityMultiplier;
+    @Override
+    public int getDurability(EquipmentSlot slot) {
+        return BASE_DURABILITY[slot.getEntitySlotId()] * 5;
     }
-
-    public int getProtectionAmount(EquipmentSlot equipmentSlot_1) {
-        return this.armorValues[equipmentSlot_1.getEntitySlotId()];
+    @Override
+    public int getProtectionAmount(EquipmentSlot slot) {
+        return PROTECTION_VALUES[slot.getEntitySlotId()];
     }
-
+    @Override
     public int getEnchantability() {
-        return this.enchant_ability;
+        return 100;
     }
 
+    @Override
     public SoundEvent getEquipSound() {
-        return this.equipSound;
+        return SoundEvents.BLOCK_ANVIL_USE;
     }
-
+    @Override
     public Ingredient getRepairIngredient() {
-        // We needed to make it a Lazy type so we can actually get the Ingredient from the Supplier.
-        return (Ingredient) this.repairIngredient.get();
+        return Ingredient.ofItems(BlackEtherMod.ONYX_ORE);
     }
-
+    @Override
     @Environment(EnvType.CLIENT)
     public String getName() {
-        return this.name;
+        return "onyx";
     }
-
+    @Override
     public float getToughness() {
         return this.toughness;
     }
