@@ -22,7 +22,7 @@ public class OnyxAxe extends AxeBase {
                 15f,
                 100,
                 100,
-                Ingredient.ofItems(BlackEtherMod.ONYX_ORE)));
+                Ingredient.ofItems(RegisterItems.ONYX_ORE)));
     }
 
     @Override

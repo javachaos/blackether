@@ -1,6 +1,7 @@
 package net.ethermod.blackether.enums;
 
 import net.ethermod.blackether.BlackEtherMod;
+import net.ethermod.blackether.items.RegisterItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.EquipmentSlot;
@@ -37,7 +38,7 @@ public class CustomArmorMaterial implements ArmorMaterial {
     }
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(BlackEtherMod.ONYX_ORE);
+        return Ingredient.ofItems(RegisterItems.ONYX_ORE);
     }
     @Override
     @Environment(EnvType.CLIENT)

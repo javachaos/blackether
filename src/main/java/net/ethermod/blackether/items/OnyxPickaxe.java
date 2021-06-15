@@ -13,6 +13,6 @@ public class OnyxPickaxe extends PickaxeBase {
                 10f,
                 100,
                 100,
-                Ingredient.ofItems(BlackEtherMod.ONYX_ORE)));
+                Ingredient.ofItems(RegisterItems.ONYX_ORE)));
     }
 }

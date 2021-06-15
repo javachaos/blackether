@@ -2,14 +2,10 @@ package net.ethermod.blackether.items;
 
 import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.blocks.BlockOfEther;
-import net.ethermod.blackether.blocks.DarkGrassBlock;
 import net.ethermod.blackether.enums.CustomArmorMaterial;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.impl.content.registry.FuelRegistryImpl;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
 import net.minecraft.entity.EquipmentSlot;
@@ -22,18 +18,14 @@ import org.apache.logging.log4j.Logger;
 public class RegisterItems {
     public static final Logger LOGGER = LogManager.getLogger(RegisterItems.class);
 
-    public static final ItemGroup BLACKETHERMOD_GROUP = FabricItemGroupBuilder.create(
-            new Identifier(BlackEtherMod.MODID, "ethermod_group"))
-            .icon(() -> new ItemStack(RegisterItems.ONYX_APPLE))
-            .build();
-
     public static final ArmorMaterial ONYX_ARMOR_MATERIAL = new CustomArmorMaterial();
-    public static final Item ONYX_HELMET = new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.HEAD, (new Item.Settings().group(BLACKETHERMOD_GROUP)));
-    public static final Item ONYX_CHESTPLATE = new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.CHEST, (new Item.Settings().group(BLACKETHERMOD_GROUP)));
-    public static final Item ONYX_LEGGINGS = new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.LEGS, (new Item.Settings().group(BLACKETHERMOD_GROUP)));
-    public static final Item ONYX_BOOTS = new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.FEET, (new Item.Settings().group(BLACKETHERMOD_GROUP)));
-    public static final Item ETHER_ORE = new Item(new Item.Settings().group(BLACKETHERMOD_GROUP));
-    public static final Item ONYX_DUST = new Item(new Item.Settings().group(BLACKETHERMOD_GROUP));
+    public static final Item CUSTOM_MATERIAL = new CustomMaterialItem(new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP));
+    public static final Item ONYX_HELMET = new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.HEAD, (new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP)));
+    public static final Item ONYX_CHESTPLATE = new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.CHEST, (new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP)));
+    public static final Item ONYX_LEGGINGS = new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.LEGS, (new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP)));
+    public static final Item ONYX_BOOTS = new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.FEET, (new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP)));
+    public static final Item ETHER_ORE = new Item(new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP));
+    public static final Item ONYX_DUST = new Item(new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP));
     public static final Item ONYX_PICKAXE = new OnyxPickaxe();
     public static final Item ONYX_SHOVEL = new OnyxShovel();
     public static final Item ONYX_AXE = new OnyxAxe();
@@ -41,8 +33,6 @@ public class RegisterItems {
     public static final Item ONYX_SWORD = new OnyxSword();
     public static final Block BLOCK_OF_ETHER = new BlockOfEther(FabricBlockSettings.of(Material.METAL, MapColor.BLACK).strength(10.0F, 6.0F));
     public static final Item ONYX_APPLE = new OnyxApple();
-    public static final Item ONYX_ORE = new Item(new Item.Settings().group(BLACKETHERMOD_GROUP));
-    public static final DarkGrassBlock DARK_GRASS = new DarkGrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).strength(0.6f));
 
 
     public static void register() {
@@ -54,10 +44,10 @@ public class RegisterItems {
         Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "onyx_sword"), ONYX_SWORD);
         Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "onyx_shovel"), ONYX_SHOVEL);
         Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "ether_ore"), ETHER_ORE);
-        Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "onyx_ore"), ONYX_ORE);
+        Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "onyx_ore"), BlackEtherMod.ONYX_ORE);
         Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "onyx_dust"), ONYX_DUST);
-        Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "ether_ore_block"), new BlockItem(BlackEtherMod.ETHER_ORE_BLOCK, new Item.Settings().group(BLACKETHERMOD_GROUP)));
-        Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "block_of_ether"), new BlockItem(BLOCK_OF_ETHER, new Item.Settings().group(BLACKETHERMOD_GROUP)));
+        Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "ether_ore_block"), new BlockItem(BlackEtherMod.ETHER_ORE_BLOCK, new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP)));
+        Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "block_of_ether"), new BlockItem(BLOCK_OF_ETHER, new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP)));
         Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "onyx_helmet"), ONYX_HELMET);
         Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "onyx_chestplate"), ONYX_CHESTPLATE);
         Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "onyx_leggings"), ONYX_LEGGINGS);
@@ -65,10 +55,6 @@ public class RegisterItems {
         //BLOCKS
         Registry.register(Registry.BLOCK, new Identifier(BlackEtherMod.MODID, "ether_ore_block"), BlackEtherMod.ETHER_ORE_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(BlackEtherMod.MODID, "block_of_ether"), BLOCK_OF_ETHER);
-
-        //Add darkgrass block
-        Registry.register(Registry.BLOCK, new Identifier(BlackEtherMod.MODID, "dark_grass"), DARK_GRASS);
-        Registry.register(Registry.ITEM, new Identifier(BlackEtherMod.MODID, "dark_grass"), new BlockItem(DARK_GRASS, new FabricItemSettings().group(ItemGroup.MATERIALS)));
         FuelRegistryImpl.INSTANCE.add(ETHER_ORE, 3000);
     }
 

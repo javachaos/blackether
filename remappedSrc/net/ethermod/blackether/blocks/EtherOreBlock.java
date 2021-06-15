@@ -5,14 +5,9 @@ import net.ethermod.blackether.effects.ColoredDustParticleEffect;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
-//import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-//import net.minecraft.state.StateFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
@@ -37,26 +32,11 @@ public class EtherOreBlock extends Block {
         stateManager.add(LIT);
     }
 
-//    @Environment(EnvType.CLIENT)
-//    public BlockRenderLayer getRenderLayer() {
-//        return BlockRenderLayer.SOLID;
-//    }
-
-//    @Override
-//    public int getLuminance(BlockState blockState_1) {
-//        return blockState_1.get(LIT) ? super.getLuminance(blockState_1) : 0;
-//    }
-
     @Override
-    public void onSteppedOn(World world_1, BlockPos blockPos_1, Entity entity_1) {
-        light(world_1.getBlockState(blockPos_1), world_1, blockPos_1);
-        super.onSteppedOn(world_1, blockPos_1, entity_1);
+    public void onSteppedOn(World world, BlockPos blockPos, Entity entity) {
+        light(world.getBlockState(blockPos), world, blockPos);
+        super.onSteppedOn(world, blockPos, entity);
     }
-
-//    @Override
-//    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory) {
-//        stateFactory.add(LIT);
-//    }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
@@ -73,29 +53,11 @@ public class EtherOreBlock extends Block {
     }
 
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
-        if (blockState_1.get(LIT)) {
-            spawnParticles(world_1, blockPos_1);
+    public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random) {
+        if (blockState.get(LIT)) {
+            spawnParticles(world, blockPos);
         }
     }
-
-//    @Override
-//    public void onScheduledTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
-//        if (blockState_1.get(LIT)) {
-//            world_1.setBlockState(blockPos_1, blockState_1.with(LIT, false), 3);
-//        }
-//
-//    }
-
-//    @Override
-//    public void onStacksDropped(BlockState blockState_1, World world_1, BlockPos blockPos_1, ItemStack itemStack_1) {
-//        super.onStacksDropped(blockState_1, world_1, blockPos_1, itemStack_1);
-//        if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, itemStack_1) == 0) {
-//            int int_1 = 1 + world_1.random.nextInt(5);
-//            this.dropExperience(world_1, blockPos_1, int_1);
-//        }
-//
-//    }
 
     private static void spawnParticles(World world, BlockPos pos) {
         double spread = 0.5625D;

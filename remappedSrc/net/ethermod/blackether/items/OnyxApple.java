@@ -1,5 +1,6 @@
 package net.ethermod.blackether.items;
 
+import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.utils.Constants;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,7 +14,7 @@ import net.minecraft.item.ItemStack;
 public class OnyxApple extends Item {
 
     public OnyxApple() {
-        super(new Item.Settings().group(ItemGroup.FOOD).maxCount(16).food(
+        super(new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP).maxCount(16).food(
                 new FoodComponent.Builder()
                         .alwaysEdible()
                         .hunger(10)
