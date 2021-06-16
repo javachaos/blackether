@@ -1,6 +1,7 @@
 package net.ethermod.blackether;
 
 import net.ethermod.blackether.blocks.EtherOreBlock;
+import net.ethermod.blackether.entity.NeutronBombEntityRenderer;
 import net.ethermod.blackether.features.OnyxFortFeature;
 import net.ethermod.blackether.gen.OnyxFortGenerator;
 import net.ethermod.blackether.items.*;
@@ -10,12 +11,14 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -39,9 +42,12 @@ import org.apache.logging.log4j.Logger;
 
 public class BlackEtherMod implements ModInitializer {
 
+
     public static final Logger LOGGER = LogManager.getLogger(BlackEtherMod.class);
     public static final PropertyManager PROPERTIES = new PropertyManager();
     public static final String MODID = "ethermod";
+    public static final Identifier NEUTRON_IONIZING = new Identifier(MODID, "neutron_ionizing");
+    public static SoundEvent NEUTRON_EVENT = new SoundEvent(NEUTRON_IONIZING);
     public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
             MapColor.BLACK).ticksRandomly().lightLevel(9).strength(5.0F, 6.0F));
     public static final StructurePieceType ONYXFORT_PIECE = OnyxFortGenerator.Piece::new;
@@ -55,8 +61,6 @@ public class BlackEtherMod implements ModInitializer {
                     RegisterItems.DARK_GRASS.getDefaultState(), Blocks.BASALT.getDefaultState(),
                     ETHER_ORE_BLOCK.getDefaultState()
             ));
-
-
 
     private static final Biome ONYXBIOME = createOnyxBiome();
     private static ConfiguredFeature<?, ?> ORE_ETHER_OVERWORLD = Feature.ORE
@@ -90,6 +94,7 @@ public class BlackEtherMod implements ModInitializer {
     @Override
     public void onInitialize() {
         RegisterItems.register();
+        EntityRendererRegistry.INSTANCE.register(RegisterItems.NEUTRON_BOMB_ENTITY, NeutronBombEntityRenderer::new);
         initProperties();
         loadOre();
         setupBiomes();

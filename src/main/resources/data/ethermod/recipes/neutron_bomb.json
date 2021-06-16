@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#/#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:tnt"
+    },
+    "/": {
+      "item": "ethermod:neutronium"
+    }
+  },
+  "result": {
+    "item": "ethermod:neutron_bomb",
+    "count": 1
+  }
+}

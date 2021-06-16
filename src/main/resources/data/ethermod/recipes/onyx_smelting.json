@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "ethermod:onyx_ore"
+  },
+  "result": "ethermod:neutronium",
+  "experience": 50,
+  "cookingtime": 1800
+}

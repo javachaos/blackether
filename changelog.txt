@@ -1,4 +1,3 @@
-Updated for 1.17
-- updated version to 2.2.1
-- changed parameter name for "onyxfort.spawn.chance" to "onyxfort.spawn.spacing"
-default is 128.
+Update 2.2.2
+- added a new item "neutronium"
+- added new crafting recipe for a neutron bomb

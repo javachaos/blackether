@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "ethermod:block/neutron_bomb_top",
+    "bottom": "ethermod:block/neutron_bomb_bottom",
+    "side": "ethermod:block/neutron_bomb_side"
+  }
+}
