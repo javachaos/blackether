@@ -44,8 +44,8 @@ public class BlackEtherMod implements ModInitializer {
 
 
     public static final Logger LOGGER = LogManager.getLogger(BlackEtherMod.class);
-    public static final PropertyManager PROPERTIES = new PropertyManager();
     public static final String MODID = "ethermod";
+    public static final PropertyManager PROPERTIES = new PropertyManager(MODID);
     public static final Identifier NEUTRON_IONIZING = new Identifier(MODID, "neutron_ionizing");
     public static SoundEvent NEUTRON_EVENT = new SoundEvent(NEUTRON_IONIZING);
     public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
