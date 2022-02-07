@@ -33,12 +33,6 @@ public class EtherOreBlock extends Block {
     }
 
     @Override
-    public void onSteppedOn(World world, BlockPos blockPos, Entity entity) {
-        light(world.getBlockState(blockPos), world, blockPos);
-        super.onSteppedOn(world, blockPos, entity);
-    }
-
-    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
         world.setBlockState(pos, BlackEtherMod.ETHER_ORE_BLOCK.getDefaultState().with(LIT, true));
         light(state, world, pos);

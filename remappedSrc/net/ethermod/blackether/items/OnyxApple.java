@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 public class OnyxApple extends Item {
 
     public OnyxApple() {
-        super(new Item.Settings().group(BlackEtherMod.BLACKETHERMOD_GROUP).maxCount(16).food(
+        super(new Item.Settings().group(RegisterItems.BLACKETHERMOD_GROUP).maxCount(16).food(
                 new FoodComponent.Builder()
                         .alwaysEdible()
                         .hunger(10)

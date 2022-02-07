@@ -1,26 +1,32 @@
 plugins {
-    id 'fabric-loom' version '0.8-SNAPSHOT'
+    id 'fabric-loom' version '0.11-SNAPSHOT'
     id "com.matthewprenger.cursegradle" version "1.4.0"
     id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-minecraft {
-}
-
 dependencies {
-    minecraft "com.mojang:minecraft:1.17"
-    mappings "net.fabricmc:yarn:1.17+build.11:v2"
-    modImplementation "net.fabricmc:fabric-loader:0.11.6"
+    constraints {
+        implementation("org.apache.logging.log4j:log4j-core") {
+            version {
+                strictly("[2.17, 3[")
+                prefer("2.17.1")
+            }
+            because("CVE-2021-44228, CVE-2021-45046, CVE-2021-45105: Log4j vulnerable to remote code execution and other critical security vulnerabilities")
+        }
+    }
+    minecraft "com.mojang:minecraft:1.18.1"
+    mappings "net.fabricmc:yarn:1.18.1+build.22:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.13.1"
 
     //Fabric api
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.35.1+1.17"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.46.4+1.18"
 }
 //dependencies {
 //    minecraft "com.mojang:minecraft:1.16.5"
@@ -77,23 +83,23 @@ jar {
     from "LICENSE"
 }
 
-curseforge {
-    apiKey = "${project.curseForgeApiKey}" // This should really be in a gradle.properties file
-    project {
-        id = '340764'
-        changelog = file('changelog.txt') // A file can also be set using: changelog = file('changelog.txt')
-        releaseType = 'beta'
-        mainArtifact(remapJar)
-        afterEvaluate {
-            mainArtifact(remapJar)
-            uploadTask.dependsOn(remapJar)
-            //tasks.curseforge340764.dependsOn remapJar
-        }
-    }
-    options {
-        forgeGradleIntegration = false
-    }
-}
+//curseforge {
+//    apiKey = "${project.curseForgeApiKey}" // This should really be in a gradle.properties file
+//    project {
+//        id = '340764'
+//        changelog = file('changelog.txt') // A file can also be set using: changelog = file('changelog.txt')
+//        releaseType = 'beta'
+//        mainArtifact(remapJar)
+//        afterEvaluate {
+//            mainArtifact(remapJar)
+//            uploadTask.dependsOn(remapJar)
+//            //tasks.curseforge340764.dependsOn remapJar
+//        }
+//    }
+//    options {
+//        forgeGradleIntegration = false
+//    }
+//}
 // configure the maven publication
 publishing {
     publications {

@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 public class NeutronBombEntity extends Entity {
     private static final TrackedData<Integer> FUSE;
     private static final int DEFAULT_FUSE = 80;
+    private final boolean inanimate;
 
     @Nullable
     private LivingEntity causingEntity;

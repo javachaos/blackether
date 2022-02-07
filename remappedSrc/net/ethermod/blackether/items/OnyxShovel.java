@@ -13,6 +13,6 @@ public class OnyxShovel extends ShovelBase {
                 5,
                 100,
                 100,
-                Ingredient.ofItems(BlackEtherMod.ONYX_ORE)));
+                Ingredient.ofItems(RegisterItems.ONYX_ORE)));
     }
 }

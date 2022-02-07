@@ -46,6 +46,7 @@ public class EtherOreBlock extends Block {
         }
     }
 
+    @Override
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random) {
         if (blockState.get(LIT)) {
