@@ -83,23 +83,24 @@ jar {
     from "LICENSE"
 }
 
-//curseforge {
-//    apiKey = "${project.curseForgeApiKey}" // This should really be in a gradle.properties file
-//    project {
-//        id = '340764'
-//        changelog = file('changelog.txt') // A file can also be set using: changelog = file('changelog.txt')
-//        releaseType = 'beta'
-//        mainArtifact(remapJar)
-//        afterEvaluate {
-//            mainArtifact(remapJar)
-//            uploadTask.dependsOn(remapJar)
-//            //tasks.curseforge340764.dependsOn remapJar
-//        }
-//    }
-//    options {
-//        forgeGradleIntegration = false
-//    }
-//}
+curseforge {
+    apiKey = ''
+    project {
+        id = '340764'
+        changelog = file('changelog.txt') // A file can also be set using: changelog = file('changelog.txt')
+        releaseType = 'beta'
+        addGameVersion '1.18.1'
+        mainArtifact(remapJar)
+        afterEvaluate {
+            mainArtifact(remapJar)
+            uploadTask.dependsOn(remapJar)
+            //tasks.curseforge340764.dependsOn remapJar
+        }
+    }
+    options {
+        forgeGradleIntegration = false
+    }
+}
 // configure the maven publication
 publishing {
     publications {
