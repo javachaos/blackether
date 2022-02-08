@@ -12,6 +12,10 @@ import java.io.File;
  */
 public final class Constants {
 
+    static {
+        init("ethermod");
+    }
+
     /**
      * Encoding.
      */
@@ -19,7 +23,7 @@ public final class Constants {
     /**
      * Application directory location.
      */
-    public static final String GAME_DIR = FabricLoader.getInstance().getGameDirectory()
+    public static final String GAME_DIR = FabricLoader.getInstance().getGameDir()
         + File.separator;
   
     /**
@@ -56,7 +60,7 @@ public final class Constants {
      * @param seconds the number of desired seconds to get ticks for
      * @return the number of ticks per second
      */
-    public static final int getTicksPerSec(int seconds) {
+    public static int getTicksPerSec(int seconds) {
       if (seconds >= 0) {
         return seconds * TICKS_PER_SEC;
       } else {
@@ -72,7 +76,7 @@ public final class Constants {
      * @return the number of ticks per second
      *
      */
-    public static final int getTicksPerMin(int minutes) {
+    public static int getTicksPerMin(int minutes) {
       if (minutes >= 0) {
         return minutes * getTicksPerSec(60);
       } else {
@@ -84,7 +88,7 @@ public final class Constants {
      * Return the MODID for this current mod.
      * @return the universally identifiable mod identifier.
      */
-    public static final String getModID() {
+    public static String getModID() {
       return MODID;
     }
   }

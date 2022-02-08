@@ -7,7 +7,7 @@ import net.ethermod.blackether.utils.PropertyManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.sound.SoundEvent;
@@ -24,53 +24,43 @@ import net.minecraft.world.gen.feature.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+
 public class BlackEtherMod implements ModInitializer {
-
-
     public static final Logger LOGGER = LogManager.getLogger(BlackEtherMod.class);
     public static final String MODID = "ethermod";
-    public static final PropertyManager PROPERTIES = new PropertyManager(MODID);
+    public static final PropertyManager PROPERTIES = new PropertyManager();
     public static final Identifier NEUTRON_IONIZING = new Identifier(MODID, "neutron_ionizing");
-    public static SoundEvent NEUTRON_EVENT = new SoundEvent(NEUTRON_IONIZING);
+    public static final SoundEvent NEUTRON_EVENT = new SoundEvent(NEUTRON_IONIZING);
     public static final Block ETHER_ORE_BLOCK = new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
             MapColor.BLACK).ticksRandomly().luminance(9).strength(5.0F, 6.0F));
 
-    private static ConfiguredFeature<?, ?> ORE_ETHER_OVERWORLD = Feature.ORE
+    private static final ConfiguredFeature<?, ?> ORE_ETHER_OVERWORLD = Feature.ORE
             .configure(new OreFeatureConfig(
                     OreConfiguredFeatures.BASE_STONE_OVERWORLD,
                     ETHER_ORE_BLOCK.getDefaultState(),
-                    15)); // vein size
+                    PROPERTIES.getIntegerProperty("blackether.ore.vein_size", 15))); // vein size
 
-    public static PlacedFeature ORE_ETHER_OVERWORLD_FEATURE = ORE_ETHER_OVERWORLD.withPlacement(
-            CountPlacementModifier.of(10), // number of veins per chunk
-            SquarePlacementModifier.of(), // spreading horizontally
-            HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(64))); // height
-
-    private static ConfiguredFeature<?, ?> ORE_ETHER_ONYXBIOME = Feature.ORE
-            .configure(new OreFeatureConfig(
-                    OreConfiguredFeatures.BASE_STONE_OVERWORLD,
-                    ETHER_ORE_BLOCK.getDefaultState(),
-                    25)); // vein size
-
-    public static PlacedFeature ORE_ETHER_ONYXBIOME_FEATURE = ORE_ETHER_ONYXBIOME.withPlacement(
-            CountPlacementModifier.of(40), // number of veins per chunk
+    public static final PlacedFeature ORE_ETHER_OVERWORLD_FEATURE = ORE_ETHER_OVERWORLD.withPlacement(
+            CountPlacementModifier.of(PROPERTIES.getIntegerProperty("blackether.ore.veins_per_chunk", 7)), // number of veins per chunk
             SquarePlacementModifier.of(), // spreading horizontally
             HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(64))); // height
 
     @Override
     public void onInitialize() {
+        LOGGER.debug("{} started initializing.", MODID);
         RegisterItems.register();
-        EntityRendererRegistry.INSTANCE.register(RegisterItems.NEUTRON_BOMB_ENTITY, NeutronBombEntityRenderer::new);
+        EntityRendererRegistry.register(RegisterItems.NEUTRON_BOMB_ENTITY, NeutronBombEntityRenderer::new);
         initProperties();
         loadOres();
+        LOGGER.debug("{} finished initializing.", MODID);
     }
 
     private void loadOres() {
         registerOreByName("ore_ether_overworld", ORE_ETHER_OVERWORLD, ORE_ETHER_OVERWORLD_FEATURE);
-        registerOreByName("ore_ether_onyxbiome", ORE_ETHER_ONYXBIOME, ORE_ETHER_ONYXBIOME_FEATURE);
     }
 
-    private void registerOreByName(String oreName, ConfiguredFeature<?, ?> feature, PlacedFeature placedFeature) {
+    private void registerOreByName(final String oreName, final ConfiguredFeature<?, ?> feature, final PlacedFeature placedFeature) {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE,
                 new Identifier(MODID, oreName), feature);
         Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(MODID, oreName),
