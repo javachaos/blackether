@@ -6,7 +6,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -16,8 +15,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class EtherOreBlock extends Block {
     public static final BooleanProperty LIT = BooleanProperty.of("lit");
@@ -58,10 +56,8 @@ public class EtherOreBlock extends Block {
         double spread = 0.5625D;
         Random r = world.random;
         Direction[] dir = Direction.values();
-        int dirSize = dir.length;
 
-        for (int i = 0; i < dirSize; ++i) {
-            Direction d = dir[i];
+        for (Direction d : dir) {
             BlockPos blockPos_2 = pos.offset(d);
             if (!world.getBlockState(blockPos_2).isOpaque()) {
                 Direction.Axis dAxis = d.getAxis();

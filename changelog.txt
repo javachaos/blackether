@@ -1,5 +1,2 @@
-Update 2.2.2
-- added a new item "neutronium"
-- added new crafting recipe for a neutron bomb
-- removed biome modifications
-- updated to work with minecraft 1.18.1
+Update 2.2.3
+- updated to work with minecraft 1.19.3

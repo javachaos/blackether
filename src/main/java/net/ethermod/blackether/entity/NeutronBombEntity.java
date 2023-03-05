@@ -21,8 +21,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -76,7 +76,7 @@ public class NeutronBombEntity extends Entity {
     }
 
     @Override
-    public boolean collides() {
+    public boolean isCollidable() {
         return !this.isRemoved();
     }
 
@@ -163,7 +163,7 @@ public class NeutronBombEntity extends Entity {
 
     private void showParticles() {
         world.addParticle(ParticleTypes.EXPLOSION_EMITTER, getX(), getY(), getZ(), 1.0D, 0.0D, 0.0D);
-        world.createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)2, Explosion.DestructionType.BREAK);
+        world.createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)2, World.ExplosionSourceType.TNT);
         animateExplosion();
     }
 
@@ -181,7 +181,7 @@ public class NeutronBombEntity extends Entity {
             this.world.spawnEntity(areaEffectCloudEntity);
     }
 
-    public Packet<?> createSpawnPacket() {
+    public Packet<ClientPlayPacketListener> createSpawnPacket() {
         return new EntitySpawnS2CPacket(this);
     }
 

@@ -8,6 +8,8 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static net.ethermod.blackether.BlackEtherMod.MODID;
+
 /**
  * PropertyManager class used to get property values from the Property file
  * defined in fileName.
@@ -16,55 +18,27 @@ import org.apache.logging.log4j.Logger;
  */
 public final class PropertyManager {
 
-  /**
-    * Logger instance.
-    */
   private static final Logger LOGGER =
       LogManager.getLogger(PropertyManager.class);
-
-  /**
-    * Property instance.
-    */
   private final Properties props = new Properties();
-
   /**
-    * Property file name.
-    */
-  private final String fileName = Constants.PROPERTY_FILE_NAME;
-
-  /**
-    * True if the property file has been loaded into memory.
-    */
+   * Application Properties file name.
+   */
+  public static final String PROPERTY_FILE_NAME = Constants.GAME_DIR
+          + File.separator + MODID + ".properties";
   private boolean isLoaded = false;
 
-  /**
-    * PropertyManager ctor.
-    *
-    * @param modid the modid value
-    */
-  public PropertyManager(final String modid) {
-    init(modid);
-  }
-
-  /**
-    * Initialize the property manager.
-    *
-    * @param modid the modid for your mod
-    */
-  private void init(final String modid) {
+  public PropertyManager() {
     loadProperties();
-    Constants.init(modid);
   }
 
-  /**
-    * Load properties into memory from file.
-    */
   private void loadProperties() {
-    try(FileInputStream fin = new FileInputStream(fileName)) {
-      if (!new File(fileName).createNewFile()) {
+    try(FileInputStream fin = new FileInputStream(PROPERTY_FILE_NAME)) {
+      if (!new File(PROPERTY_FILE_NAME).createNewFile()) {
         props.load(fin);
         PropertyManager.LOGGER.debug("Properties loaded into memory.");
-        LOGGER.debug(props.stringPropertyNames().toString());
+        String properties = props.stringPropertyNames().toString();
+        LOGGER.debug(properties);
       }
     } catch (final IOException e) {
       PropertyManager.LOGGER.error(e.getMessage());
@@ -73,11 +47,8 @@ public final class PropertyManager {
     isLoaded = true;
   }
 
-  /**
-    * Write properties to file.
-    */
   private void writeProperties() {
-    try(FileOutputStream fos = new FileOutputStream(fileName)) {
+    try(FileOutputStream fos = new FileOutputStream(PROPERTY_FILE_NAME)) {
       props.store(fos, null);
       PropertyManager.LOGGER.debug("Properties written to disk.");
     } catch (final IOException e) {

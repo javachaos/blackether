@@ -10,7 +10,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
@@ -23,7 +22,6 @@ import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -32,9 +30,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.explosion.Explosion;
+import net.minecraft.util.math.random.Random;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
 import java.util.function.Consumer;
 
 public class NeutronBomb extends Block {
@@ -135,7 +133,7 @@ public class NeutronBomb extends Block {
             Item item = itemStack.getItem();
             if (!player.isCreative()) {
                 if (itemStack.isOf(Items.FLINT_AND_STEEL)) {
-                    itemStack.damage(1, (LivingEntity)player, (Consumer)((playerx) -> player.sendToolBreakStatus(hand)));
+                    itemStack.damage(1, (LivingEntity)player, ((playerx) -> player.sendToolBreakStatus(hand)));
                 } else {
                     itemStack.decrement(1);
                 }

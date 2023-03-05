@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ethermod:armor/onyx_chestplate"
+    "layer0": "ethermod:item/onyx_chestplate"
   }
 }

@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.11-SNAPSHOT'
+    id 'fabric-loom' version '1.1-SNAPSHOT'
     id "com.matthewprenger.cursegradle" version "1.4.0"
     id 'maven-publish'
 }
@@ -21,34 +21,13 @@ dependencies {
             because("CVE-2021-44228, CVE-2021-45046, CVE-2021-45105: Log4j vulnerable to remote code execution and other critical security vulnerabilities")
         }
     }
-    minecraft "com.mojang:minecraft:1.18.1"
-    mappings "net.fabricmc:yarn:1.18.1+build.22:v2"
-    modImplementation "net.fabricmc:fabric-loader:0.13.1"
+    minecraft "com.mojang:minecraft:1.19.3"
+    mappings "net.fabricmc:yarn:1.19.3+build.5:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.14.14"
 
     //Fabric api
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.46.4+1.18"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.75.1+1.19.3"
 }
-//dependencies {
-//    minecraft "com.mojang:minecraft:1.16.5"
-//    mappings "net.fabricmc:yarn:1.16.5+build.5:v2"
-//    modImplementation "net.fabricmc:fabric-loader:0.11.2"
-//
-//    //Fabric api
-//    modImplementation "net.fabricmc.fabric-api:fabric-api:0.31.0+1.16"
-//}
-//dependencies {
-//	//to change the versions see the gradle.properties file
-//	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-//	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
-//	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
-//
-//	// Fabric API. This is technically optional, but you probably want it anyway.
-//	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-//
-//	//modImplementation 'com.github.javachaos:modproperties:release1'
-//	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-//	// You may need to force-disable transitiveness on them.
-//}
 
 processResources {
     inputs.property "version", project.version
@@ -89,7 +68,7 @@ curseforge {
         id = '340764'
         changelog = file('changelog.txt') // A file can also be set using: changelog = file('changelog.txt')
         releaseType = 'beta'
-        addGameVersion '1.18.1'
+        addGameVersion '1.19.3'
         mainArtifact(remapJar)
         afterEvaluate {
             mainArtifact(remapJar)

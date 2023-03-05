@@ -17,6 +17,7 @@ public class CustomArmorMaterial implements ArmorMaterial {
     private final float toughness = 0.0f;
 
     public CustomArmorMaterial() {
+        super();
     }
 
     @Override
