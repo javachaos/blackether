@@ -1,5 +1,5 @@
 # Black Ether Minecraft Mod
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/javachaos/blackether.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/javachaos/blackether/alerts/)
+[![CodeQL](https://github.com/javachaos/blackether/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/javachaos/blackether/actions/workflows/codeql-analysis.yml)
 
 To install goto https://www.curseforge.com/minecraft/mc-mods/black-ether-mod
 
