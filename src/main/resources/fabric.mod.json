@@ -11,7 +11,7 @@
     "homepage": "https://github.com/javachaos/",
     "sources": "https://github.com/javachaos/"
   },
-  "license": "CC0-1.0",
+  "license": "GPL-3",
   "icon": "assets/ethermod/icon.png",
   "environment": "*",
   "entrypoints": {
