@@ -1,0 +1,22 @@
+{
+  "block.ethermod.block_of_ether": "에테르 블록",
+  "block.ethermod.neutron_bomb": "뉴트론 폭탄",
+  "itemGroup.ethermod.ethermod_group": "에테르 모드",
+  "item.ethermod.ether_ore": "에테르 원석",
+  "item.ethermod.onyx_apple": "오닉스 사과",
+  "item.ethermod.onyx_ore": "오닉스 원석",
+  "item.ethermod.neutronium": "뉴트로늄",
+  "item.ethermod.neutron_bomb": "뉴트론 폭탄",
+  "item.ethermod.onyx_axe": "오닉스 도끼",
+  "item.ethermod.onyx_hoe": "오닉스 괭이",
+  "item.ethermod.onyx_shovel": "오닉스 삽",
+  "item.ethermod.onyx_sword": "오닉스 검",
+  "item.ethermod.onyx_pickaxe": "오닉스 곡괭이",
+  "item.ethermod.onyx_dust": "오닉스 가루",
+  "block.ethermod.ether_ore_block": "에테르 원석 블록",
+  "item.ethermod.onyx_leggings": "오닉스 다리보호구",
+  "item.ethermod.onyx_helmet": "오닉스 투구",
+  "item.ethermod.onyx_chestplate": "오닉스 갑옷",
+  "item.ethermod.onyx_boots": "오닉스 부츠",
+  "biome.ethermod.onyx_biome": "오닉스 바이옴"
+}

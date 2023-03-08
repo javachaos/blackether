@@ -1,0 +1,22 @@
+{
+  "block.ethermod.block_of_ether": "Blocco di Etere",
+  "block.ethermod.neutron_bomb": "Bomba Neutronica",
+  "itemGroup.ethermod.ethermod_group": "Mod di Etere",
+  "item.ethermod.ether_ore": "Etere",
+  "item.ethermod.onyx_apple": "Mela d'Onice",
+  "item.ethermod.onyx_ore": "Onice",
+  "item.ethermod.neutronium": "Neutronio",
+  "item.ethermod.neutron_bomb": "Bomba Neutronica",
+  "item.ethermod.onyx_axe": "Ascia d'Onice",
+  "item.ethermod.onyx_hoe": "Zappa d'Onice",
+  "item.ethermod.onyx_shovel": "Pala d'Onice",
+  "item.ethermod.onyx_sword": "Spada d'Onice",
+  "item.ethermod.onyx_pickaxe": "Piccone di Onice",
+  "item.ethermod.onyx_dust": "Polvere di Onice",
+  "block.ethermod.ether_ore_block": "Blocco di Minerale di Etere",
+  "item.ethermod.onyx_leggings": "Gambali di Onice",
+  "item.ethermod.onyx_helmet": "Elmo di Onice",
+  "item.ethermod.onyx_chestplate": "Corazza di Onice",
+  "item.ethermod.onyx_boots": "Stivali di Onice",
+  "biome.ethermod.onyx_biome": "Bioma di Onice"
+}

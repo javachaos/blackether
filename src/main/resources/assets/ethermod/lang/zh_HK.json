@@ -1,0 +1,22 @@
+{
+  "block.ethermod.block_of_ether": "乙太块",
+  "block.ethermod.neutron_bomb": "中子炸弹",
+  "itemGroup.ethermod.ethermod_group": "乙太模组",
+  "item.ethermod.ether_ore": "乙太矿石",
+  "item.ethermod.onyx_apple": "玛瑙苹果",
+  "item.ethermod.onyx_ore": "玛瑙矿石",
+  "item.ethermod.neutronium": "中子金属",
+  "item.ethermod.neutron_bomb": "中子炸弹",
+  "item.ethermod.onyx_axe": "玛瑙斧",
+  "item.ethermod.onyx_hoe": "玛瑙锄",
+  "item.ethermod.onyx_shovel": "玛瑙铲",
+  "item.ethermod.onyx_sword": "玛瑙剑",
+  "item.ethermod.onyx_pickaxe": "黑曜石镐",
+  "item.ethermod.onyx_dust": "黑曜石粉尘",
+  "block.ethermod.ether_ore_block": "以太矿石块",
+  "item.ethermod.onyx_leggings": "黑曜石护腿",
+  "item.ethermod.onyx_helmet": "黑曜石头盔",
+  "item.ethermod.onyx_chestplate": "黑曜石胸甲",
+  "item.ethermod.onyx_boots": "黑曜石靴子",
+  "biome.ethermod.onyx_biome": "黑曜石生物群系"
+}

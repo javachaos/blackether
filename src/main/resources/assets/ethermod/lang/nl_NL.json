@@ -1,0 +1,22 @@
+{
+  "block.ethermod.block_of_ether": "Blok van Ether",
+  "block.ethermod.neutron_bomb": "Neutronenbom",
+  "itemGroup.ethermod.ethermod_group": "Ether Mod",
+  "item.ethermod.ether_ore": "Ether",
+  "item.ethermod.onyx_apple": "Onyx Appel",
+  "item.ethermod.onyx_ore": "Onyx",
+  "item.ethermod.neutronium": "Neutronium",
+  "item.ethermod.neutron_bomb": "Neutronenbom",
+  "item.ethermod.onyx_axe": "Onyx Bijl",
+  "item.ethermod.onyx_hoe": "Onyx Hooivork",
+  "item.ethermod.onyx_shovel": "Onyx Schop",
+  "item.ethermod.onyx_sword": "Onyx Zwaard",
+  "item.ethermod.onyx_pickaxe": "Onyx Pikhouweel",
+  "item.ethermod.onyx_dust": "Onyx Stof",
+  "block.ethermod.ether_ore_block": "Blok van Ethererts",
+  "item.ethermod.onyx_leggings": "Onyx Leggings",
+  "item.ethermod.onyx_helmet": "Onyx Helm",
+  "item.ethermod.onyx_chestplate": "Onyx Borstpantser",
+  "item.ethermod.onyx_boots": "Onyx Laarzen",
+  "biome.ethermod.onyx_biome": "Onyx Biotoop"
+}

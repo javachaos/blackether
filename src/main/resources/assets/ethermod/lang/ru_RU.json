@@ -1,0 +1,22 @@
+{
+  "block.ethermod.block_of_ether": "Блок Эфира",
+  "block.ethermod.neutron_bomb": "Нейтронная бомба",
+  "itemGroup.ethermod.ethermod_group": "Модификация Эфира",
+  "item.ethermod.ether_ore": "Эфир",
+  "item.ethermod.onyx_apple": "Ониксовое яблоко",
+  "item.ethermod.onyx_ore": "Оникс",
+  "item.ethermod.neutronium": "Нейтроний",
+  "item.ethermod.neutron_bomb": "Нейтронная бомба",
+  "item.ethermod.onyx_axe": "Ониксовый топор",
+  "item.ethermod.onyx_hoe": "Ониксовая мотыга",
+  "item.ethermod.onyx_shovel": "Ониксовая лопата",
+  "item.ethermod.onyx_sword": "Ониксовый меч",
+  "item.ethermod.onyx_pickaxe": "Ониксовая кирка",
+  "item.ethermod.onyx_dust": "Ониксовая пыль",
+  "block.ethermod.ether_ore_block": "Блок Эфирной руды",
+  "item.ethermod.onyx_leggings": "Ониксовые поножи",
+  "item.ethermod.onyx_helmet": "Ониксовый шлем",
+  "item.ethermod.onyx_chestplate": "Ониксовый нагрудник",
+  "item.ethermod.onyx_boots": "Ботинки Оникса",
+  "biome.ethermod.onyx_biome": "Биом Оникса"
+}

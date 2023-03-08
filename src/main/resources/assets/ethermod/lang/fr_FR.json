@@ -1,0 +1,22 @@
+{
+  "block.ethermod.block_of_ether": "Bloc d'Ether",
+  "block.ethermod.neutron_bomb": "Bombe Neutronique",
+  "itemGroup.ethermod.ethermod_group": "Mod Ether",
+  "item.ethermod.ether_ore": "Ether",
+  "item.ethermod.onyx_apple": "Pomme d'Onyx",
+  "item.ethermod.onyx_ore": "Onyx",
+  "item.ethermod.neutronium": "Neutronium",
+  "item.ethermod.neutron_bomb": "Bombe Neutronique",
+  "item.ethermod.onyx_axe": "Hache d'Onyx",
+  "item.ethermod.onyx_hoe": "Houe d'Onyx",
+  "item.ethermod.onyx_shovel": "Pelle d'Onyx",
+  "item.ethermod.onyx_sword": "Épée d'Onyx",
+  "item.ethermod.onyx_pickaxe": "Pioche d'Onyx",
+  "item.ethermod.onyx_dust": "Poudre d'Onyx",
+  "block.ethermod.ether_ore_block": "Bloc de minerai d'Ether",
+  "item.ethermod.onyx_leggings": "Pantalon d'Onyx",
+  "item.ethermod.onyx_helmet": "Casque d'Onyx",
+  "item.ethermod.onyx_chestplate": "Plastron d'Onyx",
+  "item.ethermod.onyx_boots": "Bottes d'Onyx",
+  "biome.ethermod.onyx_biome": "Biome d'Onyx"
+}

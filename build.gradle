@@ -70,7 +70,11 @@ curseforge {
         changelog = file('changelog.txt') // A file can also be set using: changelog = file('changelog.txt')
         releaseType = 'beta'
         addGameVersion '1.19.3'
-        mainArtifact(remapJar)
+        mainArtifact(remapJar) {
+            relations {
+                requiredDependency 'fabric-api' // fabric-api is required
+            }
+        }
         afterEvaluate {
             mainArtifact(remapJar)
             uploadTask.dependsOn(remapJar)
@@ -87,6 +91,7 @@ modrinth {
     projectId = "8oa0vS0A" // This can be the project ID or the slug. Either will work!
     versionType = "release" // This is the default -- can also be `beta` or `alpha`
     uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+    changelog = file('changelog.txt').getText()
     gameVersions = ["1.19.3"] // Must be an array, even with only one version
     loaders = ["fabric"] // Must also be an array - no need to specify this if you're using Loom or ForgeGradle
     dependencies { // A special DSL for creating dependencies

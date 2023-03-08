@@ -1,0 +1,22 @@
+{
+  "block.ethermod.block_of_ether": "Bloque de Ether",
+  "block.ethermod.neutron_bomb": "Bomba de Neutrones",
+  "itemGroup.ethermod.ethermod_group": "Mod de Ether",
+  "item.ethermod.ether_ore": "Ether",
+  "item.ethermod.onyx_apple": "Manzana de Ónice",
+  "item.ethermod.onyx_ore": "Ónice",
+  "item.ethermod.neutronium": "Neutronio",
+  "item.ethermod.neutron_bomb": "Bomba de Neutrones",
+  "item.ethermod.onyx_axe": "Hacha de Ónice",
+  "item.ethermod.onyx_hoe": "Azada de Ónice",
+  "item.ethermod.onyx_shovel": "Pala de Ónice",
+  "item.ethermod.onyx_sword": "Espada de Ónice",
+  "item.ethermod.onyx_pickaxe": "Pico de Ónice",
+  "item.ethermod.onyx_dust": "Polvo de Ónice",
+  "block.ethermod.ether_ore_block": "Bloque de mineral de Ether",
+  "item.ethermod.onyx_leggings": "Pantalones de Ónice",
+  "item.ethermod.onyx_helmet": "Casco de Ónice",
+  "item.ethermod.onyx_chestplate": "Coraza de Ónice",
+  "item.ethermod.onyx_boots": "Botas de Ónice",
+  "biome.ethermod.onyx_biome": "Bioma de Ónice"
+}
