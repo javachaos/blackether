@@ -2,6 +2,7 @@ package net.ethermod.blackether.items;
 
 import net.ethermod.blackether.enums.EnumHelper;
 import net.ethermod.blackether.items.base.SwordBase;
+import net.ethermod.blackether.registries.ItemRegistry;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class OnyxSword extends SwordBase {
@@ -12,6 +13,6 @@ public class OnyxSword extends SwordBase {
                 20,
                 1,
                 100,
-                Ingredient.of(RegisterItems.ONYX_ORE)));
+                Ingredient.of(ItemRegistry.ONYX_ORE)));
     }
 }

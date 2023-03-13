@@ -1,7 +1,7 @@
 package net.ethermod.blackether.blocks;
 
-import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.effects.ColoredDustParticleEffect;
+import net.ethermod.blackether.registries.BlockRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
@@ -34,7 +34,7 @@ public class EtherOreBlock extends Block {
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, Level world, @NotNull BlockPos pos, @NotNull Player player,
                                           @NotNull InteractionHand hand, @NotNull BlockHitResult blockHitResult) {
-        world.setBlockAndUpdate(pos, BlackEtherMod.ETHER_ORE_BLOCK.defaultBlockState().setValue(LIT, true));
+        world.setBlockAndUpdate(pos, BlockRegistry.ETHER_ORE_BLOCK.defaultBlockState().setValue(LIT, true));
         light(state, world, pos);
         return super.use(state, world, pos, player, hand, blockHitResult);
     }

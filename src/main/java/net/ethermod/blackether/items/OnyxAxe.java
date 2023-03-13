@@ -3,6 +3,7 @@ package net.ethermod.blackether.items;
 import net.ethermod.blackether.effects.ColoredDustParticleEffect;
 import net.ethermod.blackether.enums.EnumHelper;
 import net.ethermod.blackether.items.base.AxeBase;
+import net.ethermod.blackether.registries.ItemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -22,7 +23,7 @@ public class OnyxAxe extends AxeBase {
                 15f,
                 100,
                 100,
-                Ingredient.of(RegisterItems.ONYX_ORE)));
+                Ingredient.of(ItemRegistry.ONYX_ORE)));
     }
 
     @Override

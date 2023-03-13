@@ -1,7 +1,7 @@
 package net.ethermod.blackether.entity.misc;
 
 import net.ethermod.blackether.BlackEtherMod;
-import net.ethermod.blackether.items.RegisterItems;
+import net.ethermod.blackether.registries.EntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -41,7 +41,7 @@ public class NeutronBombEntity extends Entity {
     }
 
     public NeutronBombEntity(Level world, double x, double y, double z, @Nullable LivingEntity igniter) {
-        this(RegisterItems.NEUTRON_BOMB_ENTITY, world);
+        this(EntityRegistry.NEUTRON_BOMB_ENTITY, world);
         this.setPos(x, y, z);
         double d = world.random.nextDouble() * 6.2831854820251465D;
         this.setDeltaMovement(-Math.sin(d) * 0.02D, 0.020000000298023224D, -Math.cos(d) * 0.02D);

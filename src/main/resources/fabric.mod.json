@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "net.ethermod.blackether.BlackEtherMod"
+    ],
+    "client": [
+      "net.ethermod.blackether.BlackEtherClientMod"
     ]
   },
   "depends": {
