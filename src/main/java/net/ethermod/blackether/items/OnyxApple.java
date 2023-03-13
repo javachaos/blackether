@@ -1,35 +1,26 @@
 package net.ethermod.blackether.items;
 
-import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.utils.Constants;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
 
 public class OnyxApple extends Item {
 
     public OnyxApple() {
-        super(new FabricItemSettings().maxCount(16).food(
-                new FoodComponent.Builder()
-                        .alwaysEdible()
-                        .hunger(10)
-                        .statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, Constants.getTicksPerMin(5)), 1.0f)
-                        .statusEffect(new StatusEffectInstance(StatusEffects.HASTE, Constants.getTicksPerSec(45)), 0.5f)
-                        .statusEffect(new StatusEffectInstance(StatusEffects.SPEED, Constants.getTicksPerSec(45)), 0.5f)
-                        .statusEffect(new StatusEffectInstance(StatusEffects.BAD_OMEN, Constants.getTicksPerSec(45)), 1.0f)
-                        .statusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, Constants.getTicksPerSec(45)), 1.0f)
-                        .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, Constants.getTicksPerSec(45)), 1.0f)
-                        .saturationModifier(100).build()));
+        super(new FabricItemSettings().stacksTo(16).food(
+                new FoodProperties.Builder()
+                        .alwaysEat()
+                        .nutrition(10)
+                        .effect(new MobEffectInstance(MobEffects.HEALTH_BOOST, Constants.getTicksPerMin(5)), 1.0f)
+                        .effect(new MobEffectInstance(MobEffects.DIG_SPEED, Constants.getTicksPerSec(45)), 0.5f)
+                        .effect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, Constants.getTicksPerSec(45)), 0.5f)
+                        .effect(new MobEffectInstance(MobEffects.BAD_OMEN, Constants.getTicksPerSec(45)), 1.0f)
+                        .effect(new MobEffectInstance(MobEffects.INVISIBILITY, Constants.getTicksPerSec(45)), 1.0f)
+                        .effect(new MobEffectInstance(MobEffects.GLOWING, Constants.getTicksPerSec(45)), 1.0f)
+                        .saturationMod(100).build()));
     }
 
-    @Environment(EnvType.CLIENT)
-    public boolean hasEnchantmentGlint(ItemStack itemStack_1) {
-        return true;
-    }
 }

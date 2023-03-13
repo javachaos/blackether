@@ -1,15 +1,11 @@
 package net.ethermod.blackether.items.base;
 
-import net.ethermod.blackether.BlackEtherMod;
-import net.ethermod.blackether.items.RegisterItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 
 public class SwordBase extends SwordItem {
-    public SwordBase(ToolMaterial toolMaterial) {
+    public SwordBase(Tier toolMaterial) {
         super(toolMaterial, -1, -2.2f, new FabricItemSettings());
     }
 }

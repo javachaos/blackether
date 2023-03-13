@@ -1,9 +1,8 @@
 package net.ethermod.blackether.items;
 
-import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.enums.EnumHelper;
 import net.ethermod.blackether.items.base.ShovelBase;
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class OnyxShovel extends ShovelBase {
     public OnyxShovel() {
@@ -13,6 +12,6 @@ public class OnyxShovel extends ShovelBase {
                 5,
                 100,
                 100,
-                Ingredient.ofItems(RegisterItems.ONYX_ORE)));
+                Ingredient.of(RegisterItems.ONYX_ORE)));
     }
 }

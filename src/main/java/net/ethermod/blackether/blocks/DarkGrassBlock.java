@@ -3,37 +3,37 @@ package net.ethermod.blackether.blocks;
 import net.ethermod.blackether.effects.ColoredDustParticleEffect;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.block.GrassBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.GrassBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
-public class DarkGrassBlock extends GrassBlock implements Fertilizable {
-    public DarkGrassBlock(Settings settings) {
+public class DarkGrassBlock extends GrassBlock implements BonemealableBlock {
+    public DarkGrassBlock(Properties settings) {
         super(settings);
     }
 
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random) {
+    public void animateTick(@NotNull BlockState blockState, @NotNull Level world, @NotNull BlockPos blockPos, @NotNull RandomSource random) {
         spawnParticles(world, blockPos);
     }
 
-    private static void spawnParticles(World world, BlockPos pos) {
+    private static void spawnParticles(Level world, BlockPos pos) {
         double spread = 0.5625D;
-        Random r = world.random;
+        RandomSource r = world.random;
         Direction[] dir = Direction.values();
-        int dirSize = dir.length;
 
         for (Direction d : dir) {
-            BlockPos blockPos_2 = pos.offset(d);
-            if (!world.getBlockState(blockPos_2).isOpaque()) {
+            BlockPos blockPos_2 = pos.relative(d);
+            if (!world.getBlockState(blockPos_2).canOcclude()) {
                 Direction.Axis dAxis = d.getAxis();
-                double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getOffsetX() : (double) r.nextFloat();
-                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getOffsetY() : (double) r.nextFloat();
-                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getOffsetZ() : (double) r.nextFloat();
+                double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getStepX() : (double) r.nextFloat();
+                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getStepY() : (double) r.nextFloat();
+                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getStepZ() : (double) r.nextFloat();
                 world.addParticle(ColoredDustParticleEffect.GREEN, (double) pos.getX() + x, (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
             }
         }

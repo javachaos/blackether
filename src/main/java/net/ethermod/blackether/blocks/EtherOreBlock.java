@@ -4,66 +4,68 @@ import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.effects.ColoredDustParticleEffect;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
 
 public class EtherOreBlock extends Block {
-    public static final BooleanProperty LIT = BooleanProperty.of("lit");
+    public static final BooleanProperty LIT = BooleanProperty.create("lit");
 
-    public EtherOreBlock(Settings settings) {
+    public EtherOreBlock(Properties settings) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(LIT, false));
+        registerDefaultState(getStateDefinition().any().setValue(LIT, false));
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateManager) {
         stateManager.add(LIT);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
-        world.setBlockState(pos, BlackEtherMod.ETHER_ORE_BLOCK.getDefaultState().with(LIT, true));
+    public @NotNull InteractionResult use(@NotNull BlockState state, Level world, @NotNull BlockPos pos, @NotNull Player player,
+                                          @NotNull InteractionHand hand, @NotNull BlockHitResult blockHitResult) {
+        world.setBlockAndUpdate(pos, BlackEtherMod.ETHER_ORE_BLOCK.defaultBlockState().setValue(LIT, true));
         light(state, world, pos);
-        return super.onUse(state, world, pos, player, hand, blockHitResult);
+        return super.use(state, world, pos, player, hand, blockHitResult);
     }
 
-    private static void light(BlockState state, World world, BlockPos pos) {
+    private static void light(BlockState state, Level world, BlockPos pos) {
         spawnParticles(world, pos);
-        if (!state.get(LIT)) {
-            world.setBlockState(pos, state.with(LIT, true), 3);
+        if (!state.getValue(LIT)) {
+            world.setBlock(pos, state.setValue(LIT, true), 3);
         }
     }
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState blockState, World world, BlockPos blockPos, Random random) {
-        if (blockState.get(LIT)) {
+    public void animateTick(BlockState blockState, @NotNull Level world, @NotNull BlockPos blockPos, @NotNull RandomSource random) {
+        if (blockState.getValue(LIT)) {
             spawnParticles(world, blockPos);
         }
     }
 
-    private static void spawnParticles(World world, BlockPos pos) {
+    private static void spawnParticles(Level world, BlockPos pos) {
         double spread = 0.5625D;
-        Random r = world.random;
+        RandomSource r = world.random;
         Direction[] dir = Direction.values();
 
         for (Direction d : dir) {
-            BlockPos blockPos_2 = pos.offset(d);
-            if (!world.getBlockState(blockPos_2).isOpaque()) {
+            BlockPos blockPos_2 = pos.relative(d);
+            if (!world.getBlockState(blockPos_2).canOcclude()) {
                 Direction.Axis dAxis = d.getAxis();
-                double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getOffsetX() : (double) r.nextFloat();
-                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getOffsetY() : (double) r.nextFloat();
-                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getOffsetZ() : (double) r.nextFloat();
+                double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getStepX() : (double) r.nextFloat();
+                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getStepY() : (double) r.nextFloat();
+                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getStepZ() : (double) r.nextFloat();
                 world.addParticle(ColoredDustParticleEffect.BLACK, (double) pos.getX() + x, (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
             }
         }
@@ -71,8 +73,9 @@ public class EtherOreBlock extends Block {
     }
 
     @Override
-    public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+    public void attack(@NotNull BlockState state, @NotNull Level world,
+                       @NotNull BlockPos pos, @NotNull Player player) {
         light(state, world, pos);
-        super.onBlockBreakStart(state, world, pos, player);
+        super.attack(state, world, pos, player);
     }
 }

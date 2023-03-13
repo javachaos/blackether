@@ -1,39 +1,41 @@
 package net.ethermod.blackether.enums;
 
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
+import org.jetbrains.annotations.NotNull;
 
 public class EnumHelper {
 
-    public static ToolMaterial getToolMaterial(int durability, float miningSpeed, float attackDmg, int miningLevel, int enchantability, Ingredient repairIngredient) {
-        return new ToolMaterial() {
+    public static Tier getToolMaterial(int durability, float miningSpeed, float attackDmg,
+                                       int miningLevel, int enchantability, Ingredient repairIngredient) {
+        return new Tier() {
             @Override
-            public int getDurability() {
+            public int getUses() {
                 return durability;
             }
 
             @Override
-            public float getMiningSpeedMultiplier() {
+            public float getSpeed() {
                 return miningSpeed;
             }
 
             @Override
-            public float getAttackDamage() {
+            public float getAttackDamageBonus() {
                 return attackDmg;
             }
 
             @Override
-            public int getMiningLevel() {
+            public int getLevel() {
                 return miningLevel;
             }
 
             @Override
-            public int getEnchantability() {
+            public int getEnchantmentValue() {
                 return enchantability;
             }
 
             @Override
-            public Ingredient getRepairIngredient() {
+            public @NotNull Ingredient getRepairIngredient() {
                 return repairIngredient;
             }
         };
