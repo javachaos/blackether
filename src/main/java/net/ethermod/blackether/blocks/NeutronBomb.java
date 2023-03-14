@@ -165,7 +165,7 @@ public class NeutronBomb extends Block {
             BlockPos blockPos = hit.getBlockPos();
             Entity entity = projectile.getOwner();
             if (projectile.isOnFire() && projectile.mayInteract(world, blockPos)) {
-                primeNeutronBomb(world, blockPos, entity instanceof LivingEntity ? (LivingEntity) entity : null);
+                primeNeutronBomb(world, blockPos, entity instanceof LivingEntity n ? n : null);
                 world.removeBlock(blockPos, false);
             }
         }

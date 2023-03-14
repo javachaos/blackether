@@ -1,6 +1,9 @@
 package net.ethermod.blackether.entity.living;
 
+import com.google.common.base.Objects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -22,6 +25,7 @@ public class OnyxSnakeEntity extends Monster implements GeoEntity {
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new WaterAvoidingRandomStrollGoal(this, 6.0D));
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));

@@ -9,20 +9,22 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class EntityRegistry extends BaseRegistry {
 
-    private static EntityRegistry INSTANCE;
+    private static final AtomicReference<EntityRegistry> INSTANCE = new AtomicReference<>();
 
     private EntityRegistry() {
     }
 
     public static EntityRegistry getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new EntityRegistry();
+        if (INSTANCE.get() == null) {
+            INSTANCE.set(new EntityRegistry());
         }
-        return INSTANCE;
+        return INSTANCE.get();
     }
 
     public static EntityType<NeutronBombEntity> NEUTRON_BOMB_ENTITY;

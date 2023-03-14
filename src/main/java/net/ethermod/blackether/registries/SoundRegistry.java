@@ -6,20 +6,22 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public final class SoundRegistry extends BaseRegistry {
 
-    private static SoundRegistry INSTANCE;
+    private static final AtomicReference<SoundRegistry> INSTANCE = new AtomicReference<>();
 
     private SoundRegistry() {
     }
 
     public static SoundRegistry getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new SoundRegistry();
+        if (INSTANCE.get() == null) {
+            INSTANCE.set(new SoundRegistry());
         }
-        return INSTANCE;
+        return INSTANCE.get();
     }
 
     @Override
@@ -29,9 +31,9 @@ public final class SoundRegistry extends BaseRegistry {
 
     @Override
     public void register() {
-        SoundEvent NEUTRON_EVENT = Registry.register(BuiltInRegistries.SOUND_EVENT, Naming.NEUTRON_IONIZING,
+        SoundEvent neutronEvent = Registry.register(BuiltInRegistries.SOUND_EVENT, Naming.NEUTRON_IONIZING,
                 SoundEvent.createVariableRangeEvent(new ResourceLocation(MOD_ID, Naming.NEUTRON_IONIZING)));
-        putSoundEvent(Naming.NEUTRON_IONIZING, NEUTRON_EVENT);
+        putSoundEvent(Naming.NEUTRON_IONIZING, neutronEvent);
     }
 
 }

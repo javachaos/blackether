@@ -114,7 +114,11 @@ public class NeutronBombEntity extends Entity {
         List<Entity> list = this.level.getEntities(this,
                 new AABB(k, r, t, l, s, u));
         Vec3 vec3d = new Vec3(this.getX(), dy, this.getZ());
+        calculateEntities(list, vec3d, dy, q, power);
+        showParticles();
+    }
 
+    private void calculateEntities(List<Entity> list, Vec3 vec3d, double dy, double q, double power) {
         for (Entity entity : list) {
             if (!entity.ignoreExplosion()) {
                 double w = Math.sqrt(entity.distanceToSqr(vec3d)) / q;
@@ -129,22 +133,21 @@ public class NeutronBombEntity extends Entity {
                         z /= aa;
                         double ab = Explosion.getSeenPercent(vec3d, entity);
                         double ac = (1.0D - w) * ab;
-                        entity.hurt(DamageSource.thorns(this), (float) ((int) ((ac * ac + ac) * power / 2.0 * 7.0 * q + 1.0)));
+                        entity.hurt(DamageSource.thorns(this), ((int) ((ac * ac + ac) * power / 2.0 * 7.0 * q + 1.0)));
                         double ad = ac;
-                        if (entity instanceof LivingEntity) {
-                            ad = ProtectionEnchantment.getExplosionKnockbackAfterDampener((LivingEntity) entity, ac);
+                        if (entity instanceof LivingEntity e) {
+                            ad = ProtectionEnchantment.getExplosionKnockbackAfterDampener(e, ac);
                         }
                         entity.setDeltaMovement(entity.getDeltaMovement().add(x * ad, y * ad, z * ad));
                     }
                 }
             }
         }
-        showParticles();
     }
 
     private void showParticles() {
         level.addParticle(ParticleTypes.EXPLOSION_EMITTER, getX(), getY(), getZ(), 1.0D, 0.0D, 0.0D);
-        level.explode(this, this.getX(), this.getY(), this.getZ(), (float) 2, Level.ExplosionInteraction.TNT);
+        level.explode(this, this.getX(), this.getY(), this.getZ(), 2, Level.ExplosionInteraction.TNT);
         animateExplosion();
     }
 
@@ -154,7 +157,7 @@ public class NeutronBombEntity extends Entity {
         areaEffectCloudEntity.setRadiusOnUse(-0.5F);
         areaEffectCloudEntity.setWaitTime(10);
         areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration() / 2);
-        areaEffectCloudEntity.setRadiusPerTick(-areaEffectCloudEntity.getRadius() / (float) areaEffectCloudEntity.getDuration());
+        areaEffectCloudEntity.setRadiusPerTick(-areaEffectCloudEntity.getRadius() / areaEffectCloudEntity.getDuration());
         areaEffectCloudEntity.addEffect(new MobEffectInstance(Objects.requireNonNull(MobEffect.byId(3))));
         areaEffectCloudEntity.addEffect(new MobEffectInstance(Objects.requireNonNull(MobEffect.byId(2))));
         areaEffectCloudEntity.addEffect(new MobEffectInstance(Objects.requireNonNull(MobEffect.byId(1))));
@@ -162,6 +165,7 @@ public class NeutronBombEntity extends Entity {
         this.level.addFreshEntity(areaEffectCloudEntity);
     }
 
+    @Override
     public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
         return new ClientboundAddEntityPacket(this);
     }
@@ -176,6 +180,7 @@ public class NeutronBombEntity extends Entity {
         this.setFuse(nbt.getShort("Fuse"));
     }
 
+    @Override
     protected float getEyeHeight(@NotNull Pose pose, @NotNull EntityDimensions dimensions) {
         return 0.15F;
     }

@@ -20,20 +20,22 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class BlockRegistry extends BaseRegistry {
 
-    private static BlockRegistry INSTANCE;
+    private static final AtomicReference<BlockRegistry> INSTANCE = new AtomicReference<>();
 
     private BlockRegistry() {
     }
 
     public static BlockRegistry getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new BlockRegistry();
+        if (INSTANCE.get() == null) {
+            INSTANCE.set(new BlockRegistry());
         }
-        return INSTANCE;
+        return INSTANCE.get();
     }
 
     @Override

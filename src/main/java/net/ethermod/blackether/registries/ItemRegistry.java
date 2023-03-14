@@ -12,26 +12,28 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class ItemRegistry extends BaseRegistry {
-    private static ItemRegistry INSTANCE;
+    private static final AtomicReference<ItemRegistry> INSTANCE = new AtomicReference<>();
 
     private ItemRegistry() {
     }
 
     public static ItemRegistry getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ItemRegistry();
+        if (INSTANCE.get() == null) {
+            INSTANCE.set(new ItemRegistry());
         }
-        return INSTANCE;
+        return INSTANCE.get();
     }
 
     //public final
 
-    public <I extends Item> I registerItem(String name, I item) {
+    public <I extends Item> void registerItem(String name, I item) {
         putItem(name, item);
-        return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(MOD_ID, name), item);
+        Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(MOD_ID, name), item);
     }
 
     @Override
@@ -41,29 +43,29 @@ public class ItemRegistry extends BaseRegistry {
 
     @Override
     public void register() {
-        ArmorMaterial ONYX_ARMOR_MATERIAL = new CustomArmorMaterial();
-        Item ONYX_SNAKE_EGG = registerItem(Naming.ONYX_SNAKE_EGG,
+        ArmorMaterial onyxArmorMaterial = new CustomArmorMaterial();
+        registerItem(Naming.ONYX_SNAKE_EGG,
                 new SpawnEggItem(EntityRegistry.ONYX_SNAKE, 0x1F1F1F, 0x0D0D0D,
                         new Item.Properties()));
-        Item ONYX_APPLE = registerItem(Naming.ONYX_APPLE, new OnyxApple());
-        Item ONYX_ORE = registerItem(Naming.ONYX_ORE, new Item(new FabricItemSettings()));
-        Item NEUTRONIUM = registerItem(Naming.NEUTRONIUM, new Item(new FabricItemSettings()));
-        Item ONYX_HELMET = registerItem(Naming.ONYX_HELMET,
-                new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.HEAD, (new Item.Properties())));
-        Item ONYX_CHESTPLATE = registerItem(Naming.ONYX_CHESTPLATE,
-                new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.CHEST, (new Item.Properties())));
-        Item ONYX_LEGGINGS = registerItem(Naming.ONYX_LEGGINGS,
-                new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.LEGS, (new Item.Properties())));
-        Item ONYX_BOOTS = registerItem(Naming.ONYX_BOOTS,
-                new ArmorItem(ONYX_ARMOR_MATERIAL, EquipmentSlot.FEET, (new Item.Properties())));
-        Item ETHER_ORE = registerItem(Naming.ETHER_ORE, new Item(new FabricItemSettings()));
-        Item ONYX_DUST = registerItem(Naming.ONYX_DUST, new Item(new FabricItemSettings()));
-        Item ONYX_PICKAXE = registerItem(Naming.ONYX_PICKAXE, new OnyxPickaxe());
-        Item ONYX_SHOVEL = registerItem(Naming.ONYX_SHOVEL, new OnyxShovel());
-        Item ONYX_AXE = registerItem(Naming.ONYX_AXE, new OnyxAxe());
-        Item ONYX_HOE = registerItem(Naming.ONYX_HOE, new OnyxHoe());
-        Item ONYX_SWORD = registerItem(Naming.ONYX_SWORD, new OnyxSword());
-        CreativeModeTab BLACKETHERMOD_GROUP = FabricItemGroup.builder(
+        registerItem(Naming.ONYX_APPLE, new OnyxApple());
+        registerItem(Naming.ONYX_ORE, new Item(new FabricItemSettings()));
+        registerItem(Naming.NEUTRONIUM, new Item(new FabricItemSettings()));
+        registerItem(Naming.ONYX_HELMET,
+                new ArmorItem(onyxArmorMaterial, EquipmentSlot.HEAD, (new Item.Properties())));
+        registerItem(Naming.ONYX_CHESTPLATE,
+                new ArmorItem(onyxArmorMaterial, EquipmentSlot.CHEST, (new Item.Properties())));
+       registerItem(Naming.ONYX_LEGGINGS,
+                new ArmorItem(onyxArmorMaterial, EquipmentSlot.LEGS, (new Item.Properties())));
+        registerItem(Naming.ONYX_BOOTS,
+                new ArmorItem(onyxArmorMaterial, EquipmentSlot.FEET, (new Item.Properties())));
+        registerItem(Naming.ETHER_ORE, new Item(new FabricItemSettings()));
+        registerItem(Naming.ONYX_DUST, new Item(new FabricItemSettings()));
+        registerItem(Naming.ONYX_PICKAXE, new OnyxPickaxe());
+        registerItem(Naming.ONYX_SHOVEL, new OnyxShovel());
+        registerItem(Naming.ONYX_AXE, new OnyxAxe());
+        registerItem(Naming.ONYX_HOE, new OnyxHoe());
+        registerItem(Naming.ONYX_SWORD, new OnyxSword());
+        FabricItemGroup.builder(
                         new ResourceLocation(BlackEtherMod.MOD_ID, Naming.ETHERMOD_ITEMGROUP))
                 .icon(() -> new ItemStack(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE)))
                 .displayItems((enabledFeatures, entries, operatorEnabled) -> {

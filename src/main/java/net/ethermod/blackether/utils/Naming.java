@@ -1,11 +1,16 @@
 package net.ethermod.blackether.utils;
 
 public class Naming {
+
+    private Naming() {
+        //Unused
+    }
+
     //Misc
     public static final String ETHERMOD_ITEMGROUP = "ethermod_group";
 
     //Entities
-    public static final String ONYX_SNAKE = "only_snake";
+    public static final String ONYX_SNAKE = "onyx_snake";
 
     //Sound Events
     public static final String NEUTRON_IONIZING = "neutron_ionizing";

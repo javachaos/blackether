@@ -5,7 +5,7 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Tier;
 
 public class AxeBase extends AxeItem {
-    public AxeBase(Tier toolMaterial_1) {
-        super(toolMaterial_1, -1.0f, 2.0f, new FabricItemSettings());
+    public AxeBase(Tier toolMaterial) {
+        super(toolMaterial, -1.0f, 2.0f, new FabricItemSettings());
     }
 }

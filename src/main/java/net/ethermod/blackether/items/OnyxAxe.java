@@ -28,17 +28,19 @@ public class OnyxAxe extends AxeBase {
     }
 
     @Override
-    public boolean mineBlock(@NotNull ItemStack itemStack_1, @NotNull Level world_1, @NotNull BlockState blockState_1, @NotNull BlockPos blockPos_1, @NotNull LivingEntity livingEntity_1) {
-        spawnParticles(world_1, blockPos_1);
-        spawnParticles(world_1, blockPos_1);
-        spawnParticles(world_1, blockPos_1);
-        spawnParticles(world_1, blockPos_1);
-        spawnParticles(world_1, blockPos_1);
-        spawnParticles(world_1, blockPos_1);
-        spawnParticles(world_1, blockPos_1);
-        spawnParticles(world_1, blockPos_1);
-        spawnParticles(world_1, blockPos_1);//TODO Figure this one out using mixins, at this level we cannot access the postMine method.
-        return super.mineBlock(itemStack_1, world_1, blockState_1, blockPos_1, livingEntity_1);
+    public boolean mineBlock(@NotNull ItemStack itemStack, @NotNull Level world,
+                             @NotNull BlockState blockState, @NotNull BlockPos blockPos,
+                             @NotNull LivingEntity livingEntity) {
+        spawnParticles(world, blockPos);
+        spawnParticles(world, blockPos);
+        spawnParticles(world, blockPos);
+        spawnParticles(world, blockPos);
+        spawnParticles(world, blockPos);
+        spawnParticles(world, blockPos);
+        spawnParticles(world, blockPos);
+        spawnParticles(world, blockPos);
+        spawnParticles(world, blockPos);
+        return super.mineBlock(itemStack, world, blockState, blockPos, livingEntity);
     }
 
     private static void spawnParticles(Level world, BlockPos pos) {
@@ -47,13 +49,13 @@ public class OnyxAxe extends AxeBase {
         Direction[] dir = Direction.values();
 
         for (Direction d : dir) {
-            BlockPos blockPos_2 = pos.relative(d);
-            if (!world.getBlockState(blockPos_2).canOcclude()) {
+            BlockPos blockPos = pos.relative(d);
+            if (!world.getBlockState(blockPos).canOcclude()) {
                 Direction.Axis dAxis = d.getAxis();
-                double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getStepX() : (double) r.nextFloat();
-                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getStepY() : (double) r.nextFloat();
-                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getStepZ() : (double) r.nextFloat();
-                world.addParticle(ColoredDustParticleEffect.BLACK, (double) pos.getX() + x, (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
+                double x = dAxis == Direction.Axis.X ? 0.5D + spread * d.getStepX() : (double) r.nextFloat();
+                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * d.getStepY() : (double) r.nextFloat();
+                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * d.getStepZ() : (double) r.nextFloat();
+                world.addParticle(ColoredDustParticleEffect.BLACK, pos.getX() + x, pos.getY() + y, pos.getZ() + z, 0.0D, 0.0D, 0.0D);
             }
         }
 

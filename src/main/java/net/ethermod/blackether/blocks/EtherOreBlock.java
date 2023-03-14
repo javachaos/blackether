@@ -46,7 +46,7 @@ public class EtherOreBlock extends Block {
 
     private static void light(BlockState state, Level world, BlockPos pos) {
         spawnParticles(world, pos);
-        if (!state.getValue(LIT)) {
+        if (Boolean.FALSE.equals(state.getValue(LIT))) {
             world.setBlock(pos, state.setValue(LIT, true), 3);
         }
     }
@@ -55,7 +55,7 @@ public class EtherOreBlock extends Block {
     @Environment(EnvType.CLIENT)
     public void animateTick(BlockState blockState, @NotNull Level world,
                             @NotNull BlockPos blockPos, @NotNull RandomSource random) {
-        if (blockState.getValue(LIT)) {
+        if (Boolean.TRUE.equals(blockState.getValue(LIT))) {
             spawnParticles(world, blockPos);
         }
     }
@@ -66,14 +66,14 @@ public class EtherOreBlock extends Block {
         Direction[] dir = Direction.values();
 
         for (Direction d : dir) {
-            BlockPos blockPos_2 = pos.relative(d);
-            if (!world.getBlockState(blockPos_2).canOcclude()) {
+            BlockPos blockPos = pos.relative(d);
+            if (!world.getBlockState(blockPos).canOcclude()) {
                 Direction.Axis dAxis = d.getAxis();
-                double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getStepX() : (double) r.nextFloat();
-                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getStepY() : (double) r.nextFloat();
-                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getStepZ() : (double) r.nextFloat();
-                world.addParticle(ColoredDustParticleEffect.BLACK, (double) pos.getX() + x,
-                        (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
+                double x = dAxis == Direction.Axis.X ? 0.5D + spread * d.getStepX() : (double) r.nextFloat();
+                double y = dAxis == Direction.Axis.Y ? 0.5D + spread * d.getStepY() : (double) r.nextFloat();
+                double z = dAxis == Direction.Axis.Z ? 0.5D + spread * d.getStepZ() : (double) r.nextFloat();
+                world.addParticle(ColoredDustParticleEffect.BLACK, pos.getX() + x,
+                        pos.getY() + y, pos.getZ() + z, 0.0D, 0.0D, 0.0D);
             }
         }
 
