@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "bonus_rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ethermod:onyx_ore"
+        }
+      ],
+      "rolls": 2
+    },
+    {
+      "bonus_rolls": 2.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ethermod:ether_ore"
+        }
+      ],
+      "rolls": 2
+    }
+  ]
+}

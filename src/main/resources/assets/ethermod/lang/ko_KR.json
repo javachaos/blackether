@@ -18,6 +18,9 @@
   "item.ethermod.onyx_leggings": "오닉스 다리보호구",
   "item.ethermod.onyx_helmet": "오닉스 투구",
   "item.ethermod.onyx_chestplate": "오닉스 갑옷",
+  "item.ethermod.onyx_snake_egg": "오닉스 뱀 알",
+  "entity.ethermod.onyx_snake": "오닉스 뱀",
   "item.ethermod.onyx_boots": "오닉스 부츠",
-  "biome.ethermod.onyx_biome": "오닉스 바이옴"
+  "biome.ethermod.onyx_biome": "오닉스 바이옴",
+  "block.ethermod.dark_grass": "어두운 풀"
 }

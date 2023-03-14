@@ -18,6 +18,9 @@
   "item.ethermod.onyx_leggings": "Pantalones de Ónice",
   "item.ethermod.onyx_helmet": "Casco de Ónice",
   "item.ethermod.onyx_chestplate": "Coraza de Ónice",
+  "item.ethermod.onyx_snake_egg": "Huevo de serpiente Ónix",
+  "entity.ethermod.onyx_snake": "Serpiente Ónix",
+  "block.ethermod.dark_grass": "Hierba Oscura",
   "item.ethermod.onyx_boots": "Botas de Ónice",
   "biome.ethermod.onyx_biome": "Bioma de Ónice"
 }

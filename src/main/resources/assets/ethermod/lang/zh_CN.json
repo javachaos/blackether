@@ -19,5 +19,8 @@
   "item.ethermod.onyx_helmet": "黑曜石头盔",
   "item.ethermod.onyx_chestplate": "黑曜石胸甲",
   "item.ethermod.onyx_boots": "黑曜石靴子",
-  "biome.ethermod.onyx_biome": "黑曜石生物群系"
+  "biome.ethermod.onyx_biome": "黑曜石生物群系",
+  "item.ethermod.onyx_snake_egg": "黑曜石蛇蛋",
+  "entity.ethermod.onyx_snake": "黑曜石蛇",
+  "block.ethermod.dark_grass": "黑暗草坪"
 }

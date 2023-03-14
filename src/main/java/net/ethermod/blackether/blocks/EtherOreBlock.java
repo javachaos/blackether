@@ -34,7 +34,7 @@ public class EtherOreBlock extends Block {
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState state, Level world, @NotNull BlockPos pos, @NotNull Player player,
                                           @NotNull InteractionHand hand, @NotNull BlockHitResult blockHitResult) {
-        world.setBlockAndUpdate(pos, BlockRegistry.ETHER_ORE_BLOCK.defaultBlockState().setValue(LIT, true));
+        world.setBlockAndUpdate(pos, BlockRegistry.getInstance().getBlock("ether_ore_block").defaultBlockState().setValue(LIT, true));
         light(state, world, pos);
         return super.use(state, world, pos, player, hand, blockHitResult);
     }

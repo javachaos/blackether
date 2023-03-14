@@ -13,6 +13,6 @@ public class OnyxSword extends SwordBase {
                 20,
                 1,
                 100,
-                Ingredient.of(ItemRegistry.ONYX_ORE)));
+                Ingredient.of(ItemRegistry.getInstance().getItem("onyx_ore"))));
     }
 }

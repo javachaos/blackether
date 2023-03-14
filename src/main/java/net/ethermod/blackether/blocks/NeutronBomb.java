@@ -116,7 +116,7 @@ public class NeutronBomb extends Block {
             NeutronBombEntity neutron = new NeutronBombEntity(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, igniter);
             world.addFreshEntity(neutron);
             world.playSound(null, neutron.getX(), neutron.getY(), neutron.getZ(), SoundEvents.TNT_PRIMED, SoundSource.BLOCKS, 1.0F, 1.0F);
-            world.playSound(null, neutron.getX(), neutron.getY(), neutron.getZ(), SoundRegistry.NEUTRON_EVENT, SoundSource.BLOCKS, 1.0F, 1.0F);
+            world.playSound(null, neutron.getX(), neutron.getY(), neutron.getZ(), SoundRegistry.getInstance().getSoundEvent("neutron_ionizing"), SoundSource.BLOCKS, 1.0F, 1.0F);
             world.gameEvent(igniter, GameEvent.PRIME_FUSE, pos);
         }
     }

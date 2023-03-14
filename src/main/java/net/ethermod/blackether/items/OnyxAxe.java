@@ -23,7 +23,7 @@ public class OnyxAxe extends AxeBase {
                 15f,
                 100,
                 100,
-                Ingredient.of(ItemRegistry.ONYX_ORE)));
+                Ingredient.of(ItemRegistry.getInstance().getItem("onyx_ore"))));
     }
 
     @Override

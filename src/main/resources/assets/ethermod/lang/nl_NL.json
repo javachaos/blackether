@@ -18,6 +18,9 @@
   "item.ethermod.onyx_leggings": "Onyx Leggings",
   "item.ethermod.onyx_helmet": "Onyx Helm",
   "item.ethermod.onyx_chestplate": "Onyx Borstpantser",
+  "item.ethermod.onyx_snake_egg": "Onyxslang Ei",
+  "entity.ethermod.onyx_snake": "Onyxslang",
   "item.ethermod.onyx_boots": "Onyx Laarzen",
-  "biome.ethermod.onyx_biome": "Onyx Biotoop"
+  "biome.ethermod.onyx_biome": "Onyx Biotoop",
+  "block.ethermod.dark_grass": "Donker Gras"
 }

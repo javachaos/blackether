@@ -1,6 +1,7 @@
 package net.ethermod.blackether;
 
 
+import net.ethermod.blackether.entity.misc.NeutronBombEntityRenderer;
 import net.ethermod.blackether.entity.renderer.OnyxSnakeRenderer;
 import net.ethermod.blackether.registries.EntityRegistry;
 import net.fabricmc.api.ClientModInitializer;
@@ -16,6 +17,7 @@ public final class BlackEtherClientMod implements ClientModInitializer {
     }
 
     private static void registerRenderers() {
+        EntityRendererRegistry.register(EntityRegistry.NEUTRON_BOMB_ENTITY, NeutronBombEntityRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.ONYX_SNAKE, OnyxSnakeRenderer::new);
     }
 

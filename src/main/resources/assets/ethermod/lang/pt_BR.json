@@ -18,6 +18,9 @@
   "item.ethermod.onyx_leggings": "Perneiras de Ônix",
   "item.ethermod.onyx_helmet": "Capacete de Ônix",
   "item.ethermod.onyx_chestplate": "Peitoral de Ônix",
+  "item.ethermod.onyx_snake_egg": "Ovo de cobra de ônix",
+  "entity.ethermod.onyx_snake": "Cobra de ônix",
   "item.ethermod.onyx_boots": "Botas de Ônix",
-  "biome.ethermod.onyx_biome": "Bioma de Ônix"
+  "biome.ethermod.onyx_biome": "Bioma de Ônix",
+  "block.ethermod.dark_grass": "Grama Escura"
 }

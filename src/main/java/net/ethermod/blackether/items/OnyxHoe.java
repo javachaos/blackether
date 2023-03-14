@@ -13,6 +13,6 @@ public class OnyxHoe extends HoeBase {
                 10,
                 10,
                 100,
-                Ingredient.of(ItemRegistry.ONYX_ORE)));
+                Ingredient.of(ItemRegistry.getInstance().getItem("onyx_ore"))));
     }
 }

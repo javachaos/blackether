@@ -41,7 +41,7 @@ public class CustomArmorMaterial implements ArmorMaterial {
 
     @Override
     public @NotNull Ingredient getRepairIngredient() {
-        return Ingredient.of(ItemRegistry.ONYX_ORE);
+        return Ingredient.of(ItemRegistry.getInstance().getItem("onyx_ore"));
     }
 
     @Override

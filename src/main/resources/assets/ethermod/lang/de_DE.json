@@ -19,5 +19,8 @@
   "item.ethermod.onyx_helmet": "Onyx-Helm",
   "item.ethermod.onyx_chestplate": "Onyx-Brustplatte",
   "item.ethermod.onyx_boots": "Onyx-Stiefel",
+  "item.ethermod.onyx_snake_egg": "Onyx-Schlangenei",
+  "entity.ethermod.onyx_snake": "Onyx-Schlange",
+  "block.ethermod.dark_grass": "Dunkles Gras",
   "biome.ethermod.onyx_biome": "Onyx-Biom"
 }

@@ -18,6 +18,9 @@
   "item.ethermod.onyx_leggings": "Ониксовые поножи",
   "item.ethermod.onyx_helmet": "Ониксовый шлем",
   "item.ethermod.onyx_chestplate": "Ониксовый нагрудник",
+  "item.ethermod.onyx_snake_egg": "Яйцо Ониксовой змеи",
+  "entity.ethermod.onyx_snake": "Ониксовая змея",
   "item.ethermod.onyx_boots": "Ботинки Оникса",
-  "biome.ethermod.onyx_biome": "Биом Оникса"
+  "biome.ethermod.onyx_biome": "Биом Оникса",
+  "block.ethermod.dark_grass": "Темная трава"
 }

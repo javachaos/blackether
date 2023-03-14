@@ -21,20 +21,26 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import static net.ethermod.blackether.BlackEtherMod.MODID;
 
-public class BlockRegistry {
+public class BlockRegistry extends BaseRegistry {
 
-    public static final EtherOreBlock ETHER_ORE_BLOCK = registerBlock("ether_ore_block", new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
-            MaterialColor.COLOR_BLACK).randomTicks().lightLevel(x -> 9).strength(5.0f, 6.0f)));
+    private static BlockRegistry INSTANCE;
 
-    public static final ResourceKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(MODID, "ether_ore_block"));
+    private BlockRegistry() {
+    }
 
-    public static final BlockOfEther BLOCK_OF_ETHER = registerBlock("block_of_ether",
-            new BlockOfEther(FabricBlockSettings.of(Material.METAL, MaterialColor.COLOR_BLACK).strength(10.0F, 6.0F)));
-    public static final NeutronBomb NEUTRON_BOMB = registerBlock("neutron_bomb",
-            new NeutronBomb(FabricBlockSettings.of(Material.AIR).instabreak().sound(SoundType.GRASS)));
-    public static final DarkGrassBlock DARK_GRASS = registerBlock("dark_grass",
-            new DarkGrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).strength(0.6f)));
+    public static BlockRegistry getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new BlockRegistry();
+        }
+        return INSTANCE;
+    }
+
+    @Override
+    public Block getBlock(final String name) {
+        return super.getBlock(name);
+    }
+
+    public static ResourceKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY;
 
     public static <B extends Block> B registerBlock(String name, B block) {
         return register(block, new ResourceLocation(MODID, name));
@@ -47,5 +53,24 @@ public class BlockRegistry {
         item.registerBlocks(Item.BY_BLOCK, item);
         Registry.register(BuiltInRegistries.ITEM, name, item);
         return block;
+    }
+
+    @Override
+    public void register() {
+        Block ETHER_ORE_BLOCK = registerBlock("ether_ore_block", new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
+                MaterialColor.COLOR_BLACK).randomTicks().lightLevel(x -> 9).strength(5.0f, 6.0f)));
+        CUSTOM_ORE_PLACED_KEY = ResourceKey.create(
+                Registries.PLACED_FEATURE, new ResourceLocation(MODID, "ether_ore_block"));
+        Block BLOCK_OF_ETHER = registerBlock("block_of_ether",
+                new BlockOfEther(FabricBlockSettings.of(Material.METAL, MaterialColor.COLOR_BLACK).strength(10.0F, 6.0F)));
+        Block NEUTRON_BOMB = registerBlock("neutron_bomb",
+                new NeutronBomb(FabricBlockSettings.of(Material.AIR).instabreak().sound(SoundType.GRASS)));
+        Block DARK_GRASS = registerBlock("dark_grass",
+                new DarkGrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).strength(0.6f)));
+
+        putBlock("ether_ore_block", ETHER_ORE_BLOCK);
+        putBlock("block_of_ether", BLOCK_OF_ETHER);
+        putBlock("neutron_bomb", NEUTRON_BOMB);
+        putBlock("dark_grass", DARK_GRASS);
     }
 }

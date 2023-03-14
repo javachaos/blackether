@@ -18,6 +18,9 @@
   "item.ethermod.onyx_leggings": "オニキスのレギンス",
   "item.ethermod.onyx_helmet": "オニキスのヘルメット",
   "item.ethermod.onyx_chestplate": "オニキスのチェストプレート",
+  "item.ethermod.onyx_snake_egg": "オニキス・スネーク・エッグ",
+  "entity.ethermod.onyx_snake": "オニキス・スネーク",
   "item.ethermod.onyx_boots": "オニキスのブーツ",
-  "biome.ethermod.onyx_biome": "オニキスバイオーム"
+  "biome.ethermod.onyx_biome": "オニキスバイオーム",
+  "block.ethermod.dark_grass": "ダークグラス"
 }

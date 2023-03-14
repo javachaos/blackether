@@ -13,6 +13,6 @@ public class OnyxShovel extends ShovelBase {
                 5,
                 100,
                 100,
-                Ingredient.of(ItemRegistry.ONYX_ORE)));
+                Ingredient.of(ItemRegistry.getInstance().getItem("onyx_ore"))));
     }
 }

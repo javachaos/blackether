@@ -18,6 +18,9 @@
   "item.ethermod.onyx_leggings": "Pantalon d'Onyx",
   "item.ethermod.onyx_helmet": "Casque d'Onyx",
   "item.ethermod.onyx_chestplate": "Plastron d'Onyx",
+  "item.ethermod.onyx_snake_egg": "Œuf de serpent onyx",
+  "block.ethermod.dark_grass": "Herbe sombre",
+  "entity.ethermod.onyx_snake": "Serpent Onyx",
   "item.ethermod.onyx_boots": "Bottes d'Onyx",
   "biome.ethermod.onyx_biome": "Biome d'Onyx"
 }
