@@ -1,6 +1,7 @@
 package net.ethermod.blackether.enums;
 
 import net.ethermod.blackether.registries.ItemRegistry;
+import net.ethermod.blackether.utils.Naming;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.sounds.SoundEvent;
@@ -41,7 +42,7 @@ public class CustomArmorMaterial implements ArmorMaterial {
 
     @Override
     public @NotNull Ingredient getRepairIngredient() {
-        return Ingredient.of(ItemRegistry.getInstance().getItem("onyx_ore"));
+        return Ingredient.of(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE));
     }
 
     @Override

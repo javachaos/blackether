@@ -18,7 +18,8 @@ public class DarkGrassBlock extends GrassBlock implements BonemealableBlock {
     }
 
     @Environment(EnvType.CLIENT)
-    public void animateTick(@NotNull BlockState blockState, @NotNull Level world, @NotNull BlockPos blockPos, @NotNull RandomSource random) {
+    public void animateTick(@NotNull BlockState blockState, @NotNull Level world,
+                            @NotNull BlockPos blockPos, @NotNull RandomSource random) {
         spawnParticles(world, blockPos);
     }
 
@@ -34,7 +35,8 @@ public class DarkGrassBlock extends GrassBlock implements BonemealableBlock {
                 double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getStepX() : (double) r.nextFloat();
                 double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getStepY() : (double) r.nextFloat();
                 double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getStepZ() : (double) r.nextFloat();
-                world.addParticle(ColoredDustParticleEffect.GREEN, (double) pos.getX() + x, (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
+                world.addParticle(ColoredDustParticleEffect.GREEN, (double) pos.getX() + x,
+                        (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
             }
         }
 

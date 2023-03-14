@@ -1,6 +1,7 @@
 package net.ethermod.blackether;
 
 import net.ethermod.blackether.registries.*;
+import net.ethermod.blackether.utils.Naming;
 import net.ethermod.blackether.utils.PropertyManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -20,12 +21,12 @@ import java.util.Deque;
 
 public class BlackEtherMod implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger(BlackEtherMod.class);
-    public static final String MODID = "ethermod";
+    public static final String MOD_ID = "ethermod";
     public static final PropertyManager PROPERTIES = new PropertyManager();
 
     @Override
     public void onInitialize() {
-        LOGGER.debug("{} started initializing.", MODID);
+        LOGGER.debug("{} started initializing.", MOD_ID);
         GeckoLib.initialize();
 
         //Temp. deque to register all registerable registries
@@ -48,8 +49,8 @@ public class BlackEtherMod implements ModInitializer {
                 GenerationStep.Decoration.UNDERGROUND_ORES, BlockRegistry.CUSTOM_ORE_PLACED_KEY);
 
         registerEntityAttributes();
-        FuelRegistry.INSTANCE.add(ItemRegistry.getInstance().getItem("ether_ore"), 3000);
-        LOGGER.debug("{} finished initializing.", MODID);
+        FuelRegistry.INSTANCE.add(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE), 3000);
+        LOGGER.debug("{} finished initializing.", MOD_ID);
     }
 
 
@@ -57,7 +58,7 @@ public class BlackEtherMod implements ModInitializer {
         FabricDefaultAttributeRegistry.register(EntityRegistry.ONYX_SNAKE, createGenericEntityAttributes());
     }
 
-    private static AttributeSupplier.Builder createGenericEntityAttributes() {
+    private AttributeSupplier.Builder createGenericEntityAttributes() {
         return PathfinderMob.createLivingAttributes().add(Attributes.MOVEMENT_SPEED, 0.0280000000298023224D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.ATTACK_DAMAGE, 5)
                 .add(Attributes.ATTACK_KNOCKBACK, 0.1);

@@ -14,6 +14,6 @@ public class NeutronBombEntityRenderer extends EntityRenderer<NeutronBombEntity>
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull NeutronBombEntity entity) {
-        return new ResourceLocation(BlackEtherMod.MODID, "textures/block/neutron_bomb_side.png");
+        return new ResourceLocation(BlackEtherMod.MOD_ID, "textures/block/neutron_bomb_side.png");
     }
 }

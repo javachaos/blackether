@@ -3,6 +3,7 @@ package net.ethermod.blackether.blocks;
 import net.ethermod.blackether.effects.ColoredDustParticleEffect;
 import net.ethermod.blackether.entity.misc.NeutronBombEntity;
 import net.ethermod.blackether.registries.SoundRegistry;
+import net.ethermod.blackether.utils.Naming;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
@@ -45,7 +46,8 @@ public class NeutronBomb extends Block {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void animateTick(@NotNull BlockState blockState, @NotNull Level world, @NotNull BlockPos blockPos, @NotNull RandomSource random) {
+    public void animateTick(@NotNull BlockState blockState, @NotNull Level world,
+                            @NotNull BlockPos blockPos, @NotNull RandomSource random) {
         spawnParticles(world, blockPos, ColoredDustParticleEffect.NEON_GREEN);
         spawnParticles(world, blockPos, ColoredDustParticleEffect.GREEN);
         spawnParticles(world, blockPos, ColoredDustParticleEffect.BLACK);
@@ -63,13 +65,15 @@ public class NeutronBomb extends Block {
                 double x = dAxis == Direction.Axis.X ? 0.5D + spread * d.getStepX() : (double) r.nextFloat();
                 double y = dAxis == Direction.Axis.Y ? 0.5D + spread * d.getStepY() : (double) r.nextFloat();
                 double z = dAxis == Direction.Axis.Z ? 0.5D + spread * d.getStepZ() : (double) r.nextFloat();
-                world.addParticle(color, pos.getX() + x, pos.getY() + y, pos.getZ() + z, 0.0D, 0.0D, 0.0D);
+                world.addParticle(color, pos.getX() + x,
+                        pos.getY() + y, pos.getZ() + z, 0.0D, 0.0D, 0.0D);
             }
         }
     }
 
     @Override
-    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
+    public void onPlace(BlockState state, @NotNull Level world,
+                        @NotNull BlockPos pos, BlockState oldState, boolean notify) {
         if (!oldState.is(state.getBlock())) {
             if (world.hasNeighborSignal(pos)) {
                 primeNeutronBomb(world, pos);
@@ -79,7 +83,9 @@ public class NeutronBomb extends Block {
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+    public void neighborChanged(@NotNull BlockState state, Level world,
+                                @NotNull BlockPos pos, @NotNull Block block,
+                                @NotNull BlockPos fromPos, boolean notify) {
         if (world.hasNeighborSignal(pos)) {
             primeNeutronBomb(world, pos);
             world.removeBlock(pos, false);
@@ -88,7 +94,8 @@ public class NeutronBomb extends Block {
     }
 
     @Override
-    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+    public void playerWillDestroy(Level world, @NotNull BlockPos pos,
+                                  @NotNull BlockState state, @NotNull Player player) {
         if (!world.isClientSide() && !player.isCreative() && Boolean.TRUE.equals(state.getValue(UNSTABLE))) {
             primeNeutronBomb(world, pos);
         }
@@ -97,10 +104,11 @@ public class NeutronBomb extends Block {
     }
 
     @Override
-    public void wasExploded(Level world, BlockPos pos, Explosion explosion) {
+    public void wasExploded(Level world, @NotNull BlockPos pos, @NotNull Explosion explosion) {
         if (!world.isClientSide) {
             explosion.finalizeExplosion(true);
-            NeutronBombEntity tntEntity = new NeutronBombEntity(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, explosion.getIndirectSourceEntity());
+            NeutronBombEntity tntEntity = new NeutronBombEntity(world, pos.getX() + 0.5D, pos.getY(),
+                    pos.getZ() + 0.5D, explosion.getIndirectSourceEntity());
             int i = tntEntity.getFuse();
             tntEntity.setFuse((short) (world.random.nextInt(i / 4) + i / 8));
             world.addFreshEntity(tntEntity);
@@ -113,10 +121,14 @@ public class NeutronBomb extends Block {
 
     private static void primeNeutronBomb(Level world, BlockPos pos, @Nullable LivingEntity igniter) {
         if (!world.isClientSide) {
-            NeutronBombEntity neutron = new NeutronBombEntity(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, igniter);
+            NeutronBombEntity neutron = new NeutronBombEntity(world,
+                    pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, igniter);
             world.addFreshEntity(neutron);
-            world.playSound(null, neutron.getX(), neutron.getY(), neutron.getZ(), SoundEvents.TNT_PRIMED, SoundSource.BLOCKS, 1.0F, 1.0F);
-            world.playSound(null, neutron.getX(), neutron.getY(), neutron.getZ(), SoundRegistry.getInstance().getSoundEvent("neutron_ionizing"), SoundSource.BLOCKS, 1.0F, 1.0F);
+            world.playSound(null, neutron.getX(), neutron.getY(), neutron.getZ(),
+                    SoundEvents.TNT_PRIMED, SoundSource.BLOCKS, 1.0F, 1.0F);
+            world.playSound(null, neutron.getX(), neutron.getY(), neutron.getZ(),
+                    SoundRegistry.getInstance().getSoundEvent(Naming.NEUTRON_IONIZING),
+                    SoundSource.BLOCKS, 1.0F, 1.0F);
             world.gameEvent(igniter, GameEvent.PRIME_FUSE, pos);
         }
     }
@@ -134,7 +146,8 @@ public class NeutronBomb extends Block {
             Item item = itemStack.getItem();
             if (!player.isCreative()) {
                 if (itemStack.is(Items.FLINT_AND_STEEL)) {
-                    itemStack.hurtAndBreak(1, (LivingEntity) player, ((playerx) -> player.broadcastBreakEvent(hand)));
+                    itemStack.hurtAndBreak(1, (LivingEntity) player,
+                            ((playerx) -> player.broadcastBreakEvent(hand)));
                 } else {
                     itemStack.shrink(1);
                 }

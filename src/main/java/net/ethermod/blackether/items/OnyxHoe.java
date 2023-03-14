@@ -3,6 +3,7 @@ package net.ethermod.blackether.items;
 import net.ethermod.blackether.enums.EnumHelper;
 import net.ethermod.blackether.items.base.HoeBase;
 import net.ethermod.blackether.registries.ItemRegistry;
+import net.ethermod.blackether.utils.Naming;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class OnyxHoe extends HoeBase {
@@ -13,6 +14,6 @@ public class OnyxHoe extends HoeBase {
                 10,
                 10,
                 100,
-                Ingredient.of(ItemRegistry.getInstance().getItem("onyx_ore"))));
+                Ingredient.of(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE))));
     }
 }

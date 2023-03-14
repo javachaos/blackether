@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import static net.ethermod.blackether.BlackEtherMod.MODID;
+import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 /**
  * PropertyManager class used to get property values from the Property file
@@ -26,7 +26,7 @@ public final class PropertyManager {
      * Application Properties file name.
      */
     public static final String PROPERTY_FILE_NAME = Constants.GAME_DIR
-            + File.separator + MODID + ".properties";
+            + File.separator + MOD_ID + ".properties";
     private boolean isLoaded = false;
 
     public PropertyManager() {

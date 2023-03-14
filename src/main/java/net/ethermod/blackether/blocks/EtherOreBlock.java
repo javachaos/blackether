@@ -2,6 +2,7 @@ package net.ethermod.blackether.blocks;
 
 import net.ethermod.blackether.effects.ColoredDustParticleEffect;
 import net.ethermod.blackether.registries.BlockRegistry;
+import net.ethermod.blackether.utils.Naming;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
@@ -32,9 +33,13 @@ public class EtherOreBlock extends Block {
     }
 
     @Override
-    public @NotNull InteractionResult use(@NotNull BlockState state, Level world, @NotNull BlockPos pos, @NotNull Player player,
+    public @NotNull InteractionResult use(@NotNull BlockState state, Level world,
+                                          @NotNull BlockPos pos, @NotNull Player player,
                                           @NotNull InteractionHand hand, @NotNull BlockHitResult blockHitResult) {
-        world.setBlockAndUpdate(pos, BlockRegistry.getInstance().getBlock("ether_ore_block").defaultBlockState().setValue(LIT, true));
+        world.setBlockAndUpdate(pos,
+                BlockRegistry.getInstance()
+                        .getBlock(Naming.ETHER_ORE_BLOCK)
+                        .defaultBlockState().setValue(LIT, true));
         light(state, world, pos);
         return super.use(state, world, pos, player, hand, blockHitResult);
     }
@@ -48,7 +53,8 @@ public class EtherOreBlock extends Block {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void animateTick(BlockState blockState, @NotNull Level world, @NotNull BlockPos blockPos, @NotNull RandomSource random) {
+    public void animateTick(BlockState blockState, @NotNull Level world,
+                            @NotNull BlockPos blockPos, @NotNull RandomSource random) {
         if (blockState.getValue(LIT)) {
             spawnParticles(world, blockPos);
         }
@@ -66,7 +72,8 @@ public class EtherOreBlock extends Block {
                 double x = dAxis == Direction.Axis.X ? 0.5D + spread * (double) d.getStepX() : (double) r.nextFloat();
                 double y = dAxis == Direction.Axis.Y ? 0.5D + spread * (double) d.getStepY() : (double) r.nextFloat();
                 double z = dAxis == Direction.Axis.Z ? 0.5D + spread * (double) d.getStepZ() : (double) r.nextFloat();
-                world.addParticle(ColoredDustParticleEffect.BLACK, (double) pos.getX() + x, (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
+                world.addParticle(ColoredDustParticleEffect.BLACK, (double) pos.getX() + x,
+                        (double) pos.getY() + y, (double) pos.getZ() + z, 0.0D, 0.0D, 0.0D);
             }
         }
 
