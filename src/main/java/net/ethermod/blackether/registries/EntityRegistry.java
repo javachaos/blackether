@@ -27,9 +27,13 @@ public class EntityRegistry extends BaseRegistry {
         return INSTANCE.get();
     }
 
-    public static EntityType<NeutronBombEntity> NEUTRON_BOMB_ENTITY;
-    public static EntityType<OnyxSnakeEntity> ONYX_SNAKE;
+    public <T extends Entity> EntityType<T> getEntityType(final String name, Class<T> clazz) {
+        return super.getEntity(name, clazz);
+    }
 
+    public <T extends Entity> void putEntityType(String name, EntityType<T> type) {
+        super.putEntity(name, type);
+    }
     public <T extends Mob> EntityType<T> registerMob(String name, EntityType.EntityFactory<T> entity,
                                                      float width, float height) {
         return Registry.register(BuiltInRegistries.ENTITY_TYPE,
@@ -46,9 +50,12 @@ public class EntityRegistry extends BaseRegistry {
 
     @Override
     public void register() {
-        NEUTRON_BOMB_ENTITY = registerEntity(
+        EntityType<NeutronBombEntity> neutronBombEntityEntityType = registerEntity(
                 Naming.NEUTRON_BOMB, NeutronBombEntity::new, 0.75f, 0.75f);
-        ONYX_SNAKE = registerMob(Naming.ONYX_SNAKE,
+        EntityType<OnyxSnakeEntity> onyxSnake = registerMob(Naming.ONYX_SNAKE,
                 OnyxSnakeEntity::new, 1.5f, 1.5f);
+        
+        putEntityType(Naming.NEUTRON_BOMB, neutronBombEntityEntityType);
+        putEntityType(Naming.ONYX_SNAKE, onyxSnake);
     }
 }

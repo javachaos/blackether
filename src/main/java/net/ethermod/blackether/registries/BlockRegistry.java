@@ -43,7 +43,8 @@ public class BlockRegistry extends BaseRegistry {
         return super.getBlock(name);
     }
 
-    public static ResourceKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY;
+    public static final ResourceKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = ResourceKey.create(
+            Registries.PLACED_FEATURE, new ResourceLocation(MOD_ID, Naming.ETHER_ORE_BLOCK));
 
     private <B extends Block> B registerBlock(String name, B block) {
         return register(block, new ResourceLocation(MOD_ID, name));
@@ -60,22 +61,19 @@ public class BlockRegistry extends BaseRegistry {
 
     @Override
     public void register() {
-        Block ETHER_ORE_BLOCK = registerBlock(Naming.ETHER_ORE_BLOCK,
+        Block etherOreBlock = registerBlock(Naming.ETHER_ORE_BLOCK,
                 new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
                 MaterialColor.COLOR_BLACK).randomTicks().lightLevel(x -> 9).strength(5.0f, 6.0f)));
-        CUSTOM_ORE_PLACED_KEY = ResourceKey.create(
-                Registries.PLACED_FEATURE, new ResourceLocation(MOD_ID, Naming.ETHER_ORE_BLOCK));
-        Block BLOCK_OF_ETHER = registerBlock(Naming.BLOCK_OF_ETHER,
+        Block blockOfEther = registerBlock(Naming.BLOCK_OF_ETHER,
                 new BlockOfEther(FabricBlockSettings.of(Material.METAL,
                         MaterialColor.COLOR_BLACK).strength(10.0F, 6.0F)));
-        Block NEUTRON_BOMB = registerBlock(Naming.NEUTRON_BOMB,
+        Block neutronBomb = registerBlock(Naming.NEUTRON_BOMB,
                 new NeutronBomb(FabricBlockSettings.of(Material.AIR).instabreak().sound(SoundType.GRASS)));
-        Block DARK_GRASS = registerBlock(Naming.DARK_GRASS,
+        Block darkGrassBlock = registerBlock(Naming.DARK_GRASS,
                 new DarkGrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).strength(0.6f)));
-        //TODO Extract out each of the magic values above into a Values class with nice variable names
-        putBlock(Naming.ETHER_ORE_BLOCK, ETHER_ORE_BLOCK);
-        putBlock(Naming.BLOCK_OF_ETHER, BLOCK_OF_ETHER);
-        putBlock(Naming.NEUTRON_BOMB, NEUTRON_BOMB);
-        putBlock(Naming.DARK_GRASS, DARK_GRASS);
+        putBlock(Naming.ETHER_ORE_BLOCK, etherOreBlock);
+        putBlock(Naming.BLOCK_OF_ETHER, blockOfEther);
+        putBlock(Naming.NEUTRON_BOMB, neutronBomb);
+        putBlock(Naming.DARK_GRASS, darkGrassBlock);
     }
 }

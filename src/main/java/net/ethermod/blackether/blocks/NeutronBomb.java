@@ -74,11 +74,10 @@ public class NeutronBomb extends Block {
     @Override
     public void onPlace(BlockState state, @NotNull Level world,
                         @NotNull BlockPos pos, BlockState oldState, boolean notify) {
-        if (!oldState.is(state.getBlock())) {
-            if (world.hasNeighborSignal(pos)) {
+        if (!oldState.is(state.getBlock()) && (world.hasNeighborSignal(pos))) {
                 primeNeutronBomb(world, pos);
                 world.removeBlock(pos, false);
-            }
+
         }
     }
 
@@ -147,7 +146,7 @@ public class NeutronBomb extends Block {
             if (!player.isCreative()) {
                 if (itemStack.is(Items.FLINT_AND_STEEL)) {
                     itemStack.hurtAndBreak(1, (LivingEntity) player,
-                            ((playerx) -> player.broadcastBreakEvent(hand)));
+                            (playerx -> player.broadcastBreakEvent(hand)));
                 } else {
                     itemStack.shrink(1);
                 }

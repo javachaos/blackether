@@ -1,5 +1,6 @@
 package net.ethermod.blackether;
 
+import net.ethermod.blackether.entity.living.OnyxSnakeEntity;
 import net.ethermod.blackether.registries.*;
 import net.ethermod.blackether.utils.Naming;
 import net.ethermod.blackether.utils.PropertyManager;
@@ -8,6 +9,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -55,11 +57,12 @@ public class BlackEtherMod implements ModInitializer {
 
 
     private void registerEntityAttributes() {
-        FabricDefaultAttributeRegistry.register(EntityRegistry.ONYX_SNAKE, createGenericEntityAttributes());
+        FabricDefaultAttributeRegistry.register(EntityRegistry.getInstance()
+                .getEntityType(Naming.ONYX_SNAKE, OnyxSnakeEntity.class), createGenericEntityAttributes());
     }
 
     private AttributeSupplier.Builder createGenericEntityAttributes() {
-        return PathfinderMob.createLivingAttributes().add(Attributes.MOVEMENT_SPEED, 0.0280000000298023224D)
+        return LivingEntity.createLivingAttributes().add(Attributes.MOVEMENT_SPEED, 0.0280000000298023224D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D).add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.ATTACK_DAMAGE, 5)
                 .add(Attributes.ATTACK_KNOCKBACK, 0.1);
     }

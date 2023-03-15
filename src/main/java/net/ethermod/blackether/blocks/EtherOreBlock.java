@@ -33,9 +33,9 @@ public class EtherOreBlock extends Block {
     }
 
     @Override
-    public @NotNull InteractionResult use(@NotNull BlockState state, Level world,
-                                          @NotNull BlockPos pos, @NotNull Player player,
-                                          @NotNull InteractionHand hand, @NotNull BlockHitResult blockHitResult) {
+    public @NotNull InteractionResult use(BlockState state, Level world,
+                                          BlockPos pos, Player player,
+                                          InteractionHand hand, BlockHitResult blockHitResult) {
         world.setBlockAndUpdate(pos,
                 BlockRegistry.getInstance()
                         .getBlock(Naming.ETHER_ORE_BLOCK)

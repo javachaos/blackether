@@ -2,6 +2,7 @@ package net.ethermod.blackether.entity.misc;
 
 import net.ethermod.blackether.BlackEtherMod;
 import net.ethermod.blackether.registries.EntityRegistry;
+import net.ethermod.blackether.utils.Naming;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class NeutronBombEntity extends Entity {
+
     private static final EntityDataAccessor<Integer> FUSE;
     private static final int DEFAULT_FUSE = 80;
 
@@ -41,7 +43,8 @@ public class NeutronBombEntity extends Entity {
     }
 
     public NeutronBombEntity(Level world, double x, double y, double z, @Nullable LivingEntity igniter) {
-        this(EntityRegistry.NEUTRON_BOMB_ENTITY, world);
+        this(EntityRegistry.getInstance()
+                .getEntityType(Naming.NEUTRON_BOMB, NeutronBombEntity.class), world);
         this.setPos(x, y, z);
         double d = world.random.nextDouble() * 6.2831854820251465D;
         this.setDeltaMovement(-Math.sin(d) * 0.02D, 0.020000000298023224D, -Math.cos(d) * 0.02D);
@@ -128,21 +131,27 @@ public class NeutronBombEntity extends Entity {
                     double z = entity.getZ() - this.getZ();
                     double aa = Math.sqrt(x * x + y * y + z * z);
                     if (aa != 0.0D) {
-                        x /= aa;
-                        y /= aa;
-                        z /= aa;
-                        double ab = Explosion.getSeenPercent(vec3d, entity);
-                        double ac = (1.0D - w) * ab;
-                        entity.hurt(DamageSource.thorns(this), ((int) ((ac * ac + ac) * power / 2.0 * 7.0 * q + 1.0)));
-                        double ad = ac;
-                        if (entity instanceof LivingEntity e) {
-                            ad = ProtectionEnchantment.getExplosionKnockbackAfterDampener(e, ac);
-                        }
-                        entity.setDeltaMovement(entity.getDeltaMovement().add(x * ad, y * ad, z * ad));
+                        damageEntities(vec3d, entity,
+                                x, y, z, w,
+                                aa, q, power);
                     }
                 }
             }
         }
+    }
+
+    private void damageEntities(Vec3 vec3d, Entity entity, double... input) {
+        input[0] /= input[4];
+        input[1] /= input[4];
+        input[2] /= input[4];
+        double ab = Explosion.getSeenPercent(vec3d, entity);
+        double ac = (1.0D - input[3]) * ab;
+        entity.hurt(DamageSource.thorns(this), ((int) ((ac * ac + ac) * input[6] / 2.0 * 7.0 * input[5] + 1.0)));
+        double ad = ac;
+        if (entity instanceof LivingEntity e) {
+            ad = ProtectionEnchantment.getExplosionKnockbackAfterDampener(e, ac);
+        }
+        entity.setDeltaMovement(entity.getDeltaMovement().add(input[0] * ad, input[1] * ad, input[2] * ad));
     }
 
     private void showParticles() {
@@ -191,6 +200,22 @@ public class NeutronBombEntity extends Entity {
 
     public int getFuse() {
         return entityData.get(FUSE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (getClass() != Objects.requireNonNull(o).getClass()) return false;
+        if (!super.equals(o)) return false;
+        NeutronBombEntity that = (NeutronBombEntity) o;
+        return Objects.equals(causingEntity, that.causingEntity);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (causingEntity != null ? causingEntity.hashCode() : 0);
+        return result;
     }
 
     static {

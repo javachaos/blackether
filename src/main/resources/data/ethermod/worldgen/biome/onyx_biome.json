@@ -1,0 +1,33 @@
+{
+  "temperature": 0.8,
+  "downfall": 0.6,
+  "precipitation": "snow",
+  "temperature_modifier": "frozen",
+  "creature_spawn_probability": 0.7,
+  "effects": {
+    "sky_color": 4012102,
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color_modifier": "dark_forest"
+  },
+  "spawners": {
+    "creature": [
+      {
+        "type": "minecraft:bat",
+        "weight": 1,
+        "minCount": 15,
+        "maxCount": 25
+      },
+      {
+        "type": "ethermod:onyx_snake",
+        "weight": 1,
+        "minCount": 1,
+        "maxCount": 5
+      }
+    ]
+  },
+  "spawn_costs": {},
+  "carvers": {},
+  "features": []
+}

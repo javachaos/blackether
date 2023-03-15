@@ -1,6 +1,7 @@
 package net.ethermod.blackether.registries;
 
 import net.ethermod.blackether.BlackEtherMod;
+import net.ethermod.blackether.entity.living.OnyxSnakeEntity;
 import net.ethermod.blackether.enums.CustomArmorMaterial;
 import net.ethermod.blackether.items.*;
 import net.ethermod.blackether.utils.Naming;
@@ -45,7 +46,8 @@ public class ItemRegistry extends BaseRegistry {
     public void register() {
         ArmorMaterial onyxArmorMaterial = new CustomArmorMaterial();
         registerItem(Naming.ONYX_SNAKE_EGG,
-                new SpawnEggItem(EntityRegistry.ONYX_SNAKE, 0x1F1F1F, 0x0D0D0D,
+                new SpawnEggItem(EntityRegistry.getInstance()
+                        .getEntityType(Naming.ONYX_SNAKE, OnyxSnakeEntity.class), 0x1F1F1F, 0x0D0D0D,
                         new Item.Properties()));
         registerItem(Naming.ONYX_APPLE, new OnyxApple());
         registerItem(Naming.ONYX_ORE, new Item(new FabricItemSettings()));

@@ -1,6 +1,7 @@
-package net.ethermod.blackether.utils;
+package net.ethermod.blackether.exception;
 
 
+import net.ethermod.blackether.exception.EthermodException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,6 +40,7 @@ public final class ExceptionUtils {
     public static void logError(final Class<?> c, final Exception e) {
         Logger logger = LogManager.getLogger(c);
         logger.error(e.getMessage());
+        throw new EthermodException(e);
     }
 
 

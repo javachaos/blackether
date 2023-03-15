@@ -1,6 +1,4 @@
-[Update 3.2.6]
+[Update 3.2.7]
 
-Changed minecraft mappings from yarn to official minecraft mappings.
-Added geckolib for adding more minecraft mobs and models.
-Added an onyx snake mob.
-Fixed neurton bomb explosion radius to something a bit more sane.
+Added drops to the Onyx Snake
+Added onyx forts back into the game.

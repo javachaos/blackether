@@ -1,9 +1,9 @@
 package net.ethermod.blackether.utils;
 
-import net.ethermod.blackether.BlackEtherMod;
+import net.ethermod.blackether.exception.EthermodException;
 import net.fabricmc.loader.api.FabricLoader;
-
 import java.io.File;
+import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 /**
  * Constants.
@@ -12,14 +12,6 @@ import java.io.File;
  */
 public final class Constants {
 
-    static {
-        init("ethermod");
-    }
-
-    /**
-     * Encoding.
-     */
-    public static final String ENCODING = "UTF-8";
     /**
      * Application directory location.
      */
@@ -30,41 +22,31 @@ public final class Constants {
      * Number of Ticks per second in Minecraft.
      */
     public static final int TICKS_PER_SEC = 20;
-  
-    private static String MODID;
+
   
     /**
      * Application Properties file name.
      */
     public static final String PROPERTY_FILE_NAME = Constants.GAME_DIR
-        + File.separator + getModID() + ".properties";
+        + File.separator + MOD_ID + ".properties";
   
     /**
      * Private ctor.
      */
     private Constants() {
     }
-  
-    /**
-     * Init the constants.
-     *
-     * @param modid the id for your mod
-     */
-    public static void init(final String modid) {
-      Constants.MODID = modid;
-    }
-  
+
     /**
      * Returns the number of ticks per second.
      *
      * @param seconds the number of desired seconds to get ticks for
      * @return the number of ticks per second
      */
-    public static int getTicksPerSec(int seconds) {
+    public static int inSeconds(int seconds) {
       if (seconds >= 0) {
         return seconds * TICKS_PER_SEC;
       } else {
-        throw new RuntimeException("Error, ticks per second conversion out of bounds.");
+        throw new EthermodException("Error, ticks per second conversion out of bounds.");
       }
     }
   
@@ -76,19 +58,12 @@ public final class Constants {
      * @return the number of ticks per second
      *
      */
-    public static int getTicksPerMin(int minutes) {
+    public static int inMinutes(int minutes) {
       if (minutes >= 0) {
-        return minutes * getTicksPerSec(60);
+        return minutes * inSeconds(60);
       } else {
-        throw new RuntimeException("Error, ticks per second conversion out of bounds.");
+        throw new EthermodException("Error, ticks per second conversion out of bounds.");
       }
     }
-  
-    /**
-     * Return the MODID for this current mod.
-     * @return the universally identifiable mod identifier.
-     */
-    public static String getModID() {
-      return MODID;
-    }
+
   }
