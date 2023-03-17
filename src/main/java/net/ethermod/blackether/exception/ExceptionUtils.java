@@ -28,6 +28,7 @@ public final class ExceptionUtils {
     public static void fatalError(final Class<?> c, final Exception e) {
         e.printStackTrace();
         logError(c, e);
+        System.exit(-1);
     }
 
     /**

@@ -133,9 +133,9 @@ public class NeutronBomb extends Block {
     }
 
     @Override
-    public InteractionResult use(@NotNull BlockState state, @NotNull Level world,
-                                 @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand,
-                                 @NotNull BlockHitResult hit) {
+    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level world,
+                                          @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand,
+                                          @NotNull BlockHitResult hit) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (!itemStack.is(Items.FLINT_AND_STEEL) && !itemStack.is(Items.FIRE_CHARGE)) {
             return super.use(state, world, pos, player, hand, hit);

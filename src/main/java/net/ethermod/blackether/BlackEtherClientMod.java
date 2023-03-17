@@ -9,7 +9,6 @@ import net.ethermod.blackether.registries.EntityRegistry;
 import net.ethermod.blackether.utils.Naming;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.world.entity.EntityType;
 import software.bernie.geckolib.network.GeckoLibNetwork;
 
 public final class BlackEtherClientMod implements ClientModInitializer {

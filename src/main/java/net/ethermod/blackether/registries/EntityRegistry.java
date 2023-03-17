@@ -37,7 +37,7 @@ public class EntityRegistry extends BaseRegistry {
     public <T extends Mob> EntityType<T> registerMob(String name, EntityType.EntityFactory<T> entity,
                                                      float width, float height) {
         return Registry.register(BuiltInRegistries.ENTITY_TYPE,
-                new ResourceLocation(MOD_ID, name), FabricEntityTypeBuilder.create(MobCategory.CREATURE, entity)
+                new ResourceLocation(MOD_ID, name), FabricEntityTypeBuilder.create(MobCategory.MONSTER, entity)
                         .dimensions(EntityDimensions.scalable(width, height)).build());
     }
 

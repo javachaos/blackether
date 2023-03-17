@@ -20,7 +20,7 @@ import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 public final class PropertyManager {
 
     private static final Logger LOGGER = LogUtils.getLogger();
-    //LogManager.getLogger(PropertyManager.class);
+
     private final Properties props = new Properties();
     /**
      * Application Properties file name.

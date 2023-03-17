@@ -1,6 +1,5 @@
 package net.ethermod.blackether.entity.living;
 
-import com.google.common.base.Objects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
@@ -17,6 +16,8 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.Objects;
+
 public class OnyxSnakeEntity extends Monster implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
@@ -24,7 +25,6 @@ public class OnyxSnakeEntity extends Monster implements GeoEntity {
         super(type, level);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
-
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new WaterAvoidingRandomStrollGoal(this, 6.0D));
@@ -47,5 +47,19 @@ public class OnyxSnakeEntity extends Monster implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (getClass() != Objects.requireNonNull(o).getClass()) return false;
+        if (!super.equals(o)) return false;
+        OnyxSnakeEntity that = (OnyxSnakeEntity) o;
+        return Objects.equals(cache, that.cache);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), cache);
     }
 }

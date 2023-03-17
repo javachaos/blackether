@@ -20,6 +20,9 @@
     ],
     "client": [
       "net.ethermod.blackether.BlackEtherClientMod"
+    ],
+    "fabric-datagen": [
+      "net.ethermod.blackether.BlackEtherModDataGenerator"
     ]
   },
   "depends": {

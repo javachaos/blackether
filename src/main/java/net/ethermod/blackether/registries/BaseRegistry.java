@@ -1,19 +1,23 @@
 package net.ethermod.blackether.registries;
 
+import net.ethermod.blackether.BlackEtherMod;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class BaseRegistry extends Registerable {
+    public static final Logger LOGGER = LogManager.getLogger(BaseRegistry.class);
     private final HashMap<String, SoundEvent> soundEvents = new HashMap<>();
     private final HashMap<String, Block> blocks = new HashMap<>();
     private final HashMap<String, Item> items = new HashMap<>();
     private final HashMap<String, EntityType<? extends Entity>> entities = new HashMap<>();
-
 
     protected void putEntity(final String name, final EntityType<? extends Entity> entityType) {
         entities.put(name, entityType);
@@ -30,6 +34,7 @@ public abstract class BaseRegistry extends Registerable {
     }
 
     protected void putItem(final String name, final Item item) {
+        LOGGER.debug("Adding item {} to item map.", name);
         items.put(name, item);
     }
 
@@ -42,6 +47,7 @@ public abstract class BaseRegistry extends Registerable {
     }
 
     protected void putBlock(final String name, final Block block) {
+        LOGGER.debug("Adding block {} to block map.", name);
         blocks.put(name, block);
     }
 
@@ -50,6 +56,7 @@ public abstract class BaseRegistry extends Registerable {
     }
 
     protected void putSoundEvent(final String name, final SoundEvent event) {
+        LOGGER.debug("Adding sound event {} to sound event map.", name);
         soundEvents.put(name, event);
     }
 }

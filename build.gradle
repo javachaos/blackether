@@ -39,6 +39,24 @@ dependencies {
     modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19.3:4.0.4'
 }
 
+def dataOutput = 'src/main/generated'
+
+loom {
+    runs {
+        datagen {
+            server()
+
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file(dataOutput)}"
+
+            runDir "build/datagen"
+        }
+    }
+}
+
+sourceSets { main { resources { srcDirs += dataOutput }}}
+
 processResources {
     inputs.property 'version', project.version
     duplicatesStrategy = 'include'

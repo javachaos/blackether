@@ -2,12 +2,14 @@ package net.ethermod.blackether.utils;
 
 public class Naming {
 
+
     private Naming() {
         //Unused
     }
 
     //Misc
     public static final String ETHERMOD_ITEMGROUP = "ethermod_group";
+    public static final String ONYX_BIOME = "onyx_biome";
 
     //Entities
     public static final String ONYX_SNAKE = "onyx_snake";
