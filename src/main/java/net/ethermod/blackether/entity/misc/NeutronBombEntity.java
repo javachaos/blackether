@@ -106,7 +106,7 @@ public class NeutronBombEntity extends Entity {
 
     private void explodeNeutron(double power, double radius) {
         double dy = getY(2.0625D);
-        this.level.gameEvent(this, GameEvent.EXPLODE, new BlockPos(getX(), getY(), getZ()));
+        this.level.gameEvent(this, GameEvent.EXPLODE, new BlockPos((int) getX(), (int) getY(), (int) getZ()));
         double q = radius * 2.0F;
         double k = Mth.floor(getX() - q - 1.0D);
         double l = Mth.floor(getX() + q + 1.0D);
@@ -146,7 +146,8 @@ public class NeutronBombEntity extends Entity {
         input[2] /= input[4];
         double ab = Explosion.getSeenPercent(vec3d, entity);
         double ac = (1.0D - input[3]) * ab;
-        entity.hurt(DamageSource.thorns(this), ((int) ((ac * ac + ac) * input[6] / 2.0 * 7.0 * input[5] + 1.0)));
+        DamageSource ds = this.damageSources().thorns(this);
+        entity.hurt(ds, ((int) ((ac * ac + ac) * input[6] / 2.0 * 7.0 * input[5] + 1.0)));
         double ad = ac;
         if (entity instanceof LivingEntity e) {
             ad = ProtectionEnchantment.getExplosionKnockbackAfterDampener(e, ac);

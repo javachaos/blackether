@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -53,13 +52,13 @@ public class ItemRegistry extends BaseRegistry {
         registerItem(Naming.ONYX_ORE, new Item(new FabricItemSettings()));
         registerItem(Naming.NEUTRONIUM, new Item(new FabricItemSettings()));
         registerItem(Naming.ONYX_HELMET,
-                new ArmorItem(onyxArmorMaterial, EquipmentSlot.HEAD, (new Item.Properties())));
+                new ArmorItem(onyxArmorMaterial, ArmorItem.Type.HELMET, (new Item.Properties())));
         registerItem(Naming.ONYX_CHESTPLATE,
-                new ArmorItem(onyxArmorMaterial, EquipmentSlot.CHEST, (new Item.Properties())));
-       registerItem(Naming.ONYX_LEGGINGS,
-                new ArmorItem(onyxArmorMaterial, EquipmentSlot.LEGS, (new Item.Properties())));
+                new ArmorItem(onyxArmorMaterial, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
+        registerItem(Naming.ONYX_LEGGINGS,
+                new ArmorItem(onyxArmorMaterial, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
         registerItem(Naming.ONYX_BOOTS,
-                new ArmorItem(onyxArmorMaterial, EquipmentSlot.FEET, (new Item.Properties())));
+                new ArmorItem(onyxArmorMaterial, ArmorItem.Type.BOOTS, (new Item.Properties())));
         registerItem(Naming.ETHER_ORE, new Item(new FabricItemSettings()));
         registerItem(Naming.ONYX_DUST, new Item(new FabricItemSettings()));
         registerItem(Naming.ONYX_PICKAXE, new OnyxPickaxe());
@@ -70,23 +69,23 @@ public class ItemRegistry extends BaseRegistry {
         FabricItemGroup.builder(
                         new ResourceLocation(BlackEtherMod.MOD_ID, Naming.ETHERMOD_ITEMGROUP))
                 .icon(() -> new ItemStack(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE)))
-                .displayItems((enabledFeatures, entries, operatorEnabled) -> {
-                    entries.accept(BlockRegistry.getInstance().getBlock(Naming.BLOCK_OF_ETHER));
-                    entries.accept(BlockRegistry.getInstance().getBlock(Naming.ETHER_ORE_BLOCK));
-                    entries.accept(BlockRegistry.getInstance().getBlock(Naming.DARK_GRASS));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_HELMET));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_CHESTPLATE));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_LEGGINGS));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_BOOTS));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_DUST));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_PICKAXE));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SHOVEL));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_AXE));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_HOE));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM));
-                    entries.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG));
-                    entries.accept(BlockRegistry.getInstance().getBlock(Naming.NEUTRON_BOMB));
+                .displayItems((displayParameters, x) -> {
+                    x.accept(BlockRegistry.getInstance().getBlock(Naming.BLOCK_OF_ETHER));
+                    x.accept(BlockRegistry.getInstance().getBlock(Naming.ETHER_ORE_BLOCK));
+                    x.accept(BlockRegistry.getInstance().getBlock(Naming.DARK_GRASS));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_HELMET));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_CHESTPLATE));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_LEGGINGS));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_BOOTS));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_DUST));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_PICKAXE));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SHOVEL));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_AXE));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_HOE));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG));
+                    x.accept(BlockRegistry.getInstance().getBlock(Naming.NEUTRON_BOMB));
                 })
                 .build();
     }

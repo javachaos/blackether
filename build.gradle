@@ -36,7 +36,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     //Gecklib
-    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19.3:4.0.4'
+    modImplementation "software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}"
 }
 
 def dataOutput = 'src/main/generated'
@@ -55,7 +55,7 @@ loom {
     }
 }
 
-sourceSets { main { resources { srcDirs += dataOutput }}}
+sourceSets { main { resources { srcDirs += dataOutput } } }
 
 processResources {
     inputs.property 'version', project.version
@@ -102,6 +102,7 @@ curseforge {
         mainArtifact(remapJar) {
             relations {
                 requiredDependency 'fabric-api' // fabric-api is required
+                requiredDependency 'geckolib' // geckolib is required
             }
         }
         afterEvaluate {
@@ -125,6 +126,7 @@ modrinth {
     loaders = ['fabric']
     dependencies {
         required.project 'fabric-api'
+        required.project 'geckolib'
     }
 }
 
