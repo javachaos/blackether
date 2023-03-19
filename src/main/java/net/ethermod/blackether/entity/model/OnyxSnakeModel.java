@@ -1,6 +1,6 @@
 package net.ethermod.blackether.entity.model;
 
-import net.ethermod.blackether.entity.living.OnyxSnakeEntity;
+import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.utils.Naming;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;

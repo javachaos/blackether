@@ -1,7 +1,7 @@
 package net.ethermod.blackether.registries;
 
 import net.ethermod.blackether.BlackEtherMod;
-import net.ethermod.blackether.entity.living.OnyxSnakeEntity;
+import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.enums.CustomArmorMaterial;
 import net.ethermod.blackether.items.*;
 import net.ethermod.blackether.utils.Naming;

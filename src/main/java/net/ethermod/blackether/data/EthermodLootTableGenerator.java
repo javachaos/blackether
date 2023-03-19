@@ -1,45 +1,38 @@
 package net.ethermod.blackether.data;
 
-import net.ethermod.blackether.blocks.EtherOreBlock;
-import net.ethermod.blackether.registries.BlockRegistry;
-import net.ethermod.blackether.registries.ItemRegistry;
-import net.ethermod.blackether.utils.Naming;
+import net.ethermod.blackether.blocks.gen.core.BlockGen;
+import net.ethermod.blackether.blocks.gen.impl.BlockOfEtherGenerator;
+import net.ethermod.blackether.blocks.gen.impl.DarkGrassGenerator;
+import net.ethermod.blackether.blocks.gen.impl.EtherOreBlockGenerator;
+import net.ethermod.blackether.blocks.gen.impl.NeutronBombGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
+import java.util.List;
 import java.util.function.BiConsumer;
 
 public class EthermodLootTableGenerator extends FabricBlockLootTableProvider {
 
+    private final List<BlockGen> blocks;
+
     public EthermodLootTableGenerator(FabricDataOutput dataOutput) {
         super(dataOutput);
+        blocks = List.of(
+                new NeutronBombGenerator(this),
+                new EtherOreBlockGenerator(this),
+                new DarkGrassGenerator(this),
+                new BlockOfEtherGenerator(this));
     }
 
     @Override
     public void generate() {
-        EtherOreBlock etherBlock = (EtherOreBlock) BlockRegistry.getInstance().getBlock(Naming.ETHER_ORE_BLOCK);
-        Item etherOre = ItemRegistry.getInstance().getItem(Naming.ETHER_ORE);
-        add(etherBlock, block -> createSilkTouchDispatchTable(block, this.applyExplosionDecay(block,
-                        LootItem.lootTableItem(etherOre)
-                        .apply(SetItemCountFunction.setCount(
-                          UniformGenerator.between(4.0F, 5.0F)))
-                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        dropWhenSilkTouch(etherBlock);
+        blocks.forEach(BlockGen::generate);
     }
+
     @Override
-    public void accept(BiConsumer<ResourceLocation, LootTable.Builder> resourceLocationBuilderBiConsumer) {
-        // TODO add our items to the loottable.
+    public void accept(BiConsumer<ResourceLocation, LootTable.Builder> r) {
+        blocks.forEach(x -> x.accept(r));
     }
 }

@@ -1,6 +1,6 @@
 package net.ethermod.blackether.entity.renderer;
 
-import net.ethermod.blackether.entity.living.OnyxSnakeEntity;
+import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.entity.model.OnyxSnakeModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;

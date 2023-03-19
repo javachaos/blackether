@@ -1,7 +1,7 @@
 package net.ethermod.blackether.registries;
 
-import net.ethermod.blackether.entity.living.OnyxSnakeEntity;
 import net.ethermod.blackether.entity.misc.NeutronBombEntity;
+import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.utils.Naming;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.core.Registry;
@@ -34,6 +34,7 @@ public class EntityRegistry extends BaseRegistry {
     public <T extends Entity> void putEntityType(String name, EntityType<T> type) {
         super.putEntity(name, type);
     }
+
     public <T extends Mob> EntityType<T> registerMob(String name, EntityType.EntityFactory<T> entity,
                                                      float width, float height) {
         return Registry.register(BuiltInRegistries.ENTITY_TYPE,
@@ -54,7 +55,7 @@ public class EntityRegistry extends BaseRegistry {
                 Naming.NEUTRON_BOMB, NeutronBombEntity::new, 0.75f, 0.75f);
         EntityType<OnyxSnakeEntity> onyxSnake = registerMob(Naming.ONYX_SNAKE,
                 OnyxSnakeEntity::new, 1.5f, 1.5f);
-        
+
         putEntityType(Naming.NEUTRON_BOMB, neutronBombEntityEntityType);
         putEntityType(Naming.ONYX_SNAKE, onyxSnake);
     }

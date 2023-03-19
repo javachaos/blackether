@@ -7,6 +7,8 @@ public class Naming {
         //Unused
     }
 
+    public static final String BLOCKS_FOLDER = "blocks/";
+
     //Misc
     public static final String ETHERMOD_ITEMGROUP = "ethermod_group";
     public static final String ONYX_BIOME = "onyx_biome";

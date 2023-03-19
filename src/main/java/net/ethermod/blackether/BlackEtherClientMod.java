@@ -1,9 +1,9 @@
 package net.ethermod.blackether;
 
 
-import net.ethermod.blackether.entity.living.OnyxSnakeEntity;
 import net.ethermod.blackether.entity.misc.NeutronBombEntity;
 import net.ethermod.blackether.entity.misc.NeutronBombEntityRenderer;
+import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.entity.renderer.OnyxSnakeRenderer;
 import net.ethermod.blackether.registries.EntityRegistry;
 import net.ethermod.blackether.utils.Naming;
