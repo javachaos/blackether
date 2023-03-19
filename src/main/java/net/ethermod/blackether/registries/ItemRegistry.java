@@ -70,6 +70,7 @@ public class ItemRegistry extends BaseRegistry {
                         new ResourceLocation(BlackEtherMod.MOD_ID, Naming.ETHERMOD_ITEMGROUP))
                 .icon(() -> new ItemStack(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE)))
                 .displayItems((displayParameters, x) -> {
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE));
                     x.accept(BlockRegistry.getInstance().getBlock(Naming.BLOCK_OF_ETHER));
                     x.accept(BlockRegistry.getInstance().getBlock(Naming.ETHER_ORE_BLOCK));
                     x.accept(BlockRegistry.getInstance().getBlock(Naming.DARK_GRASS));
@@ -86,6 +87,7 @@ public class ItemRegistry extends BaseRegistry {
                     x.accept(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG));
                     x.accept(BlockRegistry.getInstance().getBlock(Naming.NEUTRON_BOMB));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE));
                 })
                 .build();
     }

@@ -1,4 +1,4 @@
-package net.ethermod.blackether.items.gen;
+package net.ethermod.blackether.items.gen.core;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 

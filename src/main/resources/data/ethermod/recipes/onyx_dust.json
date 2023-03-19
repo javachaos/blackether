@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "ethermod:onyx_ore"
-  },
-  "result": "ethermod:onyx_dust",
-  "count": 9
-}
