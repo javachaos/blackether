@@ -1,6 +1,7 @@
-[Update 3.3.7]
+[Update 3.3.9]
 
-Updated to version 1.19.4 of minecraft
+Updated crafting recipes to use advancements
+Added a new structure (pyramid)
 
 Requires:
     - Geckolib 1.19.4:4.1.0

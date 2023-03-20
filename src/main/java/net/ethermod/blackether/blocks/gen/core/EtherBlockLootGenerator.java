@@ -13,10 +13,10 @@ import java.util.function.BiConsumer;
 
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
-public class EtherBlockGenerator extends SingleBlockGenerator {
+public class EtherBlockLootGenerator extends SingleBlockLootGenerator {
 
-    public EtherBlockGenerator(final EthermodLootTableGenerator ltg,
-                               String blockName) {
+    public EtherBlockLootGenerator(final EthermodLootTableGenerator ltg,
+                                   String blockName) {
         super(ltg, blockName, BlockRegistry.getInstance().getBlock(blockName));
         setBuilder(LootTable.lootTable().withPool(
                 ltg.applyExplosionCondition(block,

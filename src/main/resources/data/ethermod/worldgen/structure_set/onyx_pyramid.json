@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "ethermod:onyx_pyramid",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 165,
+    "separation": 140,
+    "salt": 89478753
+  }
+}

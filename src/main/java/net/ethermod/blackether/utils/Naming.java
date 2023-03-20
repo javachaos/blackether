@@ -8,6 +8,7 @@ public class Naming {
     }
 
     public static final String BLOCKS_FOLDER = "blocks/";
+    public static final String CHEST_LOOT_TABLE_FOLDER = "loot_tables/chests/";
 
     //Misc
     public static final String ETHERMOD_ITEMGROUP = "ethermod_group";
@@ -18,6 +19,9 @@ public class Naming {
 
     //Sound Events
     public static final String NEUTRON_IONIZING = "neutron_ionizing";
+
+    //Textures
+    public static final String NEUTRON_BOMB_TEX = "textures/block/neutron_bomb_side.png";
 
     //Blocks
     public static final String BLOCK_OF_ETHER = "block_of_ether";

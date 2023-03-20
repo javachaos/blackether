@@ -1,10 +1,7 @@
 package net.ethermod.blackether.data;
 
-import net.ethermod.blackether.blocks.gen.core.BlockGen;
-import net.ethermod.blackether.blocks.gen.impl.BlockOfEtherGenerator;
-import net.ethermod.blackether.blocks.gen.impl.DarkGrassGenerator;
-import net.ethermod.blackether.blocks.gen.impl.EtherOreBlockGenerator;
-import net.ethermod.blackether.blocks.gen.impl.NeutronBombGenerator;
+import net.ethermod.blackether.blocks.gen.core.LootGenerator;
+import net.ethermod.blackether.blocks.gen.impl.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -15,20 +12,21 @@ import java.util.function.BiConsumer;
 
 public class EthermodLootTableGenerator extends FabricBlockLootTableProvider {
 
-    private final List<BlockGen> blocks;
+    private final List<LootGenerator> blocks;
 
     public EthermodLootTableGenerator(FabricDataOutput dataOutput) {
         super(dataOutput);
         blocks = List.of(
-                new NeutronBombGenerator(this),
-                new EtherOreBlockGenerator(this),
-                new DarkGrassGenerator(this),
-                new BlockOfEtherGenerator(this));
+                new NeutronBombLootGenerator(this),
+                new EtherOreBlockLootGenerator(this),
+                new DarkGrassLootGenerator(this),
+                new BlockOfEtherLootGenerator(this),
+                new OnyxFortLootTableGenerator(this));
     }
 
     @Override
     public void generate() {
-        blocks.forEach(BlockGen::generate);
+        blocks.forEach(LootGenerator::generate);
     }
 
     @Override

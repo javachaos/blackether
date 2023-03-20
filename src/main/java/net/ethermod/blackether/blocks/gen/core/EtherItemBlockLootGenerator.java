@@ -15,10 +15,10 @@ import java.util.function.BiConsumer;
 
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
-public class EtherItemBlockGenerator extends BlockGenerator {
+public class EtherItemBlockLootGenerator extends BlockLootGenerator {
 
-    public EtherItemBlockGenerator(final EthermodLootTableGenerator ltg,
-                                   String blockName, String itemName, int dropMin, int dropMax) {
+    public EtherItemBlockLootGenerator(final EthermodLootTableGenerator ltg,
+                                       String blockName, String itemName, int dropMin, int dropMax) {
         super(ltg, blockName, BlockRegistry.getInstance().getBlock(blockName),
                 ItemRegistry.getInstance().getItem(itemName));
         setBuilder(lootTableGenerator.createOreDrop(block, item)
