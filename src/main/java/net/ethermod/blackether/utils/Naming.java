@@ -5,6 +5,8 @@ public class Naming {
 
     public static final String CHISELED_ETHER = "chiseled_ether";
     public static final String DARK_GRASS_TEX = "textures/block/dark_grass_all.png";
+    public static final String ONYX_FROG = "onyx_frog";
+    public static final String ONYX_FROG_EGG = "onyx_frog_egg";
 
     private Naming() {
         //Unused

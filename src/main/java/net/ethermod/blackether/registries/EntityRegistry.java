@@ -1,6 +1,7 @@
 package net.ethermod.blackether.registries;
 
 import net.ethermod.blackether.entity.misc.NeutronBombEntity;
+import net.ethermod.blackether.entity.mobs.OnyxFrogEntity;
 import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.utils.Naming;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -56,13 +57,17 @@ public class EntityRegistry extends BaseRegistry {
                 Naming.NEUTRON_BOMB, NeutronBombEntity::new, 0.75f, 0.75f);
         EntityType<OnyxSnakeEntity> onyxSnake = registerMob(Naming.ONYX_SNAKE,
                 OnyxSnakeEntity::new, 1.5f, 1.5f);
+        EntityType<OnyxFrogEntity> onyxFrog = registerMob(Naming.ONYX_FROG,
+                OnyxFrogEntity::new, 1.5f, 1.5f);
 
         putEntityType(Naming.NEUTRON_BOMB, neutronBombEntityEntityType);
         putEntityType(Naming.ONYX_SNAKE, onyxSnake);
+        putEntityType(Naming.ONYX_FROG, onyxFrog);
     }
 
     public void generateTranslation(FabricLanguageProvider.TranslationBuilder translationBuilder) {
         translationBuilder.add(getEntity(Naming.NEUTRON_BOMB, NeutronBombEntity.class), "Neutron Bomb");
         translationBuilder.add(getEntity(Naming.ONYX_SNAKE, OnyxSnakeEntity.class), "Onyx Snake");
+        translationBuilder.add(getEntity(Naming.ONYX_FROG, OnyxFrogEntity.class), "Onyx Frog");
     }
 }

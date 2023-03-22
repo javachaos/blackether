@@ -1,38 +1,30 @@
 {
-  "temperature": 2,
-  "downfall": 0,
-  "has_precipitation": false,
-  "precipitation": "none",
-  "effects": {
-    "sky_color": 343242,
-    "fog_color": 3242352,
-    "water_color": 345345,
-    "water_fog_color": 234543,
-    "mood_sound": {
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 3000,
-      "block_search_extent": 4,
-      "offset": 1
-    }
-  },
-  "spawners": {
-    "misc": [],
-    "monster": [
-      {
-        "type": "ethermod:onyx_snake",
-        "weight": 12,
-        "minCount": 40,
-        "maxCount": 40
-      }
-    ]
-  },
-  "spawn_costs": {},
   "carvers": {
     "air": [
       "minecraft:cave",
       "minecraft:cave_extra_underground",
       "minecraft:canyon"
     ]
+  },
+  "downfall": 0.8,
+  "effects": {
+    "grass_color_modifier": "dark_forest",
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "minecraft:music.overworld.jungle_and_forest"
+    },
+    "sky_color": 2368548,
+    "fog_color": 7237230,
+    "water_color": 3158064,
+    "water_fog_color": 2171169
   },
   "features": [
     [],
@@ -86,10 +78,10 @@
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:patch_tall_grass",
-      "minecraft:trees_savanna",
-      "minecraft:flower_warm",
-      "minecraft:patch_grass_savanna",
+      "minecraft:dark_forest_vegetation",
+      "minecraft:forest_flowers",
+      "minecraft:flower_default",
+      "minecraft:patch_grass_forest",
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
@@ -98,6 +90,118 @@
     [
       "minecraft:freeze_top_layer"
     ]
-  ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "maxCount": 8,
+        "minCount": 8,
+        "weight": 10
+      }
+    ],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "minecraft:sheep",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 12
+      },
+      {
+        "type": "minecraft:pig",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:chicken",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:cow",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 8
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "ethermod:onyx_snake",
+        "weight": 12,
+        "minCount": 40,
+        "maxCount": 40
+      },
+      {
+        "type": "ethermod:onyx_frog",
+        "weight": 12,
+        "minCount": 40,
+        "maxCount": 40
+      },
+      {
+        "type": "minecraft:spider",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:zombie",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 95
+      },
+      {
+        "type": "minecraft:zombie_villager",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "minecraft:skeleton",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:creeper",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:slime",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:witch",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      }
+    ],
+    "underground_water_creature": [
+      {
+        "type": "minecraft:glow_squid",
+        "maxCount": 6,
+        "minCount": 4,
+        "weight": 10
+      }
+    ],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.7
 }
-

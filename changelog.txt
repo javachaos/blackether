@@ -1,6 +1,6 @@
-[Update 3.3.10]
+[Update 3.4.10]
 
-Updated ether ore block spawn rate to be slightly less rare than diamond.
+Added a new dimension and portal (WIP).
 
 Requires:
     - Geckolib 1.19.4:4.1.0

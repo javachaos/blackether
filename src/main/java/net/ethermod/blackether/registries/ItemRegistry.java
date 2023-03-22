@@ -1,6 +1,7 @@
 package net.ethermod.blackether.registries;
 
 import net.ethermod.blackether.BlackEtherMod;
+import net.ethermod.blackether.entity.mobs.OnyxFrogEntity;
 import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.enums.CustomArmorMaterial;
 import net.ethermod.blackether.items.*;
@@ -49,6 +50,10 @@ public class ItemRegistry extends BaseRegistry {
                 new SpawnEggItem(EntityRegistry.getInstance()
                         .getEntityType(Naming.ONYX_SNAKE, OnyxSnakeEntity.class), 0x1F1F1F, 0x0D0D0D,
                         new Item.Properties()));
+        registerItem(Naming.ONYX_FROG_EGG,
+                new SpawnEggItem(EntityRegistry.getInstance()
+                        .getEntityType(Naming.ONYX_FROG, OnyxFrogEntity.class), 0x1E1E1E, 0x0C0C0C,
+                        new Item.Properties()));
         registerItem(Naming.ONYX_APPLE, new OnyxApple());
         registerItem(Naming.ONYX_ORE, new Item(new FabricItemSettings()));
         registerItem(Naming.NEUTRONIUM, new Item(new FabricItemSettings()));
@@ -89,6 +94,7 @@ public class ItemRegistry extends BaseRegistry {
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_FROG_EGG));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE));
                 })
@@ -109,6 +115,7 @@ public class ItemRegistry extends BaseRegistry {
         translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD), "Onyx Sword");
         translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM), "Neutronium");
         translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG), "Onyx Snake Egg");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_FROG_EGG), "Onyx Frog Egg");
         translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE), "Onyx Ore");
         translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE), "Ether Ore");
     }

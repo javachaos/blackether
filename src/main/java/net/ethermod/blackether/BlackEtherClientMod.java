@@ -3,7 +3,9 @@ package net.ethermod.blackether;
 
 import net.ethermod.blackether.entity.misc.NeutronBombEntity;
 import net.ethermod.blackether.entity.misc.NeutronBombEntityRenderer;
+import net.ethermod.blackether.entity.mobs.OnyxFrogEntity;
 import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
+import net.ethermod.blackether.entity.renderer.OnyxFrogRenderer;
 import net.ethermod.blackether.entity.renderer.OnyxSnakeRenderer;
 import net.ethermod.blackether.registries.EntityRegistry;
 import net.ethermod.blackether.utils.Naming;
@@ -22,6 +24,7 @@ public final class BlackEtherClientMod implements ClientModInitializer {
     private static void registerRenderers() {
         EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.NEUTRON_BOMB, NeutronBombEntity.class), NeutronBombEntityRenderer::new);
         EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.ONYX_SNAKE, OnyxSnakeEntity.class), OnyxSnakeRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.ONYX_FROG, OnyxFrogEntity.class), OnyxFrogRenderer::new);
     }
 
     private static void registerNetwork() {

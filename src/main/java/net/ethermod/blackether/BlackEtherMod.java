@@ -1,5 +1,6 @@
 package net.ethermod.blackether;
 
+import net.ethermod.blackether.entity.mobs.OnyxFrogEntity;
 import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.registries.BlockRegistry;
 import net.ethermod.blackether.registries.EntityRegistry;
@@ -35,6 +36,15 @@ public class BlackEtherMod implements ModInitializer {
     public static final String MOD_ID = "ethermod";
     public static final PropertyManager PROPERTIES = new PropertyManager();
 
+
+//TODO https://github.com/Witixin1512/GeckoLib-MultiLoader-Template/tree/gl4-vanillagradle#readme
+// work towards shifting to this project template.
+
+//TODO Finish onyx_biome to grey/black atmosphere
+// add mob spawns
+// add a new mob
+// add a sound to the existing mob (snake)
+
     @Override
     public void onInitialize() {
         LOGGER.debug("{} started initializing.", MOD_ID);
@@ -50,6 +60,11 @@ public class BlackEtherMod implements ModInitializer {
                 .getEntityType(
                         Naming.ONYX_SNAKE,
                         OnyxSnakeEntity.class);
+        EntityType<OnyxFrogEntity> frog = EntityRegistry
+                .getInstance()
+                .getEntityType(
+                        Naming.ONYX_FROG,
+                        OnyxFrogEntity.class);
         initBiomes();
         //Load Ores
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
@@ -69,11 +84,17 @@ public class BlackEtherMod implements ModInitializer {
                 BiomeSelectors.includeByKey(Biomes.FOREST), MobCategory.MONSTER,
                 snake,
                 50, 5, 10);
+        //Add onyx frog spawn to forest biome
+        BiomeModifications.addSpawn(
+                BiomeSelectors.includeByKey(Biomes.FOREST), MobCategory.MONSTER,
+                frog,
+                50, 5, 10);
 
         SpawnPlacements.register(snake, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Monster::checkMonsterSpawnRules);
 
         FabricDefaultAttributeRegistry.register(snake, createGenericEntityAttributes());
+        FabricDefaultAttributeRegistry.register(frog, createGenericEntityAttributes().add(Attributes.JUMP_STRENGTH, 0.5));
         FuelRegistry.INSTANCE.add(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE), 3000);
     }
 
