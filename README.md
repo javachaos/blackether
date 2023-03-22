@@ -27,3 +27,5 @@ The following properties exist in a file called "ethermod.properties" in the sam
 
 **NOTE:** This mod requires the Fabric API.
 
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/fred801825)
