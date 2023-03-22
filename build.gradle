@@ -16,6 +16,7 @@ def dataOutput = 'src/main/generated'
 
 repositories {
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    maven { url 'https://maven.kyrptonaught.dev' }
 }
 
 dependencies {
@@ -33,9 +34,10 @@ dependencies {
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-    //Gecklib
     modImplementation "software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}"
+    modImplementation 'net.kyrptonaught:customportalapi:0.0.1-beta61-1.19'
+    include 'net.kyrptonaught:customportalapi:0.0.1-beta61-1.19'
+    include "software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}"
 }
 
 

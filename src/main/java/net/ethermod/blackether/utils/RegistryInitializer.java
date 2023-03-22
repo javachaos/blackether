@@ -1,6 +1,7 @@
 package net.ethermod.blackether.utils;
 
 import net.ethermod.blackether.registries.*;
+import net.ethermod.blackether.world.dimension.EthermodDimensions;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -21,5 +22,6 @@ public class RegistryInitializer {
 
         //Done registering now free up this deque
         registries.clear();
+        EthermodDimensions.register();
     }
 }
