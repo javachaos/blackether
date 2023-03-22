@@ -3,6 +3,7 @@ package net.ethermod.blackether.registries;
 import net.ethermod.blackether.entity.misc.NeutronBombEntity;
 import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.utils.Naming;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -58,5 +59,10 @@ public class EntityRegistry extends BaseRegistry {
 
         putEntityType(Naming.NEUTRON_BOMB, neutronBombEntityEntityType);
         putEntityType(Naming.ONYX_SNAKE, onyxSnake);
+    }
+
+    public void generateTranslation(FabricLanguageProvider.TranslationBuilder translationBuilder) {
+        translationBuilder.add(getEntity(Naming.NEUTRON_BOMB, NeutronBombEntity.class), "Neutron Bomb");
+        translationBuilder.add(getEntity(Naming.ONYX_SNAKE, OnyxSnakeEntity.class), "Onyx Snake");
     }
 }

@@ -5,6 +5,7 @@ import net.ethermod.blackether.blocks.DarkGrassBlock;
 import net.ethermod.blackether.blocks.EtherOreBlock;
 import net.ethermod.blackether.blocks.NeutronBomb;
 import net.ethermod.blackether.utils.Naming;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -63,10 +64,13 @@ public class BlockRegistry extends BaseRegistry {
     public void register() {
         Block etherOreBlock = registerBlock(Naming.ETHER_ORE_BLOCK,
                 new EtherOreBlock(FabricBlockSettings.of(Material.METAL,
-                MaterialColor.COLOR_BLACK).randomTicks().lightLevel(x -> 9).strength(5.0f, 6.0f)));
+                        MaterialColor.COLOR_BLACK).randomTicks().lightLevel(x -> 9).strength(5.0f, 6.0f)));
         Block blockOfEther = registerBlock(Naming.BLOCK_OF_ETHER,
                 new BlockOfEther(FabricBlockSettings.of(Material.METAL,
                         MaterialColor.COLOR_BLACK).strength(10.0F, 6.0F)));
+        Block chiseledEther = registerBlock(Naming.CHISELED_ETHER,
+                new BlockOfEther(FabricBlockSettings.of(Material.METAL,
+                        MaterialColor.COLOR_BLACK).strength(2.0F, 4.0F)));
         Block neutronBomb = registerBlock(Naming.NEUTRON_BOMB,
                 new NeutronBomb(FabricBlockSettings.of(Material.AIR).instabreak().sound(SoundType.GRASS)));
         Block darkGrassBlock = registerBlock(Naming.DARK_GRASS,
@@ -75,5 +79,14 @@ public class BlockRegistry extends BaseRegistry {
         putBlock(Naming.BLOCK_OF_ETHER, blockOfEther);
         putBlock(Naming.NEUTRON_BOMB, neutronBomb);
         putBlock(Naming.DARK_GRASS, darkGrassBlock);
+        putBlock(Naming.CHISELED_ETHER, chiseledEther);
+    }
+
+    public void generateTranslation(FabricLanguageProvider.TranslationBuilder translationBuilder) {
+        translationBuilder.add(getBlock(Naming.ETHER_ORE_BLOCK), "Ether Ore");
+        translationBuilder.add(getBlock(Naming.NEUTRON_BOMB), "Neutron Bomb");
+        translationBuilder.add(getBlock(Naming.DARK_GRASS), "Dark Grass");
+        translationBuilder.add(getBlock(Naming.CHISELED_ETHER), "Chiseled Ether");
+        translationBuilder.add(getBlock(Naming.BLOCK_OF_ETHER), "Block Of Ether");
     }
 }

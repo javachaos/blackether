@@ -16,6 +16,9 @@ public class EthermodWorldGenerator extends FabricDynamicRegistryProvider {
     @Override
     protected void configure(HolderLookup.Provider registries, Entries entries) {
         //TODO figure more out here.
+        // Start with getting Generated structures working dynamically
+        // and then add spawn.onyxforts properties back
+        // to properties file using structure variants ect.
     }
 
     @Override

@@ -31,7 +31,8 @@ public class EthermodRecipeGenerator extends FabricRecipeProvider {
                         new NeutronBombRecipe(),
                         new OnyxDustRecipe(),
                         new OnyxArmorRecipe())
-                //.parallelStream() //For list sizes over 10 this could be beneficial.
+                //.parallelStream()
+                // For list sizes over 10 (and slower PCs) this could be beneficial.
                 .forEach(x -> x.build(exporter));
     }
 }

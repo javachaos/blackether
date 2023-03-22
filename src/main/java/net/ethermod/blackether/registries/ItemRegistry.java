@@ -5,6 +5,7 @@ import net.ethermod.blackether.entity.mobs.OnyxSnakeEntity;
 import net.ethermod.blackether.enums.CustomArmorMaterial;
 import net.ethermod.blackether.items.*;
 import net.ethermod.blackether.utils.Naming;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
@@ -70,10 +71,12 @@ public class ItemRegistry extends BaseRegistry {
                         new ResourceLocation(BlackEtherMod.MOD_ID, Naming.ETHERMOD_ITEMGROUP))
                 .icon(() -> new ItemStack(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE)))
                 .displayItems((displayParameters, x) -> {
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE));
                     x.accept(BlockRegistry.getInstance().getBlock(Naming.BLOCK_OF_ETHER));
                     x.accept(BlockRegistry.getInstance().getBlock(Naming.ETHER_ORE_BLOCK));
+                    x.accept(BlockRegistry.getInstance().getBlock(Naming.NEUTRON_BOMB));
+                    x.accept(BlockRegistry.getInstance().getBlock(Naming.CHISELED_ETHER));
                     x.accept(BlockRegistry.getInstance().getBlock(Naming.DARK_GRASS));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_HELMET));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_CHESTPLATE));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_LEGGINGS));
@@ -86,9 +89,27 @@ public class ItemRegistry extends BaseRegistry {
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG));
-                    x.accept(BlockRegistry.getInstance().getBlock(Naming.NEUTRON_BOMB));
                     x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE));
+                    x.accept(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE));
                 })
                 .build();
+    }
+
+    public void generateTranslation(FabricLanguageProvider.TranslationBuilder translationBuilder) {
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE), "Onyx Apple");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_HELMET), "Onyx Helmet");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_CHESTPLATE), "Onyx Chestplate");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_LEGGINGS), "Onyx Leggings");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_BOOTS), "Onyx Boots");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_DUST), "Onyx Dust");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_PICKAXE), "Onyx Pickaxe");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_SHOVEL), "Onyx Shovel");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_AXE), "Onyx Axe");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_HOE), "Onyx Hoe");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD), "Onyx Sword");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM), "Neutronium");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG), "Onyx Snake Egg");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE), "Onyx Ore");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE), "Ether Ore");
     }
 }

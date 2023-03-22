@@ -12,6 +12,9 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
@@ -19,6 +22,7 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -46,6 +50,7 @@ public class BlackEtherMod implements ModInitializer {
                 .getEntityType(
                         Naming.ONYX_SNAKE,
                         OnyxSnakeEntity.class);
+        initBiomes();
         //Load Ores
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(),
                 GenerationStep.Decoration.UNDERGROUND_ORES, BlockRegistry.CUSTOM_ORE_PLACED_KEY);
@@ -53,6 +58,10 @@ public class BlackEtherMod implements ModInitializer {
         //Add onyx snake spawn to the deep dark.
         BiomeModifications.addSpawn(
                 BiomeSelectors.includeByKey(Biomes.DEEP_DARK), MobCategory.MONSTER,
+                snake,
+                50, 5, 10);
+        BiomeModifications.addSpawn(
+                BiomeSelectors.includeByKey(), MobCategory.MONSTER,
                 snake,
                 50, 5, 10);
         //Add onyx snake spawn to forest biome
@@ -66,6 +75,23 @@ public class BlackEtherMod implements ModInitializer {
 
         FabricDefaultAttributeRegistry.register(snake, createGenericEntityAttributes());
         FuelRegistry.INSTANCE.add(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE), 3000);
+    }
+
+    private void initBiomes() {
+        EntityType<OnyxSnakeEntity> snake = EntityRegistry
+                .getInstance()
+                .getEntityType(
+                        Naming.ONYX_SNAKE,
+                        OnyxSnakeEntity.class);
+        //TODO consider adding mixin to get biome to spawn in overworld
+        // or figure out how to do this using json.
+        ResourceKey<Biome> biome = ResourceKey.create(Registries.BIOME,
+                new ResourceLocation(MOD_ID, "onyx_biome"));
+        BiomeModifications.addSpawn(
+                BiomeSelectors.includeByKey(biome),
+                MobCategory.MONSTER,
+                snake,
+                50, 5, 10);
     }
 
     private AttributeSupplier.Builder createGenericEntityAttributes() {

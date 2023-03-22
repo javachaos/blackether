@@ -1,9 +1,7 @@
 package net.ethermod.blackether;
 
-import net.ethermod.blackether.data.EthermodLootTableGenerator;
-import net.ethermod.blackether.data.EthermodModelProvider;
-import net.ethermod.blackether.data.EthermodRecipeGenerator;
-import net.ethermod.blackether.data.EthermodWorldGenerator;
+
+import net.ethermod.blackether.data.*;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -15,5 +13,6 @@ public class BlackEtherModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(EthermodModelProvider::new);
         pack.addProvider(EthermodLootTableGenerator::new);
         pack.addProvider(EthermodWorldGenerator::new);
+        pack.addProvider(EthermodTranslationGenerator::new);
     }
 }

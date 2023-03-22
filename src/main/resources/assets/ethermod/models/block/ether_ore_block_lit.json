@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "ethermod:block/ether_ore_block_lit"
-  }
-}
-

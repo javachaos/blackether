@@ -3,6 +3,9 @@ package net.ethermod.blackether.utils;
 public class Naming {
 
 
+    public static final String CHISELED_ETHER = "chiseled_ether";
+    public static final String DARK_GRASS_TEX = "textures/block/dark_grass_all.png";
+
     private Naming() {
         //Unused
     }
