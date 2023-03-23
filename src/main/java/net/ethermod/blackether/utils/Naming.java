@@ -7,6 +7,16 @@ public class Naming {
     public static final String DARK_GRASS_TEX = "textures/block/dark_grass_all.png";
     public static final String ONYX_FROG = "onyx_frog";
     public static final String ONYX_FROG_EGG = "onyx_frog_egg";
+    public static final String ONYX_DIMENSION = "onyx_dimension";
+    public static final String ONYXWOOD_LOG = "onyxwood_log";
+    public static final String ONYXWOOD_WOOD = "onyxwood_wood";
+    public static final String ONYXWOOD_LOG_STRIPPED = "onyxwood_log_stripped";
+    public static final String ONYXWOOD_WOOD_STRIPPED = "onyxwood_wood_stripped";
+    public static final String ONYXWOOD_PLANKS = "onyxwood_planks";
+    public static final String ONYXWOOD_LEAVES = "onyxwood_leaves";
+    public static final String ONYXWOOD_SAPLING = "onyxwood_sapling";
+    public static final String POTTED_ONYXWOOD_SAPLING = "potted_onyxwood_sapling";
+    public static final String PETRIFIED_ONYXWOOD_SLAB = "petrified_onyxwood_slab";
 
     private Naming() {
         //Unused

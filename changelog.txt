@@ -1,6 +1,6 @@
-[Update 3.4.10]
+[Update 3.5.10]
 
-Added a new dimension and portal (WIP).
+
 
 Requires:
     - Geckolib 1.19.4:4.1.0

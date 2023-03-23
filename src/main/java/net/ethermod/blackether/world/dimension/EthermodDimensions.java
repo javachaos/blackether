@@ -14,7 +14,7 @@ import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class EthermodDimensions {
     public static final ResourceKey<Level> ONYX_DIM = ResourceKey.create(Registries.DIMENSION,
-            new ResourceLocation(MOD_ID, "onyx_dimension"));
+            new ResourceLocation(MOD_ID, Naming.ONYX_DIMENSION));
     private static final ResourceKey<DimensionType> ONYX_DIM_KEY = ResourceKey.create(Registries.DIMENSION_TYPE,
             ONYX_DIM.location());
 
@@ -22,8 +22,8 @@ public class EthermodDimensions {
         CustomPortalBuilder.beginPortal()
                 .frameBlock(BlockRegistry.getInstance().getBlock(Naming.CHISELED_ETHER))
                 .lightWithItem(ItemRegistry.getInstance().getItem(Naming.ONYX_DUST))
-                .destDimID(new ResourceLocation(MOD_ID, "onyx_dimension"))
-                .tintColor(99, 99, 99)
+                .destDimID(new ResourceLocation(MOD_ID, Naming.ONYX_DIMENSION))
+                .tintColor(200, 200, 200)
                 .registerPortal();
     }
 

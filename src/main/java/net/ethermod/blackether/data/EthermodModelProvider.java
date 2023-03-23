@@ -8,10 +8,12 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.data.models.model.TexturedModel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class EthermodModelProvider extends FabricModelProvider {
@@ -26,6 +28,37 @@ public class EthermodModelProvider extends FabricModelProvider {
         // instead of using just methods.
         createTrivialEtherBlock(blockStateModelGenerator, Naming.BLOCK_OF_ETHER);
         createTrivialEtherBlock(blockStateModelGenerator, Naming.CHISELED_ETHER);
+        generateTrees(blockStateModelGenerator);
+
+    }
+
+    private void generateTrees(BlockModelGenerators blockStateModelGenerator) {
+        Block onyxWoodLog = BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG);
+        Block onyxWood = BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_WOOD);
+        Block onyxWoodLogStripped = BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG_STRIPPED);
+        Block onyxWoodStripped = BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_WOOD_STRIPPED);
+        Block onyxWoodPlanks = BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_PLANKS);
+        Block onyxWoodLeaves = BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LEAVES);
+        Block onyxWoodSapling = BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_SAPLING);
+        Block pottedOnyxWoodSapling = BlockRegistry.getInstance().getBlock(Naming.POTTED_ONYXWOOD_SAPLING);
+        Block petrifiedOnyxWoodSlab = BlockRegistry.getInstance().getBlock(Naming.PETRIFIED_ONYXWOOD_SLAB);
+
+        blockStateModelGenerator.woodProvider(onyxWoodLogStripped)
+                .logWithHorizontal(onyxWoodLogStripped).wood(onyxWoodStripped);
+        blockStateModelGenerator.woodProvider(onyxWoodLog)
+                .logWithHorizontal(onyxWoodLog).wood(onyxWood);
+        blockStateModelGenerator.createTrivialBlock(onyxWoodLeaves, TexturedModel.LEAVES);
+        blockStateModelGenerator.createPlant(onyxWoodSapling, pottedOnyxWoodSapling,
+                BlockModelGenerators.TintState.NOT_TINTED);
+
+        ResourceLocation resourceLocation = ModelLocationUtils.getModelLocation(onyxWoodPlanks);
+        TexturedModel texturedModel = TexturedModel.CUBE.get(onyxWoodPlanks);
+        ResourceLocation resourceLocation2 = ModelTemplates.SLAB_BOTTOM.create(petrifiedOnyxWoodSlab, texturedModel.getMapping(),
+                blockStateModelGenerator.modelOutput);
+        ResourceLocation resourceLocation3 = ModelTemplates.SLAB_TOP.create(petrifiedOnyxWoodSlab, texturedModel.getMapping(),
+                blockStateModelGenerator.modelOutput);
+        blockStateModelGenerator.blockStateOutput.accept(
+                BlockModelGenerators.createSlab(petrifiedOnyxWoodSlab, resourceLocation2, resourceLocation3, resourceLocation));
     }
 
     private void createTrivialEtherBlock(final BlockModelGenerators blockStateModelGenerator, String blockOfEther) {

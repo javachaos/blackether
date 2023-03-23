@@ -14,9 +14,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.OakTreeGrower;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
@@ -75,11 +74,44 @@ public class BlockRegistry extends BaseRegistry {
                 new NeutronBomb(FabricBlockSettings.of(Material.AIR).instabreak().sound(SoundType.GRASS)));
         Block darkGrassBlock = registerBlock(Naming.DARK_GRASS,
                 new DarkGrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).strength(0.6f)));
+        registerLogs();
+
         putBlock(Naming.ETHER_ORE_BLOCK, etherOreBlock);
         putBlock(Naming.BLOCK_OF_ETHER, blockOfEther);
         putBlock(Naming.NEUTRON_BOMB, neutronBomb);
         putBlock(Naming.DARK_GRASS, darkGrassBlock);
         putBlock(Naming.CHISELED_ETHER, chiseledEther);
+    }
+
+    private void registerLogs() {
+        Block onyxWoodLog = registerBlock(Naming.ONYXWOOD_LOG,
+                new RotatedPillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG)));
+        Block onyxWood = registerBlock(Naming.ONYXWOOD_WOOD,
+                new RotatedPillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD)));
+        Block onyxWoodLogStripped = registerBlock(Naming.ONYXWOOD_LOG_STRIPPED,
+                new RotatedPillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG)));
+        Block onyxWoodStripped = registerBlock(Naming.ONYXWOOD_WOOD_STRIPPED,
+                new RotatedPillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD)));
+        Block onyxWoodPlanks = registerBlock(Naming.ONYXWOOD_PLANKS,
+                new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)));
+        Block onyxWoodLeaves = registerBlock(Naming.ONYXWOOD_LEAVES,
+                new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
+        Block onyxWoodSapling = registerBlock(Naming.ONYXWOOD_SAPLING,
+                new SaplingBlock(new OakTreeGrower(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
+        Block pottedOnyxWoodSapling = registerBlock(Naming.POTTED_ONYXWOOD_SAPLING,
+                new FlowerPotBlock(onyxWoodSapling, FabricBlockSettings.copyOf(Blocks.POTTED_OAK_SAPLING)));
+        Block petrifiedOnyxWoodSlab = registerBlock(Naming.PETRIFIED_ONYXWOOD_SLAB,
+                new SlabBlock(FabricBlockSettings.copyOf(Blocks.PETRIFIED_OAK_SLAB)));
+
+        putBlock(Naming.ONYXWOOD_LOG, onyxWoodLog);
+        putBlock(Naming.ONYXWOOD_WOOD, onyxWood);
+        putBlock(Naming.ONYXWOOD_LOG_STRIPPED, onyxWoodLogStripped);
+        putBlock(Naming.ONYXWOOD_WOOD_STRIPPED, onyxWoodStripped);
+        putBlock(Naming.ONYXWOOD_PLANKS, onyxWoodPlanks);
+        putBlock(Naming.ONYXWOOD_LEAVES, onyxWoodLeaves);
+        putBlock(Naming.ONYXWOOD_SAPLING, onyxWoodSapling);
+        putBlock(Naming.POTTED_ONYXWOOD_SAPLING, pottedOnyxWoodSapling);
+        putBlock(Naming.PETRIFIED_ONYXWOOD_SLAB, petrifiedOnyxWoodSlab);
     }
 
     public void generateTranslation(FabricLanguageProvider.TranslationBuilder translationBuilder) {

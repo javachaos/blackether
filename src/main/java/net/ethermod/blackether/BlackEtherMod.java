@@ -107,7 +107,7 @@ public class BlackEtherMod implements ModInitializer {
         //TODO consider adding mixin to get biome to spawn in overworld
         // or figure out how to do this using json.
         ResourceKey<Biome> biome = ResourceKey.create(Registries.BIOME,
-                new ResourceLocation(MOD_ID, "onyx_biome"));
+                new ResourceLocation(MOD_ID, Naming.ONYX_BIOME));
         BiomeModifications.addSpawn(
                 BiomeSelectors.includeByKey(biome),
                 MobCategory.MONSTER,
