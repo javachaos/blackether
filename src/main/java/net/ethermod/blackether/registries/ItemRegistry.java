@@ -76,27 +76,8 @@ public class ItemRegistry extends BaseRegistry {
                         new ResourceLocation(BlackEtherMod.MOD_ID, Naming.ETHERMOD_ITEMGROUP))
                 .icon(() -> new ItemStack(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE)))
                 .displayItems((displayParameters, x) -> {
-                    x.accept(BlockRegistry.getInstance().getBlock(Naming.BLOCK_OF_ETHER));
-                    x.accept(BlockRegistry.getInstance().getBlock(Naming.ETHER_ORE_BLOCK));
-                    x.accept(BlockRegistry.getInstance().getBlock(Naming.NEUTRON_BOMB));
-                    x.accept(BlockRegistry.getInstance().getBlock(Naming.CHISELED_ETHER));
-                    x.accept(BlockRegistry.getInstance().getBlock(Naming.DARK_GRASS));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_HELMET));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_CHESTPLATE));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_LEGGINGS));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_BOOTS));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_DUST));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_PICKAXE));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SHOVEL));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_AXE));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_HOE));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_FROG_EGG));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE));
-                    x.accept(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE));
+                    BlockRegistry.getInstance().getBlocks().forEach((b, v) -> x.accept(v));
+                    ItemRegistry.getInstance().getItems().forEach((i, v) -> x.accept(v));
                 })
                 .build();
     }

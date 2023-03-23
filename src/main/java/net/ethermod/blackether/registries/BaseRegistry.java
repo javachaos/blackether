@@ -1,16 +1,16 @@
 package net.ethermod.blackether.registries;
 
-import net.ethermod.blackether.BlackEtherMod;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class BaseRegistry extends Registerable {
     public static final Logger LOGGER = LogManager.getLogger(BaseRegistry.class);
@@ -18,6 +18,28 @@ public abstract class BaseRegistry extends Registerable {
     private final HashMap<String, Block> blocks = new HashMap<>();
     private final HashMap<String, Item> items = new HashMap<>();
     private final HashMap<String, EntityType<? extends Entity>> entities = new HashMap<>();
+    private final HashMap<String, ResourceKey<ConfiguredFeature<?, ?>>> resourceKeys = new HashMap<>();
+
+    protected void putResourceKey(String k, ResourceKey<ConfiguredFeature<?, ?>> v) {
+        resourceKeys.put(k, v);
+    }
+
+    protected ResourceKey<ConfiguredFeature<?, ?>> getResourceKey(String k) {
+        return resourceKeys.get(k);
+    }
+
+    protected HashMap<String, Block> getBlocks() {
+        return blocks;
+    }
+
+    protected HashMap<String, Item> getItems() {
+        return items;
+    }
+
+    protected HashMap<String, EntityType<? extends Entity>> getEntities() {
+        return entities;
+    }
+
 
     protected void putEntity(final String name, final EntityType<? extends Entity> entityType) {
         entities.put(name, entityType);

@@ -5,6 +5,7 @@ import net.ethermod.blackether.blocks.DarkGrassBlock;
 import net.ethermod.blackether.blocks.EtherOreBlock;
 import net.ethermod.blackether.blocks.NeutronBomb;
 import net.ethermod.blackether.utils.Naming;
+import net.ethermod.blackether.world.feature.tree.OnyxWoodGrower;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.Registry;
@@ -15,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.OakTreeGrower;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
@@ -97,7 +97,7 @@ public class BlockRegistry extends BaseRegistry {
         Block onyxWoodLeaves = registerBlock(Naming.ONYXWOOD_LEAVES,
                 new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
         Block onyxWoodSapling = registerBlock(Naming.ONYXWOOD_SAPLING,
-                new SaplingBlock(new OakTreeGrower(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
+                new SaplingBlock(new OnyxWoodGrower(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
         Block pottedOnyxWoodSapling = registerBlock(Naming.POTTED_ONYXWOOD_SAPLING,
                 new FlowerPotBlock(onyxWoodSapling, FabricBlockSettings.copyOf(Blocks.POTTED_OAK_SAPLING)));
         Block petrifiedOnyxWoodSlab = registerBlock(Naming.PETRIFIED_ONYXWOOD_SLAB,
@@ -120,5 +120,14 @@ public class BlockRegistry extends BaseRegistry {
         translationBuilder.add(getBlock(Naming.DARK_GRASS), "Dark Grass");
         translationBuilder.add(getBlock(Naming.CHISELED_ETHER), "Chiseled Ether");
         translationBuilder.add(getBlock(Naming.BLOCK_OF_ETHER), "Block Of Ether");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_LOG), "Onyx Log");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_WOOD), "Onyx Wood");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_LOG_STRIPPED), "Stripped Onyx Log");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_WOOD_STRIPPED), "Stripped Onyx Wood");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_PLANKS), "Onyx Planks");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_LEAVES), "Onyx Leaves");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_SAPLING), "Onyx Sapling");
+        translationBuilder.add(getBlock(Naming.POTTED_ONYXWOOD_SAPLING), "Potted Onyx Sapling");
+        translationBuilder.add(getBlock(Naming.PETRIFIED_ONYXWOOD_SLAB), "Onyx Slab");
     }
 }

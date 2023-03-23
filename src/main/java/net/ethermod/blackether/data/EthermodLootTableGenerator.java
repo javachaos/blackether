@@ -21,7 +21,17 @@ public class EthermodLootTableGenerator extends FabricBlockLootTableProvider {
                 new EtherOreBlockLootGenerator(this),
                 new DarkGrassLootGenerator(this),
                 new BlockOfEtherLootGenerator(this),
-                new OnyxFortLootTableGenerator(this));
+                new OnyxFortLootTableGenerator(this),
+                new ChiseledEtherBlockLootGenerator(this),
+                new OnyxWoodLogGenerator(this),
+                new OnyxWoodGenerator(this),
+                new StrippedOnyxWoodGen(this),
+                new StrippedOnyxWoodLogGen(this),
+                new OnyxWoodPlanksGenerator(this),
+                new OnyxWoodLeavesGen(this),
+                new OnyxWoodSaplingGen(this),
+                new OnyxWoodSlabGen(this),
+                new PottedOnyxWoodSapGen(this));
     }
 
     @Override

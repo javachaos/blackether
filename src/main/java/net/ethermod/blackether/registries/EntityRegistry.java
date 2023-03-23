@@ -8,8 +8,10 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -69,5 +71,13 @@ public class EntityRegistry extends BaseRegistry {
         translationBuilder.add(getEntity(Naming.NEUTRON_BOMB, NeutronBombEntity.class), "Neutron Bomb");
         translationBuilder.add(getEntity(Naming.ONYX_SNAKE, OnyxSnakeEntity.class), "Onyx Snake");
         translationBuilder.add(getEntity(Naming.ONYX_FROG, OnyxFrogEntity.class), "Onyx Frog");
+    }
+
+    public void putResourceKey(String key, ResourceKey<ConfiguredFeature<?, ?>> value) {
+        super.putResourceKey(key, value);
+    }
+
+    public ResourceKey<ConfiguredFeature<?, ?>> getResourceKey(String key) {
+        return super.getResourceKey(key);
     }
 }

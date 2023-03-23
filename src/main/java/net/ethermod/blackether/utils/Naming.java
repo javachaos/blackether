@@ -17,6 +17,8 @@ public class Naming {
     public static final String ONYXWOOD_SAPLING = "onyxwood_sapling";
     public static final String POTTED_ONYXWOOD_SAPLING = "potted_onyxwood_sapling";
     public static final String PETRIFIED_ONYXWOOD_SLAB = "petrified_onyxwood_slab";
+    public static final String ONYXWOOD_TREE = "onyxwood_tree";
+    public static final String ONYXWOOD_TREE_PLACED = "onyxwood_tree_placed";
 
     private Naming() {
         //Unused

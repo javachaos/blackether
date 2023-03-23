@@ -5,16 +5,19 @@ import net.ethermod.blackether.registries.BlockRegistry;
 import net.ethermod.blackether.utils.Naming;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.data.BlockFamilies;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.data.models.model.TexturedModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+
+import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class EthermodModelProvider extends FabricModelProvider {
     public EthermodModelProvider(FabricDataOutput output) {
@@ -50,8 +53,16 @@ public class EthermodModelProvider extends FabricModelProvider {
         blockStateModelGenerator.createTrivialBlock(onyxWoodLeaves, TexturedModel.LEAVES);
         blockStateModelGenerator.createPlant(onyxWoodSapling, pottedOnyxWoodSapling,
                 BlockModelGenerators.TintState.NOT_TINTED);
+        BlockFamily b = BlockFamilies.familyBuilder(onyxWoodPlanks).getFamily();
+        //TODO Implement the block below (adding items and textures as needed
+//                .button(Blocks.OAK_BUTTON).fence(Blocks.OAK_FENCE)
+//                .fenceGate(Blocks.OAK_FENCE_GATE).pressurePlate(Blocks.OAK_PRESSURE_PLATE)
+//                .sign(Blocks.OAK_SIGN, Blocks.OAK_WALL_SIGN).slab(Blocks.OAK_SLAB)
+//                .stairs(Blocks.OAK_STAIRS).door(Blocks.OAK_DOOR).trapdoor(Blocks.OAK_TRAPDOOR)
+//                .recipeGroupPrefix("wooden").recipeUnlockedBy("has_planks").getFamily();
+        blockStateModelGenerator.family(b.getBaseBlock()).generateFor(b);
 
-        ResourceLocation resourceLocation = ModelLocationUtils.getModelLocation(onyxWoodPlanks);
+        ResourceLocation resourceLocation = new ResourceLocation(MOD_ID, Naming.ONYXWOOD_PLANKS);
         TexturedModel texturedModel = TexturedModel.CUBE.get(onyxWoodPlanks);
         ResourceLocation resourceLocation2 = ModelTemplates.SLAB_BOTTOM.create(petrifiedOnyxWoodSlab, texturedModel.getMapping(),
                 blockStateModelGenerator.modelOutput);

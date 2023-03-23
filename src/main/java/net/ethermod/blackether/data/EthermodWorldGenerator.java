@@ -3,6 +3,7 @@ package net.ethermod.blackether.data;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -15,10 +16,9 @@ public class EthermodWorldGenerator extends FabricDynamicRegistryProvider {
 
     @Override
     protected void configure(HolderLookup.Provider registries, Entries entries) {
-        //TODO figure more out here.
-        // Start with getting Generated structures working dynamically
-        // and then add spawn.onyxforts properties back
-        // to properties file using structure variants ect.
+        entries.addAll(registries.lookupOrThrow(Registries.CONFIGURED_FEATURE));
+        entries.addAll(registries.lookupOrThrow(Registries.PLACED_FEATURE));
+        entries.addAll(registries.lookupOrThrow(Registries.BIOME));
     }
 
     @Override
