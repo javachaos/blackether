@@ -50,8 +50,6 @@ public final class BlackEtherClientMod implements ClientModInitializer {
                         Naming.ONYXWOOD_PRESSURE_PLATE,
                         Naming.ONYXWOOD_DOOR,
                         Naming.ONYXWOOD_TRAPDOOR
-//                        Naming.ONYXWOOD_SIGN,
-//                        Naming.ONYXWOOD_WALL_SIGN
                 )
                 .forEach(BlackEtherClientMod::registerBlock);
     }

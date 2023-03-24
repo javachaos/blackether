@@ -66,6 +66,7 @@ public class ItemRegistry extends BaseRegistry {
         registerItem(Naming.ONYX_BOOTS,
                 new ArmorItem(onyxArmorMaterial, ArmorItem.Type.BOOTS, (new Item.Properties())));
         registerItem(Naming.ETHER_ORE, new Item(new FabricItemSettings()));
+        registerItem(Naming.ETHER_INGOT, new EtherIngot(new FabricItemSettings()));
         registerItem(Naming.ONYX_DUST, new Item(new FabricItemSettings()));
         registerItem(Naming.ONYX_PICKAXE, new OnyxPickaxe());
         registerItem(Naming.ONYX_SHOVEL, new OnyxShovel());
@@ -99,5 +100,6 @@ public class ItemRegistry extends BaseRegistry {
         translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_FROG_EGG), "Onyx Frog Egg");
         translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE), "Onyx Ore");
         translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE), "Ether Ore");
+        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ETHER_INGOT), "Ether Ingot");
     }
 }

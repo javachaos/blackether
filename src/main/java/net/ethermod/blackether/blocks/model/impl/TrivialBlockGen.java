@@ -10,6 +10,7 @@ public class TrivialBlockGen implements BlockStateModelGenerator {
     public void genModels(BlockModelGenerators blockStateModelGenerator) {
         createTrivialEtherBlock(blockStateModelGenerator, Naming.BLOCK_OF_ETHER);
         createTrivialEtherBlock(blockStateModelGenerator, Naming.CHISELED_ETHER);
+
     }
 
     private void createTrivialEtherBlock(final BlockModelGenerators blockStateModelGenerator, String blockOfEther) {

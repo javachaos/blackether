@@ -1,6 +1,6 @@
 package net.ethermod.blackether.data;
 
-import net.ethermod.blackether.items.gen.impl.*;
+import net.ethermod.blackether.recipes.impl.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -30,7 +30,13 @@ public class EthermodRecipeGenerator extends FabricRecipeProvider {
                         new DiamondSmeltingRecipe(),
                         new NeutronBombRecipe(),
                         new OnyxDustRecipe(),
-                        new OnyxArmorRecipe())
+                        new OnyxArmorRecipe(),
+                        new StickRecipe(),
+                        new OnyxSlabRecipe(),
+                        new OnyxPlankRecipe(),
+                        new ChiseledEtherRecipe(),
+                        new EtherIngotSmeltingRecipe(),
+                        new OnyxDoorRecipe())
                 .forEach(x -> x.build(exporter));
     }
 }

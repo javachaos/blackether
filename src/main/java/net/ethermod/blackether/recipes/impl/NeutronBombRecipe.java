@@ -1,7 +1,7 @@
-package net.ethermod.blackether.items.gen.impl;
+package net.ethermod.blackether.recipes.impl;
 
 import net.ethermod.blackether.blocks.NeutronBomb;
-import net.ethermod.blackether.items.gen.core.ItemRecipeBuilder;
+import net.ethermod.blackether.recipes.core.ItemRecipeBuilder;
 import net.ethermod.blackether.registries.BlockRegistry;
 import net.ethermod.blackether.registries.ItemRegistry;
 import net.ethermod.blackether.utils.Naming;

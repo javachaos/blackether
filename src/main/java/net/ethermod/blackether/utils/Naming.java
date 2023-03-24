@@ -29,6 +29,7 @@ public class Naming {
     public static final String ONYXWOOD_WALL_SIGN = "onyxwood_wall_sign";
     public static final String ONYXWOOD_DOOR = "onyxwood_door";
     public static final String ONYXWOOD_TRAPDOOR = "onyxwood_trapdoor";
+    public static final String ETHER_INGOT = "ether_ingot";
 
     private Naming() {
         //Unused
@@ -60,6 +61,7 @@ public class Naming {
     //Items
     public static final String ONYX_SNAKE_EGG = "onyx_snake_egg";
     public static final String ONYX_APPLE = "onyx_apple";
+
     public static final String ONYX_ORE = "onyx_ore";
     public static final String NEUTRONIUM = "neutronium";
     public static final String ONYX_HELMET = "onyx_helmet";

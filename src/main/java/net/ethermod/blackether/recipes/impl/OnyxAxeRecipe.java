@@ -1,7 +1,7 @@
-package net.ethermod.blackether.items.gen.impl;
+package net.ethermod.blackether.recipes.impl;
 
-import net.ethermod.blackether.items.OnyxSword;
-import net.ethermod.blackether.items.gen.core.ItemRecipeBuilder;
+import net.ethermod.blackether.items.OnyxAxe;
+import net.ethermod.blackether.recipes.core.ItemRecipeBuilder;
 import net.ethermod.blackether.registries.ItemRegistry;
 import net.ethermod.blackether.utils.Naming;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -16,18 +16,19 @@ import java.util.function.Consumer;
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 import static net.minecraft.data.recipes.RecipeProvider.*;
 
-public class OnyxSwordRecipe implements ItemRecipeBuilder {
+public class OnyxAxeRecipe implements ItemRecipeBuilder {
     public void build(Consumer<FinishedRecipe> exporter) {
-        OnyxSword sword = (OnyxSword) ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD);
+        OnyxAxe axe = (OnyxAxe) ItemRegistry.getInstance().getItem(Naming.ONYX_AXE);
         Item onyxOre = ItemRegistry.getInstance().getItem(Naming.ONYX_ORE);
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, sword)
-                .pattern(" X ")
-                .pattern(" X ")
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, axe)
+                .pattern("XX ")
+                .pattern("XS ")
                 .pattern(" S ")
                 .define('X', onyxOre)
                 .define('S', Items.STICK)
                 .unlockedBy(getHasName(onyxOre), has(onyxOre))
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
-                .save(exporter, new ResourceLocation(MOD_ID, getSimpleRecipeName(sword)));
+                .save(exporter, new ResourceLocation(MOD_ID, getSimpleRecipeName(axe)));
     }
 }

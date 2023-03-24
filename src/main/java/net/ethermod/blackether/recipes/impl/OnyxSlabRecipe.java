@@ -1,6 +1,6 @@
-package net.ethermod.blackether.items.gen.impl;
+package net.ethermod.blackether.recipes.impl;
 
-import net.ethermod.blackether.items.gen.core.ItemRecipeBuilder;
+import net.ethermod.blackether.recipes.core.ItemRecipeBuilder;
 import net.ethermod.blackether.registries.BlockRegistry;
 import net.ethermod.blackether.utils.Naming;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -22,6 +22,5 @@ public class OnyxSlabRecipe implements ItemRecipeBuilder {
                 Ingredient.of(plank))
                 .unlockedBy("has_planks", has(plank))
                 .save(exporter);
-
     }
 }
