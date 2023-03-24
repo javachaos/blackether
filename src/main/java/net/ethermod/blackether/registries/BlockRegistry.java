@@ -8,6 +8,8 @@ import net.ethermod.blackether.utils.Naming;
 import net.ethermod.blackether.world.feature.tree.OnyxWoodGrower;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -16,6 +18,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
@@ -100,8 +105,32 @@ public class BlockRegistry extends BaseRegistry {
                 new SaplingBlock(new OnyxWoodGrower(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
         Block pottedOnyxWoodSapling = registerBlock(Naming.POTTED_ONYXWOOD_SAPLING,
                 new FlowerPotBlock(onyxWoodSapling, FabricBlockSettings.copyOf(Blocks.POTTED_OAK_SAPLING)));
-        Block petrifiedOnyxWoodSlab = registerBlock(Naming.PETRIFIED_ONYXWOOD_SLAB,
-                new SlabBlock(FabricBlockSettings.copyOf(Blocks.PETRIFIED_OAK_SLAB)));
+        Block onyxWoodSlab = registerBlock(Naming.ONYXWOOD_SLAB,
+                new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB)));
+        Block onyxStairs = registerBlock(Naming.ONYXWOOD_STAIRS,
+                new StairBlock(onyxWoodPlanks.defaultBlockState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS)));
+
+        BlockSetType onyxBlockSet = BlockSetTypeRegistry.registerWood(onyxWoodPlanks.getLootTable());
+        WoodType woodType = WoodTypeRegistry.register(onyxWoodPlanks.getLootTable(), onyxBlockSet);
+
+        Block onyxWoodFence = registerBlock(Naming.ONYXWOOD_FENCE,
+                new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
+
+        Block onyxWoodGate = registerBlock(Naming.ONYXWOOD_GATE,
+                new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), woodType));
+
+        Block onyxWoodButton = registerBlock(Naming.ONYXWOOD_BUTTON,
+                new ButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON),
+                        onyxBlockSet, 1, false));
+
+        Block onyxWoodPressurePlate = registerBlock(Naming.ONYXWOOD_PRESSURE_PLATE,
+                new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING,
+                        FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), onyxBlockSet));
+        Block onyxWoodDoor = registerBlock(Naming.ONYXWOOD_DOOR,
+                new DoorBlock(BlockBehaviour.Properties.of(Material.METAL,
+                        onyxWoodPlanks.defaultMaterialColor()).strength(30.0F).noOcclusion(), onyxBlockSet));
+        Block trapDoor = registerBlock(Naming.ONYXWOOD_TRAPDOOR,
+                new TrapDoorBlock(FabricBlockSettings.copyOf(Blocks.OAK_TRAPDOOR), onyxBlockSet));
 
         putBlock(Naming.ONYXWOOD_LOG, onyxWoodLog);
         putBlock(Naming.ONYXWOOD_WOOD, onyxWood);
@@ -111,7 +140,14 @@ public class BlockRegistry extends BaseRegistry {
         putBlock(Naming.ONYXWOOD_LEAVES, onyxWoodLeaves);
         putBlock(Naming.ONYXWOOD_SAPLING, onyxWoodSapling);
         putBlock(Naming.POTTED_ONYXWOOD_SAPLING, pottedOnyxWoodSapling);
-        putBlock(Naming.PETRIFIED_ONYXWOOD_SLAB, petrifiedOnyxWoodSlab);
+        putBlock(Naming.ONYXWOOD_SLAB, onyxWoodSlab);
+        putBlock(Naming.ONYXWOOD_STAIRS, onyxStairs);
+        putBlock(Naming.ONYXWOOD_BUTTON, onyxWoodButton);
+        putBlock(Naming.ONYXWOOD_GATE, onyxWoodGate);
+        putBlock(Naming.ONYXWOOD_FENCE, onyxWoodFence);
+        putBlock(Naming.ONYXWOOD_PRESSURE_PLATE, onyxWoodPressurePlate);
+        putBlock(Naming.ONYXWOOD_DOOR, onyxWoodDoor);
+        putBlock(Naming.ONYXWOOD_TRAPDOOR, trapDoor);
     }
 
     public void generateTranslation(FabricLanguageProvider.TranslationBuilder translationBuilder) {
@@ -128,6 +164,13 @@ public class BlockRegistry extends BaseRegistry {
         translationBuilder.add(getBlock(Naming.ONYXWOOD_LEAVES), "Onyx Leaves");
         translationBuilder.add(getBlock(Naming.ONYXWOOD_SAPLING), "Onyx Sapling");
         translationBuilder.add(getBlock(Naming.POTTED_ONYXWOOD_SAPLING), "Potted Onyx Sapling");
-        translationBuilder.add(getBlock(Naming.PETRIFIED_ONYXWOOD_SLAB), "Onyx Slab");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_SLAB), "Onyx Slab");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_STAIRS), "Onyx Stairs");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_BUTTON), "Onyx Button");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_FENCE), "Onyx Fence");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_GATE), "Onyx Fence Gate");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_PRESSURE_PLATE), "Onyx Pressure Plate");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_DOOR), "Onyx Door");
+        translationBuilder.add(getBlock(Naming.ONYXWOOD_TRAPDOOR), "Onyx Trap Door");
     }
 }

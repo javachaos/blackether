@@ -16,6 +16,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.RenderType;
 import software.bernie.geckolib.network.GeckoLibNetwork;
 
+import java.util.List;
+
 public final class BlackEtherClientMod implements ClientModInitializer {
 
     @Override
@@ -32,32 +34,31 @@ public final class BlackEtherClientMod implements ClientModInitializer {
     }
 
     private static void registerTrees() {
-        BlockRenderLayerMap.INSTANCE.putBlock(
-                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_SAPLING),
-                RenderType.cutout());
+        List.of(
+                        Naming.ONYXWOOD_SAPLING,
+                        Naming.ONYXWOOD_LEAVES,
+                        Naming.ONYXWOOD_LOG,
+                        Naming.ONYXWOOD_PLANKS,
+                        Naming.ONYXWOOD_LOG_STRIPPED,
+                        Naming.ONYXWOOD_WOOD,
+                        Naming.ONYXWOOD_WOOD_STRIPPED,
+                        Naming.ONYXWOOD_SLAB,
+                        Naming.ONYXWOOD_STAIRS,
+                        Naming.ONYXWOOD_BUTTON,
+                        Naming.ONYXWOOD_FENCE,
+                        Naming.ONYXWOOD_GATE,
+                        Naming.ONYXWOOD_PRESSURE_PLATE,
+                        Naming.ONYXWOOD_DOOR,
+                        Naming.ONYXWOOD_TRAPDOOR
+//                        Naming.ONYXWOOD_SIGN,
+//                        Naming.ONYXWOOD_WALL_SIGN
+                )
+                .forEach(BlackEtherClientMod::registerBlock);
+    }
 
+    private static void registerBlock(String blockName) {
         BlockRenderLayerMap.INSTANCE.putBlock(
-                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LEAVES),
-                RenderType.cutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(
-                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG),
-                RenderType.cutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(
-                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_PLANKS),
-                RenderType.cutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(
-                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG_STRIPPED),
-                RenderType.cutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(
-                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_WOOD),
-                RenderType.cutout());
-
-        BlockRenderLayerMap.INSTANCE.putBlock(
-                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_WOOD_STRIPPED),
+                BlockRegistry.getInstance().getBlock(blockName),
                 RenderType.cutout());
     }
 

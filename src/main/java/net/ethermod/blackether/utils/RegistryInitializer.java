@@ -27,6 +27,7 @@ public class RegistryInitializer {
         FuelRegistry.INSTANCE.add(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE), 3000);
 
         //Done registering now free up this deque
-        registries.clear();
+        //TODO revise this line
+        //registries.clear();
     }
 }

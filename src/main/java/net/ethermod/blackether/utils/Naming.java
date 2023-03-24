@@ -10,21 +10,32 @@ public class Naming {
     public static final String ONYX_DIMENSION = "onyx_dimension";
     public static final String ONYXWOOD_LOG = "onyxwood_log";
     public static final String ONYXWOOD_WOOD = "onyxwood_wood";
+    public static final String ONYXWOOD_WOOD_TYPE = "onyxwood_wood_type";
     public static final String ONYXWOOD_LOG_STRIPPED = "onyxwood_log_stripped";
     public static final String ONYXWOOD_WOOD_STRIPPED = "onyxwood_wood_stripped";
     public static final String ONYXWOOD_PLANKS = "onyxwood_planks";
     public static final String ONYXWOOD_LEAVES = "onyxwood_leaves";
     public static final String ONYXWOOD_SAPLING = "onyxwood_sapling";
     public static final String POTTED_ONYXWOOD_SAPLING = "potted_onyxwood_sapling";
-    public static final String PETRIFIED_ONYXWOOD_SLAB = "petrified_onyxwood_slab";
+    public static final String ONYXWOOD_SLAB = "onyxwood_slab";
     public static final String ONYXWOOD_TREE = "onyxwood_tree";
     public static final String ONYXWOOD_TREE_PLACED = "onyxwood_tree_placed";
+    public static final String ONYXWOOD_STAIRS = "onyxwood_stairs";
+    public static final String ONYXWOOD_BUTTON = "onyxwood_button";
+    public static final String ONYXWOOD_FENCE = "onyxwood_fence";
+    public static final String ONYXWOOD_GATE = "onyxwood_gate";
+    public static final String ONYXWOOD_PRESSURE_PLATE = "onyxwood_pressure_plate";
+    public static final String ONYXWOOD_SIGN = "onyxwood_sign";
+    public static final String ONYXWOOD_WALL_SIGN = "onyxwood_wall_sign";
+    public static final String ONYXWOOD_DOOR = "onyxwood_door";
+    public static final String ONYXWOOD_TRAPDOOR = "onyxwood_trapdoor";
 
     private Naming() {
         //Unused
     }
 
     public static final String BLOCKS_FOLDER = "blocks/";
+    public static final String BLOCK_FOLDER = "block/";
     public static final String CHEST_LOOT_TABLE_FOLDER = "loot_tables/chests/";
 
     //Misc
