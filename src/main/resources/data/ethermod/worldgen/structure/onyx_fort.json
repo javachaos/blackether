@@ -1,6 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "biomes": "#minecraft:has_structure/mineshaft",
+  "biomes": "ethermod:onyx_biome",
   "step": "surface_structures",
   "spawn_overrides": {
     "creature": {

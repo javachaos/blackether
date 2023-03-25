@@ -30,6 +30,7 @@ public class Naming {
     public static final String ONYXWOOD_DOOR = "onyxwood_door";
     public static final String ONYXWOOD_TRAPDOOR = "onyxwood_trapdoor";
     public static final String ETHER_INGOT = "ether_ingot";
+    public static final String DARK_GRASS_CARVER = "dark_grass_carver";
 
     private Naming() {
         //Unused

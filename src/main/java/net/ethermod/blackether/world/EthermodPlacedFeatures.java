@@ -10,17 +10,26 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.WorldGenSettings;
+import net.minecraft.world.level.levelgen.carver.CarverConfiguration;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class EthermodPlacedFeatures {
+
+    private EthermodPlacedFeatures() {}
+
     public static final ResourceKey<PlacedFeature> ETHERORE = registerKey(Naming.ETHER_ORE_BLOCK);
+    public static final ResourceKey<PlacedFeature> DARK_GRASS = registerKey(Naming.DARK_GRASS);
     public static final ResourceKey<PlacedFeature> ONYXTREE_KEY = registerKey(Naming.ONYXWOOD_TREE_PLACED);
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
@@ -32,6 +41,13 @@ public class EthermodPlacedFeatures {
                         PlacementUtils.countExtra(11, 0.000001f, 12),
                         BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_SAPLING))
         );
+
+        register(context, DARK_GRASS, configuredFeatureRegistryEntryLookup
+                        .getOrThrow(EthermodConfiguredFeatures.DARK_GRASS),
+                NoiseThresholdCountPlacement.of(0, 1, 1),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome());
 
         register(context, ETHERORE, configuredFeatureRegistryEntryLookup
                         .getOrThrow(EthermodConfiguredFeatures.ETHERORE),
@@ -69,4 +85,5 @@ public class EthermodPlacedFeatures {
     public static List<PlacementModifier> modifiersWithRarity(int chance, PlacementModifier heightModifier) {
         return modifiers(RarityFilter.onAverageOnceEvery(chance), heightModifier);
     }
+
 }

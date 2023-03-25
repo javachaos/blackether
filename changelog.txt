@@ -1,11 +1,6 @@
-[Update 3.5.10]
+[Update 3.6.0]
 
-Added an onyx tree (drops apples) which spawn in the new dimension and swamp biome.
-You can get to the new dimension using a portal made with chiseled ether blocks.
-You'll have to find the proper item used to light it. (Hint it was a useless item for a long time.)
-Added a frog.
-Added a few new recipes.
-If you find any bugs please let me know
+Fixed onyx biome, moved structure features to this biome.
 
 Requires:
     - Geckolib 1.19.4:4.1.0
