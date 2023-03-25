@@ -2,7 +2,6 @@ plugins {
     id 'fabric-loom' version '1.1-SNAPSHOT'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
     id 'com.modrinth.minotaur' version '2.+'
-    id 'com.jaredsburrows.license' version '0.9.2'
     id 'maven-publish'
 }
 
@@ -33,10 +32,10 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()
 
-    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    implementation "software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}"
-    implementation 'net.kyrptonaught:customportalapi:0.0.1-beta61-1.19'
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}"
+    modImplementation 'net.kyrptonaught:customportalapi:0.0.1-beta61-1.19'
     include 'net.kyrptonaught:customportalapi:0.0.1-beta61-1.19'
     include "software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}"
 }
@@ -77,23 +76,6 @@ java {
 
 jar {
     from 'LICENSE'
-}
-
-apply plugin: "com.jaredsburrows.license"
-
-licenseReport {
-    generateCsvReport = false
-    generateHtmlReport = false
-    generateJsonReport = false
-    generateTextReport = true
-    ignoredPatterns = []
-
-    // These options are ignored for Java projects
-    copyCsvReportToAssets = false
-    copyHtmlReportToAssets = false
-    copyJsonReportToAssets = false
-    copyTextReportToAssets = true
-    useVariantSpecificAssetDirs = false
 }
 
 curseforge {
