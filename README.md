@@ -1,7 +1,7 @@
 # Black Ether Minecraft Mod
 [![CodeQL](https://github.com/javachaos/blackether/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/javachaos/blackether/actions/workflows/codeql-analysis.yml)
 
-To install, go to https://www.curseforge.com/minecraft/mc-mods/black-ether-mod
+To install, go to https://modrinth.com/mod/black-ether/
 
 ## Current Items:
 
