@@ -1,6 +1,6 @@
-[Update 3.6.0]
+[Update 3.6.2]
 
-Fixed onyx biome, moved structure features to this biome.
+Actually fixed tree rendering in new dimension.
 
 Requires:
     - Geckolib 1.19.4:4.1.0

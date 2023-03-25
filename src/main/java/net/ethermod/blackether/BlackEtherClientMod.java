@@ -10,10 +10,7 @@ import net.ethermod.blackether.entity.renderer.OnyxSnakeRenderer;
 import net.ethermod.blackether.registries.BlockRegistry;
 import net.ethermod.blackether.registries.EntityRegistry;
 import net.ethermod.blackether.utils.Naming;
-import net.ethermod.blackether.world.EthermodBiomes;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.RenderType;
@@ -38,8 +35,8 @@ public final class BlackEtherClientMod implements ClientModInitializer {
 
     private static void registerTrees() {
         List.of(
-                        Naming.ONYXWOOD_SAPLING,
                         Naming.ONYXWOOD_LEAVES,
+                        Naming.ONYXWOOD_SAPLING,
                         Naming.ONYXWOOD_LOG,
                         Naming.ONYXWOOD_PLANKS,
                         Naming.ONYXWOOD_LOG_STRIPPED,
@@ -58,6 +55,7 @@ public final class BlackEtherClientMod implements ClientModInitializer {
     }
 
     private static void registerBlock(String blockName) {
+
         BlockRenderLayerMap.INSTANCE.putBlock(
                 BlockRegistry.getInstance().getBlock(blockName),
                 RenderType.cutout());

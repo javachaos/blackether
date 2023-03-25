@@ -10,15 +10,19 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -32,6 +36,10 @@ import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 public class BlockRegistry extends BaseRegistry {
 
     private static final AtomicReference<BlockRegistry> INSTANCE = new AtomicReference<>();
+
+    public static final ResourceKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = ResourceKey.create(
+            Registries.PLACED_FEATURE, new ResourceLocation(MOD_ID, Naming.ETHER_ORE_BLOCK));
+
 
     private BlockRegistry() {
     }
@@ -47,9 +55,6 @@ public class BlockRegistry extends BaseRegistry {
     public Block getBlock(final String name) {
         return super.getBlock(name);
     }
-
-    public static final ResourceKey<PlacedFeature> CUSTOM_ORE_PLACED_KEY = ResourceKey.create(
-            Registries.PLACED_FEATURE, new ResourceLocation(MOD_ID, Naming.ETHER_ORE_BLOCK));
 
     private <B extends Block> B registerBlock(String name, B block) {
         return register(block, new ResourceLocation(MOD_ID, name));
@@ -100,7 +105,11 @@ public class BlockRegistry extends BaseRegistry {
         Block onyxWoodPlanks = registerBlock(Naming.ONYXWOOD_PLANKS,
                 new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)));
         Block onyxWoodLeaves = registerBlock(Naming.ONYXWOOD_LEAVES,
-                new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES)));
+                new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES)
+                        .strength(0.2F).randomTicks().sound(SoundType.GRASS)
+                        .noOcclusion().isValidSpawn(BlockRegistry::ocelotOrParrot)
+                        .isSuffocating(BlockRegistry::never)
+                        .isViewBlocking(BlockRegistry::never)));
         Block onyxWoodSapling = registerBlock(Naming.ONYXWOOD_SAPLING,
                 new SaplingBlock(new OnyxWoodGrower(), FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
         Block pottedOnyxWoodSapling = registerBlock(Naming.POTTED_ONYXWOOD_SAPLING,
@@ -172,5 +181,13 @@ public class BlockRegistry extends BaseRegistry {
         translationBuilder.add(getBlock(Naming.ONYXWOOD_PRESSURE_PLATE), "Onyx Pressure Plate");
         translationBuilder.add(getBlock(Naming.ONYXWOOD_DOOR), "Onyx Door");
         translationBuilder.add(getBlock(Naming.ONYXWOOD_TRAPDOOR), "Onyx Trap Door");
+    }
+
+    private static boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return false;
+    }
+
+    private static Boolean ocelotOrParrot(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
+        return entityType == EntityType.OCELOT || entityType == EntityType.PARROT;
     }
 }

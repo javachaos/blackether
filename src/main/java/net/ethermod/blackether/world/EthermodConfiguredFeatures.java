@@ -13,7 +13,10 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -27,12 +30,12 @@ import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class EthermodConfiguredFeatures {
 
-    private EthermodConfiguredFeatures() {}
+    private EthermodConfiguredFeatures() {
+    }
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> ETHERORE = registerKey(Naming.ETHER_ORE_BLOCK);
     public static final ResourceKey<ConfiguredFeature<?, ?>> ONYXTREE = registerKey(Naming.ONYXWOOD_TREE);
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_GRASS = registerKey(Naming.DARK_GRASS);
-
 
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
@@ -48,8 +51,7 @@ public class EthermodConfiguredFeatures {
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG)),
                         new StraightTrunkPlacer(4, 6, 3),
-                        BlockStateProvider.simple(BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LEAVES)
-                                .defaultBlockState()),
+                        BlockStateProvider.simple(BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LEAVES)),
                         new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 4),
                         new TwoLayersFeatureSize(1, 0, 2)).build());
         register(context, ETHERORE, Feature.ORE, new OreConfiguration(etherOre, 12));
