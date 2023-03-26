@@ -1,9 +1,10 @@
-package net.ethermod.blackether.world;
+package net.ethermod.blackether.world.gen;
 
+import net.ethermod.blackether.BlackEtherMod;
+import net.ethermod.blackether.effects.ColoredDustParticleEffect;
 import net.ethermod.blackether.entity.mobs.OnyxFrogEntity;
 import net.ethermod.blackether.registries.EntityRegistry;
 import net.ethermod.blackether.utils.Naming;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
@@ -22,11 +23,14 @@ import static net.minecraft.data.worldgen.biome.OverworldBiomes.calculateSkyColo
 public class EthermodBiomes {
 
     public static void bootstrap(BootstapContext<Biome> bootstapContext) {
-        ResourceKey<Biome> biome = ResourceKey.create(Registries.BIOME, new ResourceLocation(MOD_ID, "onyx_biome"));
-        HolderGetter<PlacedFeature> holderGetter = bootstapContext.lookup(Registries.PLACED_FEATURE);
-        HolderGetter<ConfiguredWorldCarver<?>> holderGetter2 = bootstapContext.lookup(Registries.CONFIGURED_CARVER);
-        bootstapContext.register(biome,
-                create(holderGetter, holderGetter2));
+        if (BlackEtherMod.PROPERTIES.getBooleanProperty("enable.onyx.biome", true)) {
+            ResourceKey<Biome> biome = ResourceKey.create(Registries.BIOME, new ResourceLocation(MOD_ID, "onyx_biome"));
+            HolderGetter<PlacedFeature> holderGetter = bootstapContext.lookup(Registries.PLACED_FEATURE);
+            HolderGetter<ConfiguredWorldCarver<?>> holderGetter2 = bootstapContext.lookup(Registries.CONFIGURED_CARVER);
+            bootstapContext.register(biome,
+                    create(holderGetter, holderGetter2));
+
+        }
     }
 
     private static Biome create(HolderGetter<PlacedFeature> holderGetter, HolderGetter<ConfiguredWorldCarver<?>> holderGetter2) {
@@ -34,11 +38,11 @@ public class EthermodBiomes {
         BiomeDefaultFeatures.addDefaultCrystalFormations(builder);
         BiomeDefaultFeatures.addDefaultMonsterRoom(builder);
         BiomeDefaultFeatures.addDefaultUndergroundVariety(builder);
-        BiomeDefaultFeatures.addSavannaGrass(builder);
         BiomeDefaultFeatures.addDefaultOres(builder);
         BiomeDefaultFeatures.addDefaultSoftDisks(builder);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 EthermodPlacedFeatures.ONYXTREE_KEY);
+        BiomeDefaultFeatures.addSavannaGrass(builder);
 
         MobSpawnSettings.Builder builder2 = new MobSpawnSettings.Builder();
         BiomeDefaultFeatures.farmAnimals(builder2);
@@ -54,10 +58,16 @@ public class EthermodBiomes {
     private static Biome biome(MobSpawnSettings.Builder builder,
                                BiomeGenerationSettings.Builder builder2) {
         BiomeSpecialEffects.Builder builder3 = (new BiomeSpecialEffects.Builder())
-                .waterColor(0).waterFogColor(323341).fogColor(7829115).skyColor(calculateSkyColor(6184036f))
+                .grassColorOverride(0x3B3B3B)
+                .ambientParticle(new AmbientParticleSettings(
+                        new ColoredDustParticleEffect(0f, 0f, 0f, 0.2f),
+                        0.12f))
+                .waterColor(0)
+                .waterFogColor(7039851)
+                .fogColor(7829115)
+                .skyColor(calculateSkyColor(6184036f))
                 .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).backgroundMusic(null);
-
-        return (new Biome.BiomeBuilder()).hasPrecipitation(false)
+        return (new Biome.BiomeBuilder()).hasPrecipitation(true)
                 .temperature((float) 2.0).downfall((float) 0.0).specialEffects(builder3.build())
                 .mobSpawnSettings(builder.build()).generationSettings(builder2.build()).build();
     }

@@ -1,4 +1,4 @@
-package net.ethermod.blackether.world;
+package net.ethermod.blackether.world.gen;
 
 import net.ethermod.blackether.registries.BlockRegistry;
 import net.ethermod.blackether.utils.Naming;
@@ -10,23 +10,19 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.WorldGenSettings;
-import net.minecraft.world.level.levelgen.carver.CarverConfiguration;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
-import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class EthermodPlacedFeatures {
 
-    private EthermodPlacedFeatures() {}
+    private EthermodPlacedFeatures() {
+    }
 
     public static final ResourceKey<PlacedFeature> ETHERORE = registerKey(Naming.ETHER_ORE_BLOCK);
     public static final ResourceKey<PlacedFeature> DARK_GRASS = registerKey(Naming.DARK_GRASS);
@@ -35,6 +31,13 @@ public class EthermodPlacedFeatures {
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         var configuredFeatureRegistryEntryLookup = context.lookup(Registries.CONFIGURED_FEATURE);
 
+        register(context, ETHERORE, configuredFeatureRegistryEntryLookup
+                        .getOrThrow(EthermodConfiguredFeatures.ETHERORE),
+                modifiersWithCount(6,                         //Vein size
+                        HeightRangePlacement.triangle(
+                                VerticalAnchor.aboveBottom(-80),  //min Y
+                                VerticalAnchor.aboveBottom(80))));//max Y
+        
         register(context, ONYXTREE_KEY, configuredFeatureRegistryEntryLookup
                         .getOrThrow(EthermodConfiguredFeatures.ONYXTREE),
                 VegetationPlacements.treePlacement(
@@ -42,19 +45,6 @@ public class EthermodPlacedFeatures {
                         BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_SAPLING))
         );
 
-        register(context, DARK_GRASS, configuredFeatureRegistryEntryLookup
-                        .getOrThrow(EthermodConfiguredFeatures.DARK_GRASS),
-                NoiseThresholdCountPlacement.of(0, 1, 1),
-                InSquarePlacement.spread(),
-                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
-                BiomeFilter.biome());
-
-        register(context, ETHERORE, configuredFeatureRegistryEntryLookup
-                        .getOrThrow(EthermodConfiguredFeatures.ETHERORE),
-                modifiersWithCount(6,                         //Vein size
-                        HeightRangePlacement.triangle(
-                                VerticalAnchor.aboveBottom(-80),  //min Y
-                                VerticalAnchor.aboveBottom(80))));//max Y
     }
 
     public static ResourceKey<PlacedFeature> registerKey(String name) {

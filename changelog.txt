@@ -1,6 +1,6 @@
-[Update 3.6.2]
+[Update 3.6.3]
 
-Actually fixed tree rendering in new dimension.
+Finished new dimension.
 
 Requires:
     - Geckolib 1.19.4:4.1.0

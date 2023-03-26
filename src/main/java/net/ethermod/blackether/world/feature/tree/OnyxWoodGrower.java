@@ -1,6 +1,6 @@
 package net.ethermod.blackether.world.feature.tree;
 
-import net.ethermod.blackether.world.EthermodConfiguredFeatures;
+import net.ethermod.blackether.world.gen.EthermodConfiguredFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.grower.AbstractMegaTreeGrower;

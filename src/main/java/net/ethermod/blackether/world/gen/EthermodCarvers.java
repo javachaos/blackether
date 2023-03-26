@@ -1,4 +1,4 @@
-package net.ethermod.blackether.world;
+package net.ethermod.blackether.world.gen;
 
 import net.ethermod.blackether.utils.Naming;
 import net.minecraft.core.HolderGetter;
@@ -23,7 +23,6 @@ public class EthermodCarvers {
 
     public static final ResourceKey<ConfiguredWorldCarver<?>>
             DARK_GRASS_CONFIGURED_CARVER = registerCarver(Naming.DARK_GRASS_CARVER);
-
 
 
     public static void bootstrap(BootstapContext<ConfiguredWorldCarver<?>> context) {

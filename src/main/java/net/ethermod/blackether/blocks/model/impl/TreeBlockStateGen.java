@@ -24,12 +24,9 @@ public class TreeBlockStateGen implements BlockStateModelGenerator {
 
         blockStateModelGenerator.woodProvider(onyxWoodLog)
                 .logWithHorizontal(onyxWoodLog).wood(onyxWood);
-
         blockStateModelGenerator.woodProvider(onyxWoodLogStripped)
                 .logWithHorizontal(onyxWoodLogStripped).wood(onyxWoodStripped);
-
         blockStateModelGenerator.createTrivialBlock(onyxWoodLeaves, TexturedModel.LEAVES);
-
         blockStateModelGenerator.createPlant(onyxWoodSapling, pottedOnyxWoodSapling,
                 BlockModelGenerators.TintState.NOT_TINTED);
 

@@ -1,4 +1,4 @@
-package net.ethermod.blackether.world;
+package net.ethermod.blackether.world.gen;
 
 import net.ethermod.blackether.registries.BlockRegistry;
 import net.ethermod.blackether.utils.Naming;
@@ -46,14 +46,7 @@ public class EthermodConfiguredFeatures {
         List<OreConfiguration.TargetBlockState> etherOre =
                 List.of(OreConfiguration.target(stoneReplaceables, etherOreBlock.defaultBlockState()),
                         OreConfiguration.target(deepslateReplaceables, etherOreBlock.defaultBlockState()));
-        register(context, ONYXTREE,
-                Feature.TREE,
-                new TreeConfiguration.TreeConfigurationBuilder(
-                        BlockStateProvider.simple(BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG)),
-                        new StraightTrunkPlacer(4, 6, 3),
-                        BlockStateProvider.simple(BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LEAVES)),
-                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 4),
-                        new TwoLayersFeatureSize(1, 0, 2)).build());
+
         register(context, ETHERORE, Feature.ORE, new OreConfiguration(etherOre, 12));
         register(context, DARK_GRASS,
                 Feature.RANDOM_PATCH,
@@ -62,6 +55,14 @@ public class EthermodConfiguredFeatures {
                                 new SimpleBlockConfiguration(
                                         BlockStateProvider.simple(BlockRegistry.getInstance()
                                                 .getBlock(Naming.DARK_GRASS))))));
+        register(context, ONYXTREE,
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG)),
+                        new StraightTrunkPlacer(4, 6, 3),
+                        BlockStateProvider.simple(BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LEAVES)),
+                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 4),
+                        new TwoLayersFeatureSize(1, 0, 2)).build());
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
