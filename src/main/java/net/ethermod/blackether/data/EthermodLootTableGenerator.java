@@ -1,7 +1,7 @@
 package net.ethermod.blackether.data;
 
-import net.ethermod.blackether.blocks.gen.core.LootGenerator;
-import net.ethermod.blackether.blocks.gen.impl.*;
+import net.ethermod.blackether.data.blocks.core.LootGenerator;
+import net.ethermod.blackether.data.blocks.impl.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.resources.ResourceLocation;

@@ -1,6 +1,6 @@
 package net.ethermod.blackether.data;
 
-import net.ethermod.blackether.recipes.impl.*;
+import net.ethermod.blackether.data.recipes.impl.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.recipes.FinishedRecipe;

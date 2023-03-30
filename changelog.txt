@@ -1,6 +1,6 @@
-[Update 3.6.3]
+[Update 3.7.3]
 
-Finished new dimension.
+Added a new palace structure to the onyx dimension.
 
 Requires:
     - Geckolib 1.19.4:4.1.0

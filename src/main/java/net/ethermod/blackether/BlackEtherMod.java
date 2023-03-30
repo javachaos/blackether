@@ -13,13 +13,7 @@ public class BlackEtherMod implements ModInitializer {
     public static final PropertyManager PROPERTIES = new PropertyManager();
 
 
-//TODO https://github.com/Witixin1512/GeckoLib-MultiLoader-Template/tree/gl4-vanillagradle#readme
-// work towards shifting to this project template.
-
-//TODO Finish onyx_biome to grey/black atmosphere
-// add mob spawns
-// add a new mob
-// add a sound to the existing mob (snake)
+//TODO add a sound to the existing mob (snake)
 
     @Override
     public void onInitialize() {
@@ -27,7 +21,8 @@ public class BlackEtherMod implements ModInitializer {
         GeckoLib.initialize();
         RegistryInitializer.registerAll();
         LOGGER.debug("{} finished initializing.", MOD_ID);
-    }
 
+
+    }
 
 }

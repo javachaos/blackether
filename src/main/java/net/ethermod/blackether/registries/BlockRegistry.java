@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -85,12 +86,22 @@ public class BlockRegistry extends BaseRegistry {
         Block darkGrassBlock = registerBlock(Naming.DARK_GRASS,
                 new DarkGrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).strength(0.6f)));
         registerLogs();
+        registerStrippables();
 
         putBlock(Naming.ETHER_ORE_BLOCK, etherOreBlock);
         putBlock(Naming.BLOCK_OF_ETHER, blockOfEther);
         putBlock(Naming.NEUTRON_BOMB, neutronBomb);
         putBlock(Naming.DARK_GRASS, darkGrassBlock);
         putBlock(Naming.CHISELED_ETHER, chiseledEther);
+    }
+
+    private void registerStrippables() {
+        StrippableBlockRegistry.register(
+                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_WOOD),
+                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_WOOD_STRIPPED));
+        StrippableBlockRegistry.register(
+                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG),
+                BlockRegistry.getInstance().getBlock(Naming.ONYXWOOD_LOG_STRIPPED));
     }
 
     private void registerLogs() {

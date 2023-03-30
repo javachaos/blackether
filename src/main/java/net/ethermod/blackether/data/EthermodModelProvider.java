@@ -1,8 +1,8 @@
 package net.ethermod.blackether.data;
 
-import net.ethermod.blackether.blocks.model.impl.EtherOreBlockStateGen;
-import net.ethermod.blackether.blocks.model.impl.TreeBlockStateGen;
-import net.ethermod.blackether.blocks.model.impl.TrivialBlockGen;
+import net.ethermod.blackether.data.model.impl.EtherOreBlockStateGen;
+import net.ethermod.blackether.data.model.impl.TreeBlockStateGen;
+import net.ethermod.blackether.data.model.impl.TrivialBlockGen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.models.BlockModelGenerators;

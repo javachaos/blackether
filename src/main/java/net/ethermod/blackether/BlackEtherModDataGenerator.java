@@ -2,10 +2,10 @@ package net.ethermod.blackether;
 
 
 import net.ethermod.blackether.data.*;
-import net.ethermod.blackether.world.gen.EthermodBiomes;
-import net.ethermod.blackether.world.gen.EthermodCarvers;
-import net.ethermod.blackether.world.gen.EthermodConfiguredFeatures;
-import net.ethermod.blackether.world.gen.EthermodPlacedFeatures;
+import net.ethermod.blackether.data.world.EthermodBiomes;
+import net.ethermod.blackether.data.world.EthermodCarvers;
+import net.ethermod.blackether.data.world.EthermodConfiguredFeatures;
+import net.ethermod.blackether.data.world.EthermodPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.core.RegistrySetBuilder;

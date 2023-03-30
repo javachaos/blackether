@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "ethermod:onyx_fort",
+      "structure": "ethermod:palace",
       "weight": 1
     }
   ],
   "placement": {
     "type": "minecraft:random_spread",
-    "spacing": 400,
-    "separation": 55,
-    "salt": 992185355
+    "spacing": 255,
+    "separation": 60,
+    "salt": 8631613
   }
 }
