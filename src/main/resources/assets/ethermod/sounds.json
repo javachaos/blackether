@@ -3,5 +3,10 @@
     "sounds": [
       "ethermod:neutron_ionizing_fast"
     ]
+  },
+  "snake_hiss": {
+    "sounds": [
+      "ethermod:snake_hiss_fast"
+    ]
   }
 }

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "ethermod:onyx_hut",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 125,
+    "separation": 55,
+    "salt": 78458734875
+  }
+}

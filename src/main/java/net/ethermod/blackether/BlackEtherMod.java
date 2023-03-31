@@ -22,7 +22,6 @@ public class BlackEtherMod implements ModInitializer {
         RegistryInitializer.registerAll();
         LOGGER.debug("{} finished initializing.", MOD_ID);
 
-
     }
 
 }

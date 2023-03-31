@@ -27,9 +27,15 @@ public final class BlackEtherClientMod implements ClientModInitializer {
     }
 
     private static void registerRenderers() {
-        EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.NEUTRON_BOMB, NeutronBombEntity.class), NeutronBombEntityRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.ONYX_SNAKE, OnyxSnakeEntity.class), OnyxSnakeRenderer::new);
-        EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.ONYX_FROG, OnyxFrogEntity.class), OnyxFrogRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.NEUTRON_BOMB,
+                        NeutronBombEntity.class),
+                NeutronBombEntityRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.ONYX_SNAKE,
+                        OnyxSnakeEntity.class),
+                OnyxSnakeRenderer::new);
+        EntityRendererRegistry.register(EntityRegistry.getInstance().getEntityType(Naming.ONYX_FROG,
+                        OnyxFrogEntity.class),
+                OnyxFrogRenderer::new);
         registerTrees();
     }
 

@@ -31,8 +31,6 @@ public class ItemRegistry extends BaseRegistry {
         return INSTANCE.get();
     }
 
-    //public final
-
     public <I extends Item> void registerItem(String name, I item) {
         putItem(name, item);
         Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(MOD_ID, name), item);
@@ -75,31 +73,48 @@ public class ItemRegistry extends BaseRegistry {
         registerItem(Naming.ONYX_SWORD, new OnyxSword());
         FabricItemGroup.builder(
                         new ResourceLocation(BlackEtherMod.MOD_ID, Naming.ETHERMOD_ITEMGROUP))
-                .icon(() -> new ItemStack(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE)))
+                .icon(() -> new ItemStack(getItem(Naming.ONYX_APPLE)))
                 .displayItems((displayParameters, x) -> {
                     BlockRegistry.getInstance().getBlocks().forEach((b, v) -> x.accept(v));
-                    ItemRegistry.getInstance().getItems().forEach((i, v) -> x.accept(v));
+                    getItems().forEach((i, v) -> x.accept(v));
                 })
                 .build();
     }
 
     public void generateTranslation(FabricLanguageProvider.TranslationBuilder translationBuilder) {
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_APPLE), "Onyx Apple");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_HELMET), "Onyx Helmet");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_CHESTPLATE), "Onyx Chestplate");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_LEGGINGS), "Onyx Leggings");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_BOOTS), "Onyx Boots");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_DUST), "Onyx Dust");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_PICKAXE), "Onyx Pickaxe");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_SHOVEL), "Onyx Shovel");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_AXE), "Onyx Axe");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_HOE), "Onyx Hoe");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_SWORD), "Onyx Sword");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.NEUTRONIUM), "Neutronium");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_SNAKE_EGG), "Onyx Snake Egg");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_FROG_EGG), "Onyx Frog Egg");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ONYX_ORE), "Onyx Ore");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ETHER_ORE), "Ether Ore");
-        translationBuilder.add(ItemRegistry.getInstance().getItem(Naming.ETHER_INGOT), "Ether Ingot");
+        translationBuilder.add(getItem(Naming.ONYX_APPLE),
+                "Onyx Apple");
+        translationBuilder.add(getItem(Naming.ONYX_HELMET),
+                "Onyx Helmet");
+        translationBuilder.add(getItem(Naming.ONYX_CHESTPLATE),
+                "Onyx Chestplate");
+        translationBuilder.add(getItem(Naming.ONYX_LEGGINGS),
+                "Onyx Leggings");
+        translationBuilder.add(getItem(Naming.ONYX_BOOTS),
+                "Onyx Boots");
+        translationBuilder.add(getItem(Naming.ONYX_DUST),
+                "Onyx Dust");
+        translationBuilder.add(getItem(Naming.ONYX_PICKAXE),
+                "Onyx Pickaxe");
+        translationBuilder.add(getItem(Naming.ONYX_SHOVEL),
+                "Onyx Shovel");
+        translationBuilder.add(getItem(Naming.ONYX_AXE),
+                "Onyx Axe");
+        translationBuilder.add(getItem(Naming.ONYX_HOE),
+                "Onyx Hoe");
+        translationBuilder.add(getItem(Naming.ONYX_SWORD),
+                "Onyx Sword");
+        translationBuilder.add(getItem(Naming.NEUTRONIUM),
+                "Neutronium");
+        translationBuilder.add(getItem(Naming.ONYX_SNAKE_EGG),
+                "Onyx Snake Egg");
+        translationBuilder.add(getItem(Naming.ONYX_FROG_EGG),
+                "Onyx Frog Egg");
+        translationBuilder.add(getItem(Naming.ONYX_ORE),
+                "Onyx Ore");
+        translationBuilder.add(getItem(Naming.ETHER_ORE),
+                "Ether Ore");
+        translationBuilder.add(getItem(Naming.ETHER_INGOT),
+                "Ether Ingot");
     }
 }

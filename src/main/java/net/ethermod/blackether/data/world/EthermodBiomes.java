@@ -30,7 +30,6 @@ public class EthermodBiomes {
             HolderGetter<ConfiguredWorldCarver<?>> holderGetter2 = bootstapContext.lookup(Registries.CONFIGURED_CARVER);
             bootstapContext.register(biome,
                     create(holderGetter, holderGetter2));
-
         }
     }
 
@@ -40,6 +39,7 @@ public class EthermodBiomes {
         BiomeDefaultFeatures.addDefaultMonsterRoom(builder);
         BiomeDefaultFeatures.addDefaultUndergroundVariety(builder);
         BiomeDefaultFeatures.addDefaultOres(builder);
+        BiomeDefaultFeatures.addNetherDefaultOres(builder);
         BiomeDefaultFeatures.addDefaultSoftDisks(builder);
         builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 EthermodPlacedFeatures.ONYXTREE_KEY);

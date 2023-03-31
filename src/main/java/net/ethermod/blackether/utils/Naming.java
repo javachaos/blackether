@@ -1,5 +1,7 @@
 package net.ethermod.blackether.utils;
 
+import net.minecraft.resources.ResourceLocation;
+
 public class Naming {
 
 
@@ -31,6 +33,7 @@ public class Naming {
     public static final String ONYXWOOD_TRAPDOOR = "onyxwood_trapdoor";
     public static final String ETHER_INGOT = "ether_ingot";
     public static final String DARK_GRASS_CARVER = "dark_grass_carver";
+    public static final String SNAKE_HISS = "snake_hiss";
 
     private Naming() {
         //Unused

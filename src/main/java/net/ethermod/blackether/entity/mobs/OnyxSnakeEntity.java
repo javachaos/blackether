@@ -1,5 +1,9 @@
 package net.ethermod.blackether.entity.mobs;
 
+import net.ethermod.blackether.registries.SoundRegistry;
+import net.ethermod.blackether.utils.Naming;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -8,6 +12,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -22,6 +27,31 @@ public class OnyxSnakeEntity extends Monster implements GeoEntity {
     public OnyxSnakeEntity(EntityType<? extends Monster> type, Level level) {
         super(type, level);
         this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundRegistry.getInstance().getSoundEvent(Naming.SNAKE_HISS);
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.25f;
+    }
+
+    @Override
+    public int getAmbientSoundInterval() {
+        return super.getAmbientSoundInterval() + 500;
+    }
+
+    @Override
+    public void onEnterCombat() {
+        super.onEnterCombat();
+        getLevel().playSound(null, getX(), getY(), getZ(),
+                SoundRegistry.getInstance().getSoundEvent(Naming.SNAKE_HISS),
+                SoundSource.HOSTILE, 1.0F, 1.0F);
     }
 
     @Override

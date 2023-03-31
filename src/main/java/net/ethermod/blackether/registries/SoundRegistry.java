@@ -33,7 +33,12 @@ public final class SoundRegistry extends BaseRegistry {
     public void register() {
         SoundEvent neutronEvent = Registry.register(BuiltInRegistries.SOUND_EVENT, Naming.NEUTRON_IONIZING,
                 SoundEvent.createVariableRangeEvent(new ResourceLocation(MOD_ID, Naming.NEUTRON_IONIZING)));
+
+        SoundEvent snakeHissEvent = Registry.register(BuiltInRegistries.SOUND_EVENT, Naming.SNAKE_HISS,
+                SoundEvent.createVariableRangeEvent(new ResourceLocation(MOD_ID, Naming.SNAKE_HISS)));
+
         putSoundEvent(Naming.NEUTRON_IONIZING, neutronEvent);
+        putSoundEvent(Naming.SNAKE_HISS, snakeHissEvent);
     }
 
 }

@@ -1,6 +1,9 @@
-[Update 3.7.3]
+[Update 3.7.4]
 
-Added a new palace structure to the onyx dimension.
+- Changed tree's back to normal blob foiliage
+- Added snake ambient sound
+- Added basic wooden tool recipes for onyx wood planks
+- Added a new structured called onyx hut.
 
 Requires:
     - Geckolib 1.19.4:4.1.0
