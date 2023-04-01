@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     constraints {
+        //noinspection ForeignDelegate
         implementation('org.apache.logging.log4j:log4j-core') {
             version {
                 strictly('[2.17, 3[')
@@ -67,7 +68,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 17
+    it.options.release.set(17)
     options.encoding = 'UTF-8'
 }
 
@@ -109,8 +110,8 @@ modrinth {
     versionType = 'release'
     uploadFile = remapJar
     changelog = changelogFile.getText()
-    gameVersions = [project.minecraft_version.toString()]
-    loaders = ['fabric']
+    gameVersions.set([project.minecraft_version.toString()])
+    loaders.set(['fabric'])
     dependencies {
         required.project 'fabric-api'
     }
@@ -129,19 +130,14 @@ tasks.register('addVersionToChangeLog') {
 
 beforeEvaluate {
     tasks.configureEach { Task task ->
-        if (task.name == 'modrinth' || task.name == 'curseforge' + project.curseforge) {
+        if (task.name == 'modrinth'
+                || task.name == 'curseforge' + (project.curseforge as String)) {
             task.dependsOn addVersionToChangeLog
         }
     }
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-
     repositories {
     }
 }
