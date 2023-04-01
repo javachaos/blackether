@@ -12,9 +12,6 @@ public class BlackEtherMod implements ModInitializer {
     public static final String MOD_ID = "ethermod";
     public static final PropertyManager PROPERTIES = new PropertyManager();
 
-
-//TODO add a sound to the existing mob (snake)
-
     @Override
     public void onInitialize() {
         LOGGER.debug("{} started initializing.", MOD_ID);
