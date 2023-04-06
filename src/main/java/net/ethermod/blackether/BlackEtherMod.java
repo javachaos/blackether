@@ -18,7 +18,6 @@ public class BlackEtherMod implements ModInitializer {
         GeckoLib.initialize();
         RegistryInitializer.registerAll();
         LOGGER.debug("{} finished initializing.", MOD_ID);
-
     }
 
 }

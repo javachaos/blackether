@@ -25,8 +25,8 @@ public class BasicToolsRecipe implements ItemRecipeBuilder {
                 .pattern("## ")
                 .pattern("#/ ")
                 .pattern(" / ")
-                .group("tools")
-                .unlockedBy("has_planks", has(planks)).save(exporter);
+                .group(Naming.TOOLS)
+                .unlockedBy(Naming.HAS_PLANKS, has(planks)).save(exporter);
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.TOOLS, Items.WOODEN_HOE, 1)
                 .define('#', planks)
@@ -34,8 +34,8 @@ public class BasicToolsRecipe implements ItemRecipeBuilder {
                 .pattern("## ")
                 .pattern(" / ")
                 .pattern(" / ")
-                .group("tools")
-                .unlockedBy("has_planks", has(planks)).save(exporter);
+                .group(Naming.TOOLS)
+                .unlockedBy(Naming.HAS_PLANKS, has(planks)).save(exporter);
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.TOOLS, Items.WOODEN_PICKAXE, 1)
                 .define('#', planks)
@@ -43,8 +43,8 @@ public class BasicToolsRecipe implements ItemRecipeBuilder {
                 .pattern("###")
                 .pattern(" / ")
                 .pattern(" / ")
-                .group("tools")
-                .unlockedBy("has_planks", has(planks)).save(exporter);
+                .group(Naming.TOOLS)
+                .unlockedBy(Naming.HAS_PLANKS, has(planks)).save(exporter);
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.TOOLS, Items.WOODEN_SHOVEL, 1)
                 .define('#', planks)
@@ -52,8 +52,8 @@ public class BasicToolsRecipe implements ItemRecipeBuilder {
                 .pattern(" # ")
                 .pattern(" / ")
                 .pattern(" / ")
-                .group("tools")
-                .unlockedBy("has_planks", has(planks)).save(exporter);
+                .group(Naming.TOOLS)
+                .unlockedBy(Naming.HAS_PLANKS, has(planks)).save(exporter);
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.TOOLS, Items.WOODEN_SWORD, 1)
                 .define('#', planks)
@@ -61,8 +61,7 @@ public class BasicToolsRecipe implements ItemRecipeBuilder {
                 .pattern(" # ")
                 .pattern(" # ")
                 .pattern(" / ")
-                .group("tools")
-                .unlockedBy("has_planks", has(planks)).save(exporter);
-
+                .group(Naming.TOOLS)
+                .unlockedBy(Naming.HAS_PLANKS, has(planks)).save(exporter);
     }
 }

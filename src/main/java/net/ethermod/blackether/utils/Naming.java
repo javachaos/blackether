@@ -34,6 +34,8 @@ public class Naming {
     public static final String ETHER_INGOT = "ether_ingot";
     public static final String DARK_GRASS_CARVER = "dark_grass_carver";
     public static final String SNAKE_HISS = "snake_hiss";
+    public static final String TOOLS = "tools";
+    public static final String HAS_PLANKS = "has_planks";
 
     private Naming() {
         //Unused

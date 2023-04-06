@@ -9,5 +9,7 @@ import static net.ethermod.blackether.BlackEtherMod.MOD_ID;
 
 public class BiomeRegistry {
 
+    private BiomeRegistry() {}
+
     public static final ResourceKey<Biome> ONYX_BIOME = ResourceKey.create(Registries.BIOME, new ResourceLocation(MOD_ID, "onyx_biome"));
 }

@@ -18,7 +18,7 @@ public abstract class BlockLootGenerator implements LootGenerator {
     protected final Item item;
     protected final FabricBlockLootTableProvider lootTableGenerator;
 
-    public BlockLootGenerator(final EthermodLootTableGenerator ltg, final String blockName,
+    protected BlockLootGenerator(final EthermodLootTableGenerator ltg, final String blockName,
                               final Block b, final Item i) {
         this.block = b;
         this.blockName = blockName;
